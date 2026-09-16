@@ -1,0 +1,8 @@
+Use case: stylized-concept
+Asset type: transparent pixel-art NPC sprite for a native offline Godot 2D wuxia RPG
+Primary request: a unique young female martial-arts disciple named Atang, one full-body front/down-facing idle sprite
+Subject: cheerful young Chinese woman with two short hair buns and red ribbons, warm coral-red and cream martial-arts outfit, practical cropped trousers and brown ankle boots, a small cloth messenger satchel at her waist. Feminine compact silhouette, no beard, no staff, no long black topknot and no teal robe, visually distinct from the male hero and elderly master.
+Style/medium: crisp handcrafted 16-bit chibi pixel art, top-down RPG three-quarter overhead view, hard square pixel clusters and readable silhouette at about 44 pixels tall
+Composition/framing: exactly one centered character, full body with both feet clearly shown, generous transparent margins, neutral standing pose
+Scene/backdrop: genuinely transparent alpha, no scenery, no ground or baked shadow
+Constraints: no text, labels, UI, borders, watermarks, duplicate sprites, other characters, soft illustration or photorealism.

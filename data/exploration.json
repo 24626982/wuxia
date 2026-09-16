@@ -1,0 +1,220 @@
+{
+  "dialogues": {
+    "explore_hall_record": [
+      {
+        "speaker": "少俠",
+        "text": "桌案上一卷簿冊以細繩封住。繩結完整，封泥邊卻留著一道細細的指痕。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "接下來……",
+        "choices": [
+          {
+            "label": "只看封泥，不擅自拆卷。",
+            "effects": {
+              "explore_hall_record": "observe"
+            },
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "紙屑只有半個墨圈，還不足以辨認是誰的印。"
+              }
+            ]
+          },
+          {
+            "label": "查看桌邊留下的紙屑。",
+            "effects": {
+              "explore_hall_record": "verify"
+            },
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "先記下所見，等核對證詞後再作判斷。"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "explore_hall_lamp": [
+      {
+        "speaker": "少俠",
+        "text": "兩側議席的燈都熄了，右邊那盞燈芯卻還很新。有人換過它，還是昨夜根本沒點？"
+      },
+      {
+        "speaker": "少俠",
+        "text": "接下來……",
+        "choices": [
+          {
+            "label": "記下燈芯的異樣。",
+            "effects": {
+              "explore_hall_lamp": "observe"
+            },
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "沒有旁人的證詞，熄燈的時間仍不能確定。"
+              }
+            ]
+          },
+          {
+            "label": "先不推斷昨夜的議事。",
+            "effects": {
+              "explore_hall_lamp": "verify"
+            },
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "先記下所見，等核對證詞後再作判斷。"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "explore_town_notice": [
+      {
+        "speaker": "少俠",
+        "text": "告示板新貼了一張尋人紙。雨水沖淡了姓名，只剩『第二遍更鼓後』幾個字。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "接下來……",
+        "choices": [
+          {
+            "label": "核對與西院更鼓的時間。",
+            "effects": {
+              "explore_town_notice": "observe"
+            },
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "時辰相近只是線索，並不能證明是同一件事。"
+              }
+            ]
+          },
+          {
+            "label": "不把兩宗失蹤直接混為一談。",
+            "effects": {
+              "explore_town_notice": "verify"
+            },
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "先記下所見，等核對證詞後再作判斷。"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "explore_town_parcel": [
+      {
+        "speaker": "少俠",
+        "text": "攤邊有一包繫著細繩的貨物。油紙摺法似曾相識，包裹上卻沒有署名。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "接下來……",
+        "choices": [
+          {
+            "label": "看看繩結，不打開包裹。",
+            "effects": {
+              "explore_town_parcel": "observe"
+            },
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "繩結並不罕見。少俠記下位置，沒有挪動貨物。"
+              }
+            ]
+          },
+          {
+            "label": "等貨主回來再問。",
+            "effects": {
+              "explore_town_parcel": "verify"
+            },
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "先記下所見，等核對證詞後再作判斷。"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "explore_dormitory_bed": [
+      {
+        "speaker": "少俠",
+        "text": "靠牆的被褥摺得方正，枕邊沒有包袱。這是臨時外出，還是有人替他整理過？"
+      },
+      {
+        "speaker": "少俠",
+        "text": "接下來……",
+        "choices": [
+          {
+            "label": "留意床沿的細塵。",
+            "effects": {
+              "explore_dormitory_bed": "observe"
+            },
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "細塵上有一道空白，像曾放過一件窄長的物品，但不能看出取走的人。"
+              }
+            ]
+          },
+          {
+            "label": "先問周伯床位屬於誰。",
+            "effects": {
+              "explore_dormitory_bed": "verify"
+            },
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "先記下所見，等核對證詞後再作判斷。"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "explore_dormitory_pouch": [
+      {
+        "speaker": "少俠",
+        "text": "床邊擱著一只空藥袋，結繩鬆開，袋底仍有少量藥屑。它與白芷說的未拆藥包未必相同。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "接下來……",
+        "choices": [
+          {
+            "label": "記錄藥袋，不自行認定主人。",
+            "effects": {
+              "explore_dormitory_pouch": "observe"
+            },
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "少俠沒有取走藥袋。物件相像，仍須由見過它的人核對。"
+              }
+            ]
+          },
+          {
+            "label": "回西院詢問白芷。",
+            "effects": {
+              "explore_dormitory_pouch": "verify"
+            },
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "先記下所見，等核對證詞後再作判斷。"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

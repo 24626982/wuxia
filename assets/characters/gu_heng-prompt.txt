@@ -1,0 +1,6 @@
+Use case: stylized-concept
+Asset type: transparent PNG FOUR direction NPC sprite sheet for Godot wuxia RPG.
+Input image 1: STYLE AND PROPORTION reference only, NOT character identity. Create an entirely NEW character: Gu Heng, young male formal disciple, neat indigo navy robe with silver trim and waist sash, slick dark hair in small high tied bun, dignified slightly serious face, folded closed training fan at belt. Different face and outfit from hero; no teal robe.
+Style: exactly reference's chibi pixel art: very oversized head, short body and stubby legs, dark crisp outlines, blocky 16bit pixel clusters, restrained palette. Not tall realistic proportions.
+Composition: square canvas with EXACTLY FOUR equal invisible quadrant cells 2x2. Top-left front facing down/viewer, top-right back facing up with NO face, bottom-left left profile facing LEFT, bottom-right right profile facing RIGHT. Same NEW character in all four cells, identical costume, same head/body size. Complete figure fully inside each cell, centered horizontally, feet at same relative baseline, central75 percent cellheight with transparent margins. Neutral standing.
+Constraints: genuinely TRANSPARENT alpha background, no ground shadows, no backdrop, no labels, no text, no cell borders, no extra people. Match style but never copy hero's costume or face.

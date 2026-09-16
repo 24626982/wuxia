@@ -1,0 +1,361 @@
+[gd_scene load_steps=29 format=3]
+
+[ext_resource type="Script" path="res://scripts/courtyard.gd" id="1_main"]
+[ext_resource type="Texture2D" path="res://assets/environment/courtyard.png" id="2_background"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scenes/npc.tscn" id="4_npc"]
+[ext_resource type="PackedScene" path="res://scenes/dialogue.tscn" id="5_dialogue"]
+[ext_resource type="Texture2D" path="res://assets/characters/master-v2.png" id="6_master"]
+[ext_resource type="Texture2D" path="res://assets/characters/disciple-v2.png" id="7_disciple"]
+[ext_resource type="Texture2D" path="res://assets/characters/guard-v2.png" id="8_guard"]
+[ext_resource type="Script" path="res://scripts/map_exit.gd" id="9_exit"]
+[ext_resource type="Texture2D" path="res://assets/characters/master-directions.png" id="10_master_directions"]
+[ext_resource type="Texture2D" path="res://assets/characters/disciple-directions.png" id="11_disciple_directions"]
+[ext_resource type="Texture2D" path="res://assets/characters/guard-directions.png" id="12_guard_directions"]
+
+[sub_resource type="RectangleShape2D" id="Rect_portal"]
+size = Vector2(24, 28)
+
+[sub_resource type="RectangleShape2D" id="Rect_door"]
+size = Vector2(48, 24)
+
+[sub_resource type="RectangleShape2D" id="Rect_mountain"]
+size = Vector2(48, 16)
+
+[sub_resource type="RectangleShape2D" id="Rect_west_lower"]
+size = Vector2(470, 248)
+
+[sub_resource type="RectangleShape2D" id="Rect_horizontal"]
+size = Vector2(960, 320)
+
+[sub_resource type="RectangleShape2D" id="Rect_left"]
+size = Vector2(470, 252)
+
+[sub_resource type="RectangleShape2D" id="Rect_south_side"]
+size = Vector2(838, 135)
+
+[sub_resource type="RectangleShape2D" id="Rect_gate_pillar"]
+size = Vector2(18, 53)
+
+[sub_resource type="RectangleShape2D" id="Rect_bottom"]
+size = Vector2(960, 40)
+
+[sub_resource type="RectangleShape2D" id="Rect_stair_sides"]
+size = Vector2(30, 14)
+
+[sub_resource type="RectangleShape2D" id="Rect_right"]
+size = Vector2(100, 540)
+
+[sub_resource type="RectangleShape2D" id="Rect_pavilion"]
+size = Vector2(122, 50)
+
+[sub_resource type="RectangleShape2D" id="Rect_garden_left"]
+size = Vector2(94, 60)
+
+[sub_resource type="RectangleShape2D" id="Rect_garden_right"]
+size = Vector2(139, 70)
+
+[sub_resource type="CircleShape2D" id="Circle_dummy"]
+radius = 10.0
+
+[sub_resource type="SystemFont" id="Font_ui"]
+font_names = PackedStringArray("Microsoft JhengHei", "Noto Sans CJK TC", "sans-serif")
+
+[node name="Courtyard" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_main")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_background")
+centered = false
+scale = Vector2(0.5741627, 0.5738576)
+
+[node name="Obstacles" type="StaticBody2D" parent="."]
+
+[node name="NorthBuildings" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(0, -100, 960, -100, 960, 160, 510, 160, 510, 96, 450, 96, 450, 160, 0, 160)
+
+[node name="SouthWallWest" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(0, 472.5)
+shape = SubResource("Rect_south_side")
+
+[node name="SouthWallEast" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(960, 472.5)
+shape = SubResource("Rect_south_side")
+
+[node name="GatePillarWest" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(410, 452.5)
+shape = SubResource("Rect_gate_pillar")
+
+[node name="GatePillarEast" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(550, 452.5)
+shape = SubResource("Rect_gate_pillar")
+
+[node name="StairSideWest" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(434, 533)
+shape = SubResource("Rect_stair_sides")
+
+[node name="StairSideEast" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(526, 533)
+shape = SubResource("Rect_stair_sides")
+
+[node name="MapBottom" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(480, 560)
+shape = SubResource("Rect_bottom")
+
+[node name="PondAndWestGarden" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(0, 126)
+shape = SubResource("Rect_left")
+
+[node name="WestPondLower" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(0, 416)
+shape = SubResource("Rect_west_lower")
+
+[node name="EastWall" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(960, 270)
+shape = SubResource("Rect_right")
+
+[node name="Pavilion" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(849, 183)
+shape = SubResource("Rect_pavilion")
+
+[node name="SouthwestBamboo" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(282, 400)
+shape = SubResource("Rect_garden_left")
+
+[node name="SoutheastBamboo" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(697.5, 400)
+shape = SubResource("Rect_garden_right")
+
+[node name="TrainingDummyA" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(820, 296)
+shape = SubResource("Circle_dummy")
+
+[node name="TrainingDummyB" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(838, 346)
+shape = SubResource("Circle_dummy")
+
+[node name="TrainingDummyC" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(894, 304)
+shape = SubResource("Circle_dummy")
+
+[node name="Actors" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="Actors" instance=ExtResource("3_player")]
+position = Vector2(480, 310)
+
+[node name="Master" parent="Actors" instance=ExtResource("4_npc")]
+position = Vector2(480, 207)
+npc_id = &"master"
+directional_texture = ExtResource("10_master_directions")
+display_name = "柳青霄 · 掌門"
+character_texture = ExtResource("6_master")
+display_height = 48.0
+artwork_bounds = Rect2(388, 213, 453, 890)
+
+[node name="Sprite2D" parent="Actors/Master" index="1"]
+texture = ExtResource("6_master")
+scale = Vector2(0.0539326, 0.0539326)
+offset = Vector2(-614.5, -1103)
+
+[node name="Name" parent="Actors/Master" index="3"]
+text = "柳青霄 · 掌門"
+
+[node name="Disciple" parent="Actors" instance=ExtResource("4_npc")]
+position = Vector2(650, 275)
+npc_id = &"disciple"
+directional_texture = ExtResource("11_disciple_directions")
+display_name = "阿棠 · 師妹"
+character_texture = ExtResource("7_disciple")
+display_height = 46.0
+artwork_bounds = Rect2(402, 215, 451, 865)
+
+[node name="Sprite2D" parent="Actors/Disciple" index="1"]
+texture = ExtResource("7_disciple")
+scale = Vector2(0.0531792, 0.0531792)
+offset = Vector2(-627.5, -1080)
+
+[node name="Name" parent="Actors/Disciple" index="3"]
+text = "阿棠 · 師妹"
+
+[node name="Guard" parent="Actors" instance=ExtResource("4_npc")]
+position = Vector2(578, 365)
+npc_id = &"guard"
+directional_texture = ExtResource("12_guard_directions")
+display_name = "秦川 · 守門弟子"
+character_texture = ExtResource("8_guard")
+display_height = 54.0
+artwork_bounds = Rect2(397, 269, 416, 834)
+
+[node name="Sprite2D" parent="Actors/Guard" index="1"]
+texture = ExtResource("8_guard")
+scale = Vector2(0.0647482, 0.0647482)
+offset = Vector2(-605, -1103)
+
+[node name="Name" parent="Actors/Guard" index="3"]
+text = "秦川 · 守門弟子"
+
+[node name="GateForeground" type="Node2D" parent="."]
+z_index = 10
+
+[node name="Roof" type="Polygon2D" parent="GateForeground"]
+texture = ExtResource("2_background")
+polygon = PackedVector2Array(377, 373, 393, 383, 412, 386, 548, 386, 569, 382, 581, 373, 578, 399, 565, 417, 548, 437, 410, 437, 392, 417, 382, 400)
+
+[node name="WestPillar" type="Polygon2D" parent="GateForeground"]
+texture = ExtResource("2_background")
+polygon = PackedVector2Array(404, 429, 420, 429, 420, 477, 404, 477)
+
+[node name="EastPillar" type="Polygon2D" parent="GateForeground"]
+texture = ExtResource("2_background")
+polygon = PackedVector2Array(541, 429, 557, 429, 557, 477, 541, 477)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Backdrop" type="ColorRect" parent="HUD"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 330.0
+offset_bottom = 88.0
+mouse_filter = 2
+color = Color(0.055, 0.08, 0.075, 0.88)
+
+[node name="Title" type="Label" parent="HUD"]
+offset_left = 30.0
+offset_top = 22.0
+offset_right = 320.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.94, 0.81, 0.53, 1)
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 19
+text = "武俠庭院 · 劍譜疑雲"
+
+[node name="Controls" type="Label" parent="HUD"]
+offset_left = 30.0
+offset_top = 55.0
+offset_right = 320.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0.88, 0.9, 0.82, 1)
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+text = "WASD / 方向鍵 移動   E 對話   R 回起點"
+
+[node name="ObjectiveBackdrop" type="ColorRect" parent="HUD"]
+offset_left = 510.0
+offset_top = 16.0
+offset_right = 944.0
+offset_bottom = 62.0
+mouse_filter = 2
+color = Color(0.055, 0.08, 0.075, 0.88)
+
+[node name="Objective" type="Label" parent="HUD"]
+offset_left = 524.0
+offset_top = 23.0
+offset_right = 932.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(0.94, 0.88, 0.68, 1)
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 2
+
+[node name="InteractionHint" type="Label" parent="HUD"]
+offset_left = 180.0
+offset_top = 508.0
+offset_right = 780.0
+offset_bottom = 535.0
+theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+
+[node name="JournalBackdrop" type="ColorRect" parent="HUD"]
+offset_left = 510.0
+offset_top = 62.0
+offset_right = 944.0
+offset_bottom = 99.0
+mouse_filter = 2
+color = Color(0.055, 0.08, 0.075, 0.88)
+
+[node name="Journal" type="Label" parent="HUD"]
+offset_left = 524.0
+offset_top = 65.0
+offset_right = 932.0
+offset_bottom = 96.0
+theme_override_colors/font_color = Color(0.73, 0.87, 0.78, 1)
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 2
+
+[node name="Dialogue" parent="." instance=ExtResource("5_dialogue")]
+
+[node name="WestBridgeExit" type="Area2D" parent="."]
+position = Vector2(30, 272)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("9_exit")
+destination = "res://scenes/residence.tscn"
+arrival = Vector2(860, 310)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WestBridgeExit"]
+shape = SubResource("Rect_portal")
+
+[node name="BridgeSign" type="Label" parent="."]
+offset_left = 61.0
+offset_top = 221.0
+offset_right = 235.0
+offset_bottom = 245.0
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 4
+text = "← 西院・掌門與弟子住處"
+
+[node name="HallExit" type="Area2D" parent="."]
+position = Vector2(480, 118)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("9_exit")
+destination = "res://scenes/hall.tscn"
+arrival = Vector2(480, 440)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HallExit"]
+shape = SubResource("Rect_door")
+
+[node name="SouthMountainExit" type="Area2D" parent="."]
+position = Vector2(480, 530)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("9_exit")
+destination = "res://scenes/town.tscn"
+arrival = Vector2(480, 130)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SouthMountainExit"]
+shape = SubResource("Rect_mountain")
+
+[node name="HallSign" type="Label" parent="."]
+offset_left = 525.0
+offset_top = 145.0
+offset_right = 680.0
+offset_bottom = 170.0
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 4
+text = "↑ 議事廳"
+
+[node name="TownSign" type="Label" parent="."]
+offset_left = 560.0
+offset_top = 478.0
+offset_right = 715.0
+offset_bottom = 503.0
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 4
+text = "↓ 下山・山腳城鎮"

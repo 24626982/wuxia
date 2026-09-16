@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
+[ext_resource type="Texture2D" path="res://assets/characters/swordsman.png" id="2_sprite"]
+
+[sub_resource type="CircleShape2D" id="Circle_feet"]
+radius = 7.0
+
+[node name="Player" type="CharacterBody2D"]
+texture_filter = 1
+motion_mode = 1
+script = ExtResource("1_player")
+
+[node name="Shadow" type="Polygon2D" parent="."]
+color = Color(0.07, 0.10, 0.08, 0.38)
+polygon = PackedVector2Array(-13, 0, -9, -4, 0, -5, 9, -4, 13, 0, 9, 4, 0, 5, -9, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("2_sprite")
+offset = Vector2(0, -274)
+hframes = 2
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Circle_feet")

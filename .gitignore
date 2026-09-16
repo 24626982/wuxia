@@ -1,0 +1,21 @@
+# Godot 4+ specific ignores
+.godot/
+builds/
+/android/
+
+# Local tooling and generated verification output
+.vscode/
+.claude/
+tests/*.log
+tests/*preview.png
+tests/*preview.png.import
+
+# Credentials and machine-local settings
+.env
+.env.*
+!.env.example
+export_credentials.cfg
+*.pfx
+*.p12
+*.pem
+*.key

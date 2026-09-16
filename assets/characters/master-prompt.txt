@@ -1,0 +1,8 @@
+Use case: stylized-concept
+Asset type: transparent pixel-art NPC sprite for a native offline Godot 2D wuxia RPG
+Primary request: a unique elderly male sect master named Liu Qingxiao, one full-body front/down-facing idle sprite
+Subject: dignified elderly Chinese swordsman, long white beard, white hair in a high bun, layered ivory and indigo robes, narrow embroidered sash, wooden walking staff held at his side. Distinct aged face and tall slender silhouette, NOT a young black-haired teal-robed hero.
+Style/medium: crisp handcrafted 16-bit chibi pixel art, top-down RPG three-quarter overhead view, hard square pixel clusters and readable silhouette at about 48 pixels tall
+Composition/framing: exactly one character centered, full body including feet and staff, generous transparent margins. Neutral standing pose.
+Scene/backdrop: genuinely transparent alpha, no scenery, no ground or baked shadow
+Constraints: no text, labels, UI, borders, watermarks, duplicate sprites, other characters, soft illustration or photorealism.

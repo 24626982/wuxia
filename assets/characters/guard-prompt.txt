@@ -1,0 +1,8 @@
+Use case: stylized-concept
+Asset type: transparent pixel-art NPC sprite for a native offline Godot 2D wuxia RPG
+Primary request: a unique adult male gate guard named Qin Chuan, one full-body front/down-facing idle sprite
+Subject: sturdy Chinese martial-arts guard with broad shoulders, short dark hair beneath a practical cloth headband, visible short stubble, forest-green short tunic, dark brown leather lamellar vest and bracers, tan trousers and dark sturdy boots. Holds a long wooden spear upright at his side. Grounded stocky silhouette, distinct from a slender long-haired teal-robed young swordsman, an elderly white-bearded master and a red-clad female disciple.
+Style/medium: crisp handcrafted 16-bit chibi pixel art, top-down RPG three-quarter overhead view, hard square pixel clusters and readable silhouette at about 48 pixels tall
+Composition/framing: exactly one centered character, complete full body, both feet and the entire spear visible, generous transparent margins, calm neutral standing pose
+Scene/backdrop: genuinely transparent alpha, no scenery, no ground or baked shadow
+Constraints: no text, labels, UI, borders, watermarks, duplicate sprites, other characters, soft illustration or photorealism.

@@ -1,0 +1,291 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/courtyard.gd" id="1_main"]
+[ext_resource type="Texture2D" path="res://assets/environment/residence.png" id="2_background"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scenes/npc.tscn" id="4_npc"]
+[ext_resource type="PackedScene" path="res://scenes/dialogue.tscn" id="5_dialogue"]
+[ext_resource type="Script" path="res://scripts/map_exit.gd" id="10_exit"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/shen_he-directions.png" id="6_sheet"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/bai_zhi-directions.png" id="7_sheet"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/gu_heng-directions.png" id="8_sheet"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/uncle_zhou-directions.png" id="9_sheet"]
+
+[sub_resource type="RectangleShape2D" id="Rect_exit"]
+size = Vector2(24, 40)
+
+[sub_resource type="RectangleShape2D" id="Rect_door"]
+size = Vector2(48, 24)
+
+[sub_resource type="SystemFont" id="Font_ui"]
+font_names = PackedStringArray("Microsoft JhengHei", "Noto Sans CJK TC", "sans-serif")
+
+[sub_resource type="AtlasTexture" id="Atlas_shen_he"]
+atlas = ExtResource("6_sheet")
+region = Rect2(0, 0, 627, 627)
+
+[sub_resource type="AtlasTexture" id="Atlas_bai_zhi"]
+atlas = ExtResource("7_sheet")
+region = Rect2(0, 0, 627, 627)
+
+[sub_resource type="AtlasTexture" id="Atlas_gu_heng"]
+atlas = ExtResource("8_sheet")
+region = Rect2(0, 0, 627, 627)
+
+[sub_resource type="AtlasTexture" id="Atlas_uncle_zhou"]
+atlas = ExtResource("9_sheet")
+region = Rect2(0, 0, 627, 627)
+
+[node name="Residence" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_main")
+map_id = "residence"
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_background")
+centered = false
+scale = Vector2(0.5741627, 0.5738576)
+
+[node name="Obstacles" type="StaticBody2D" parent="."]
+
+[node name="Buildings" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(0, 0, 960, 0, 960, 205, 770, 205, 770, 164, 300, 164, 300, 170, 290, 170, 290, 96, 240, 96, 240, 170, 0, 170)
+
+[node name="WestGarden" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(0, 170, 170, 170, 170, 272, 250, 350, 250, 430, 340, 480, 340, 540, 0, 540)
+
+[node name="EastPond" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(650, 360, 730, 344, 960, 344, 960, 540, 590, 540, 590, 455, 650, 420)
+
+[node name="EastBridgeUpper" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(860, 205, 960, 205, 960, 291, 860, 291)
+
+[node name="Bottom" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(0, 540, 960, 540, 960, 580, 0, 580)
+
+[node name="ReturnBridgeExit" type="Area2D" parent="."]
+position = Vector2(930, 315)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("10_exit")
+destination = "res://scenes/courtyard.tscn"
+arrival = Vector2(270, 272)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnBridgeExit"]
+shape = SubResource("Rect_exit")
+
+[node name="Actors" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="Actors" instance=ExtResource("3_player")]
+position = Vector2(860, 310)
+
+[node name="ShenHe" parent="Actors" instance=ExtResource("4_npc")]
+position = Vector2(255, 290)
+npc_id = &"shen_he"
+display_name = "沈禾・修橋學徒"
+character_texture = SubResource("Atlas_shen_he")
+directional_texture = ExtResource("6_sheet")
+display_height = 46.0
+artwork_bounds = Rect2(181, 65, 252, 535)
+frame_bounds = Array[Rect2]([Rect2(181, 65, 252, 535), Rect2(188, 65, 253, 535), Rect2(172, 61, 268, 504), Rect2(187, 61, 268, 504)])
+
+[node name="Sprite2D" parent="Actors/ShenHe" index="1"]
+texture = SubResource("Atlas_shen_he")
+scale = Vector2(0.08598130841121496, 0.08598130841121496)
+offset = Vector2(-307, -600)
+
+[node name="Name" parent="Actors/ShenHe" index="3"]
+offset_left = -110.0
+offset_right = 110.0
+offset_top = -70.0
+offset_bottom = -47.0
+text = "沈禾・修橋學徒"
+
+[node name="BaiZhi" parent="Actors" instance=ExtResource("4_npc")]
+position = Vector2(725, 240)
+npc_id = &"bai_zhi"
+display_name = "白芷・藥房學徒"
+character_texture = SubResource("Atlas_bai_zhi")
+directional_texture = ExtResource("7_sheet")
+display_height = 45.0
+artwork_bounds = Rect2(193, 63, 244, 541)
+frame_bounds = Array[Rect2]([Rect2(193, 63, 244, 541), Rect2(190, 63, 243, 541), Rect2(168, 53, 262, 516), Rect2(199, 53, 261, 516)])
+
+[node name="Sprite2D" parent="Actors/BaiZhi" index="1"]
+texture = SubResource("Atlas_bai_zhi")
+scale = Vector2(0.08317929759704251, 0.08317929759704251)
+offset = Vector2(-315, -604)
+
+[node name="Name" parent="Actors/BaiZhi" index="3"]
+offset_left = -110.0
+offset_right = 110.0
+offset_top = -69.0
+offset_bottom = -46.0
+text = "白芷・藥房學徒"
+
+[node name="GuHeng" parent="Actors" instance=ExtResource("4_npc")]
+position = Vector2(500, 290)
+npc_id = &"gu_heng"
+display_name = "顧衡・練劍弟子"
+character_texture = SubResource("Atlas_gu_heng")
+directional_texture = ExtResource("8_sheet")
+display_height = 46.0
+artwork_bounds = Rect2(195, 60, 235, 543)
+frame_bounds = Array[Rect2]([Rect2(195, 60, 235, 543), Rect2(198, 60, 234, 543), Rect2(174, 46, 273, 524), Rect2(180, 46, 273, 524)])
+
+[node name="Sprite2D" parent="Actors/GuHeng" index="1"]
+texture = SubResource("Atlas_gu_heng")
+scale = Vector2(0.0847145488029466, 0.0847145488029466)
+offset = Vector2(-312.5, -603)
+
+[node name="Name" parent="Actors/GuHeng" index="3"]
+offset_left = -110.0
+offset_right = 110.0
+offset_top = -70.0
+offset_bottom = -47.0
+text = "顧衡・練劍弟子"
+
+[node name="UncleZhou" parent="Actors" instance=ExtResource("4_npc")]
+position = Vector2(265, 220)
+npc_id = &"uncle_zhou"
+display_name = "周伯・住處管事"
+character_texture = SubResource("Atlas_uncle_zhou")
+directional_texture = ExtResource("9_sheet")
+display_height = 46.0
+artwork_bounds = Rect2(183, 74, 260, 526)
+frame_bounds = Array[Rect2]([Rect2(183, 74, 260, 526), Rect2(185, 74, 257, 526), Rect2(187, 55, 261, 512), Rect2(179, 55, 261, 512)])
+
+[node name="Sprite2D" parent="Actors/UncleZhou" index="1"]
+texture = SubResource("Atlas_uncle_zhou")
+scale = Vector2(0.08745247148288973, 0.08745247148288973)
+offset = Vector2(-313, -600)
+
+[node name="Name" parent="Actors/UncleZhou" index="3"]
+offset_left = -110.0
+offset_right = 110.0
+offset_top = -70.0
+offset_bottom = -47.0
+text = "周伯・住處管事"
+
+[node name="GateForeground" type="Node2D" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Backdrop" type="ColorRect" parent="HUD"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 330.0
+offset_bottom = 88.0
+mouse_filter = 2
+color = Color(0.055, 0.08, 0.075, 0.88)
+
+[node name="Title" type="Label" parent="HUD"]
+offset_left = 30.0
+offset_top = 22.0
+offset_right = 320.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.94, 0.81, 0.53, 1)
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 19
+text = "西院住處・空床疑案"
+
+[node name="Controls" type="Label" parent="HUD"]
+offset_left = 30.0
+offset_top = 55.0
+offset_right = 320.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0.88, 0.9, 0.82, 1)
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+text = "WASD / 方向鍵 移動   E 對話   R 回起點"
+
+[node name="ObjectiveBackdrop" type="ColorRect" parent="HUD"]
+offset_left = 510.0
+offset_top = 16.0
+offset_right = 944.0
+offset_bottom = 62.0
+mouse_filter = 2
+color = Color(0.055, 0.08, 0.075, 0.88)
+
+[node name="Objective" type="Label" parent="HUD"]
+offset_left = 524.0
+offset_top = 23.0
+offset_right = 932.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(0.94, 0.88, 0.68, 1)
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 2
+
+[node name="InteractionHint" type="Label" parent="HUD"]
+offset_left = 180.0
+offset_top = 508.0
+offset_right = 780.0
+offset_bottom = 535.0
+theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+
+[node name="JournalBackdrop" type="ColorRect" parent="HUD"]
+offset_left = 510.0
+offset_top = 62.0
+offset_right = 944.0
+offset_bottom = 99.0
+mouse_filter = 2
+color = Color(0.055, 0.08, 0.075, 0.88)
+
+[node name="Journal" type="Label" parent="HUD"]
+offset_left = 524.0
+offset_top = 65.0
+offset_right = 932.0
+offset_bottom = 96.0
+theme_override_colors/font_color = Color(0.73, 0.87, 0.78, 1)
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 2
+
+
+[node name="Dialogue" parent="." instance=ExtResource("5_dialogue")]
+
+[node name="ReturnSign" type="Label" parent="."]
+offset_left = 757.0
+offset_top = 267.0
+offset_right = 942.0
+offset_bottom = 290.0
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 4
+text = "庭院 →"
+horizontal_alignment = 2
+
+[node name="DormitoryExit" type="Area2D" parent="."]
+position = Vector2(265, 118)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("10_exit")
+destination = "res://scenes/dormitory.tscn"
+arrival = Vector2(480, 440)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DormitoryExit"]
+shape = SubResource("Rect_door")
+
+[node name="DormitorySign" type="Label" parent="."]
+offset_left = 302.0
+offset_top = 174.0
+offset_right = 457.0
+offset_bottom = 199.0
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 4
+text = "↑ 弟子宿舍"

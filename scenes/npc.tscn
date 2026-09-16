@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc.gd" id="1_npc"]
+[ext_resource type="Texture2D" path="res://assets/characters/master-v2.png" id="2_sprite"]
+
+[sub_resource type="CircleShape2D" id="Circle_feet"]
+radius = 8.0
+
+[sub_resource type="SystemFont" id="Font_name"]
+font_names = PackedStringArray("Microsoft JhengHei", "Noto Sans CJK TC", "sans-serif")
+
+[node name="NPC" type="StaticBody2D" groups=["story_npcs"]]
+texture_filter = 1
+script = ExtResource("1_npc")
+character_texture = ExtResource("2_sprite")
+
+[node name="Shadow" type="Polygon2D" parent="."]
+color = Color(0.07, 0.10, 0.08, 0.38)
+polygon = PackedVector2Array(-13, 0, -9, -4, 0, -5, 9, -4, 13, 0, 9, 4, 0, 5, -9, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sprite")
+centered = false
+scale = Vector2(0.0539326, 0.0539326)
+offset = Vector2(-614.5, -1103)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Circle_feet")
+
+[node name="Name" type="Label" parent="."]
+offset_left = -70.0
+offset_top = -71.0
+offset_right = 70.0
+offset_bottom = -48.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("Font_name")
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1

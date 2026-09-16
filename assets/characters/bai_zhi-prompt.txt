@@ -1,0 +1,6 @@
+Use case: stylized-concept
+Asset type: transparent PNG FOUR direction NPC sprite sheet for Godot wuxia RPG.
+Input image 1: STYLE AND PROPORTION reference only, NOT character identity. Create an entirely NEW character: Bai Zhi, young female apothecary apprentice, pale lilac short robe and white apron, dark hair in ONE braided bun with simple wooden hairpin, small rectangular medicine satchel at hip and herb pouch, calm observant round face. No twin buns, no red costume, no sword.
+Style: exactly reference's chibi pixel art: very oversized head, short body and stubby legs, dark crisp outlines, blocky 16bit pixel clusters, restrained palette. Not tall realistic proportions.
+Composition: square canvas with EXACTLY FOUR equal invisible quadrant cells 2x2. Top-left front facing down/viewer, top-right back facing up with NO face, bottom-left left profile facing LEFT, bottom-right right profile facing RIGHT. Same NEW character in all four cells, identical costume, same head/body size. Complete figure fully inside each cell, centered horizontally, feet at same relative baseline, central75 percent cellheight with transparent margins. Neutral standing.
+Constraints: genuinely TRANSPARENT alpha background, no ground shadows, no backdrop, no labels, no text, no cell borders, no extra people. Match style but never copy hero's costume or face.

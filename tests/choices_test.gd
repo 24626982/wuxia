@@ -26,7 +26,8 @@ func _run() -> void:
 	await process_frame
 	var input_dialogue = input_world.get_node("Dialogue")
 	input_world._open_dialogue("master_start")
-	input_dialogue.advance()
+	while not input_dialogue.waiting_for_choice:
+		input_dialogue.advance()
 	var down := InputEventAction.new()
 	down.action = "choice_down"
 	down.pressed = true
@@ -41,7 +42,8 @@ func _run() -> void:
 	_check(not input_dialogue.waiting_for_choice and input_dialogue.pending_effects.get("approach") == "justice", "Enter confirms highlighted choice without skipping reply")
 	input_dialogue.cancel()
 	input_world._open_dialogue("master_start")
-	input_dialogue.advance()
+	while not input_dialogue.waiting_for_choice:
+		input_dialogue.advance()
 	input_dialogue.choice_buttons[0].pressed.emit()
 	_check(input_dialogue.pending_effects.get("approach") == "compassion", "Native Button pressed signal selects its own option")
 	input_dialogue.cancel()
@@ -75,11 +77,18 @@ func _run() -> void:
 				world._open_dialogue("disciple_clue")
 				_finish(dialogue, clue)
 				world._open_dialogue("guard_route")
+				for step in range(60):
+					if "你將秦川的話記在心裡" in dialogue.body.text: break
+					if dialogue.waiting_for_choice: dialogue.choose(trust)
+					else: dialogue.advance()
+				_check(dialogue.active and "你將秦川的話記在心裡" in dialogue.body.text, "Clue summary follows Qin Chuan without walking away")
+				dialogue.cancel()
+				_check(world.story_stage == 2 and not world.story_flags.has("trust_guard"), "Cancelling clue summary preserves unfinished guard conversation")
+				world._open_dialogue("guard_route")
 				_finish(dialogue, trust)
 				_check(world.story_flags.get("clue") == ("whistle" if clue == 0 else "seal"), "Clue is committed")
 				_check(world.story_flags.get("trust_guard") == (trust == 0), "Trust is committed")
-				world._open_dialogue("departure")
-				_finish(dialogue, 0)
+				_check(world.guide_task.map == "residence", "Guard completion immediately guides to west courtyard")
 				var expected := "守約尋人" if approach == 0 and trust == 0 else ("循證追查" if clue == 1 else "孤身追影")
 				_check(world.story_stage == 4 and world.ending_name() == expected, "Branch ending: " + expected)
 				_check(JSON.stringify(world.story) == original, "Branch replies do not mutate local source story")

@@ -3,6 +3,12 @@ extends CanvasLayer
 signal started
 signal finished(dialogue_id: StringName, effects: Dictionary)
 signal cancelled
+signal closed(completed: bool, effects: Dictionary)
+const Rules = preload("res://scripts/story_rules.gd")
+const Art = preload("res://scripts/character_art.gd")
+var portrait: TextureRect
+var library: Dictionary = {}
+var allow_cancel := true
 
 var active: bool = false
 var dialogue_id: StringName
@@ -18,11 +24,19 @@ var current_choices: Array = []
 @onready var speaker: Label = $Panel/Speaker
 @onready var body: Label = $Panel/Body
 @onready var hint: Label = $Panel/Hint
-@onready var choices_box: VBoxContainer = $Panel/Choices
-@onready var choice_buttons: Array[Button] = [$Panel/Choices/Option1, $Panel/Choices/Option2]
+@onready var choices_box: VBoxContainer = $Panel/ChoiceScroll/Choices
+@onready var choice_buttons: Array[Button] = [$Panel/ChoiceScroll/Choices/Option1, $Panel/ChoiceScroll/Choices/Option2]
 
 
 func _ready() -> void:
+	portrait = TextureRect.new()
+	portrait.position = Vector2(14, 8)
+	portrait.size = Vector2(140, 150)
+	portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	portrait.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.add_child(portrait)
 	for index in range(choice_buttons.size()):
 		choice_buttons[index].pressed.connect(choose.bind(index))
 		choice_buttons[index].focus_entered.connect(_choice_focused.bind(index))
@@ -38,24 +52,26 @@ func begin(id: StringName, dialogue_lines: Array, story_context: Dictionary = {}
 	line_index = 0
 	active = true
 	panel.show()
-	_show_line()
 	started.emit()
+	_show_line()
 
 
 func advance() -> void:
 	if not active or waiting_for_choice:
 		return
+	_apply_action(lines[line_index].get("action", {}))
 	line_index += 1
 	if line_index >= lines.size():
 		active = false
 		panel.hide()
 		finished.emit(dialogue_id, pending_effects.duplicate(true))
+		closed.emit(true, pending_effects.duplicate(true))
 	else:
 		_show_line()
 
 
 func cancel() -> void:
-	if not active:
+	if not active or not allow_cancel:
 		return
 	active = false
 	waiting_for_choice = false
@@ -63,6 +79,7 @@ func cancel() -> void:
 	choices_box.hide()
 	panel.hide()
 	cancelled.emit()
+	closed.emit(false, {})
 
 
 func choose(index: int) -> void:
@@ -73,6 +90,9 @@ func choose(index: int) -> void:
 	pending_effects.merge(effects, true)
 	context.merge(effects, true)
 	var reply: Array = option.get("reply", [])
+	reply = reply.duplicate(true)
+	if option.has("action"):
+		reply.append({"action": option.action})
 	lines = lines.slice(0, line_index + 1) + reply.duplicate(true) + lines.slice(line_index + 1)
 	waiting_for_choice = false
 	choices_box.hide()
@@ -109,34 +129,63 @@ func _input(event: InputEvent) -> void:
 
 func _show_line() -> void:
 	var line: Dictionary = lines[line_index]
-	speaker.text = str(line["speaker"])
+	if not Rules.matches(context, line.get("when", {})):
+		line_index += 1
+		if line_index >= lines.size():
+			active = false
+			panel.hide()
+			finished.emit(dialogue_id, pending_effects.duplicate(true))
+			closed.emit(true, pending_effects.duplicate(true))
+			return
+		_show_line()
+		return
+	if not line.has("text"):
+		advance()
+		return
+	speaker.text = str(line.get("speaker", "旁白")).replace(" · ", "・")
+	portrait.texture = Art.portrait(speaker.text)
+	portrait.visible = portrait.texture != null
+	speaker.offset_left = 166 if portrait.visible else 24
+	body.offset_left = speaker.offset_left
 	body.text = _resolve_text(line)
-	current_choices = line.get("choices", [])
+	current_choices = []
+	for option in line.get("choices", []):
+		if Rules.matches(context, option.get("requires", {})):
+			current_choices.append(option)
+	while choice_buttons.size() < current_choices.size():
+		var button := Button.new()
+		button.custom_minimum_size = Vector2(0, 44)
+		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		choices_box.add_child(button)
+		var index := choice_buttons.size()
+		button.pressed.connect(choose.bind(index))
+		button.focus_entered.connect(_choice_focused.bind(index))
+		choice_buttons.append(button)
 	waiting_for_choice = not current_choices.is_empty()
 	choices_box.visible = waiting_for_choice
-	panel.offset_top = 252.0 if waiting_for_choice else 362.0
-	body.offset_bottom = 112.0 if waiting_for_choice else 117.0
-	hint.offset_top = 242.0 if waiting_for_choice else 129.0
+	panel.offset_top = 30.0 if waiting_for_choice else 362.0
+	body.offset_bottom = 142.0
+	portrait.size.y = 150
+	$Panel/ChoiceScroll.offset_top = 158
+	$Panel/ChoiceScroll.offset_bottom = 448
+	$Panel/ChoiceScroll.visible = waiting_for_choice
+	hint.offset_top = 462.0 if waiting_for_choice else 169.0
 	hint.offset_bottom = hint.offset_top + 24.0
 	for index in range(choice_buttons.size()):
 		choice_buttons[index].visible = index < current_choices.size()
 		choice_buttons[index].release_focus()
 	if waiting_for_choice:
-		assert(current_choices.size() <= choice_buttons.size(), "Dialogue supports up to two choices per question.")
 		hint.text = "1 / 2 直接選擇   ·   ↑↓ 選擇，E / 空白鍵 / Enter 確認   ·   Esc 取消"
 		_focus_choice(0)
 	else:
 		hint.text = "E / 空白鍵 / Enter 繼續   ·   Esc 關閉（不保留本次選擇）"
+		panel.offset_top = 322.0
 
 
 func _resolve_text(line: Dictionary) -> String:
 	for variant in line.get("variants", []):
-		var matches: bool = true
-		for key in variant["when"]:
-			if context.get(key) != variant["when"][key]:
-				matches = false
-				break
-		if matches:
+		if Rules.matches(context, variant.get("when", {})):
 			return str(variant["text"])
 	return str(line["text"])
 
@@ -144,6 +193,19 @@ func _resolve_text(line: Dictionary) -> String:
 func _focus_choice(index: int) -> void:
 	_choice_focused(index)
 	choice_buttons[index].grab_focus()
+	$Panel/ChoiceScroll.ensure_control_visible(choice_buttons[index])
+
+func _apply_action(action: Dictionary) -> void:
+	match action.get("type", ""):
+		"set":
+			pending_effects.merge(action.effects, true)
+			context.merge(action.effects, true)
+		"enable_interactables":
+			for id in action.ids:
+				pending_effects["enabled_" + id] = true
+				context["enabled_" + id] = true
+		"open_dialogue":
+			lines = lines.slice(0, line_index + 1) + library.get(action.id, []).duplicate(true) + lines.slice(line_index + 1)
 
 
 func _choice_focused(index: int) -> void:

@@ -1,0 +1,1386 @@
+{
+  "meta": {
+    "title": "劍譜疑雲",
+    "script_version": "v1.0（2026-09-17 初版定案）",
+    "engine": "Godot",
+    "note": "本檔描述流程與判定；台詞在 data/dialogues/*.json。欄位說明見 CODEX_README.md。"
+  },
+  "flags": {
+    "_comment": "所有 effects 鍵。type=enum 時列出可能值。source=codex 表示原本 JSON 已有。",
+    "approach": {
+      "type": "enum",
+      "values": [
+        "compassion",
+        "justice"
+      ],
+      "source": "codex",
+      "scored": false
+    },
+    "clue": {
+      "type": "enum",
+      "values": [
+        "whistle",
+        "seal"
+      ],
+      "source": "codex",
+      "scored": false
+    },
+    "trust_guard": {
+      "type": "bool",
+      "source": "codex",
+      "scored": false
+    },
+    "shen_lead": {
+      "type": "enum",
+      "values": [
+        "sound",
+        "marks"
+      ],
+      "source": "codex"
+    },
+    "bai_method": {
+      "type": "enum",
+      "values": [
+        "copy",
+        "time"
+      ],
+      "source": "codex"
+    },
+    "gu_response": {
+      "type": "enum",
+      "values": [
+        "compare",
+        "challenge"
+      ],
+      "source": "codex"
+    },
+    "residence_resolved": {
+      "type": "bool",
+      "source": "codex"
+    },
+    "residence_next_lead": {
+      "type": "enum",
+      "values": [
+        "seal",
+        "safety"
+      ],
+      "source": "codex"
+    },
+    "explore_*": {
+      "type": "string",
+      "source": "codex",
+      "note": "探索物件已調查過即有值（observe / verify / seen）"
+    },
+    "ev_seal_sketch": {
+      "type": "bool",
+      "note": "阿棠畫的竹印（clue=seal 時取得）"
+    },
+    "met_chen_bai": {
+      "type": "bool"
+    },
+    "n1_result": {
+      "type": "enum",
+      "values": [
+        "talk",
+        "fight",
+        "tried_then_fight"
+      ]
+    },
+    "n2_result": {
+      "type": "enum",
+      "values": [
+        "talk",
+        "fight",
+        "tried_then_fight"
+      ]
+    },
+    "n3_result": {
+      "type": "enum",
+      "values": [
+        "talk",
+        "fight",
+        "tried_then_fight"
+      ]
+    },
+    "n4_result": {
+      "type": "enum",
+      "values": [
+        "talk",
+        "fight",
+        "tried_then_fight"
+      ]
+    },
+    "n5_result": {
+      "type": "enum",
+      "values": [
+        "talk",
+        "fight",
+        "tried_then_fight"
+      ]
+    },
+    "xiaoman_safe": {
+      "type": "bool"
+    },
+    "chen_bai_nails": {
+      "type": "bool"
+    },
+    "hide_spot": {
+      "type": "bool",
+      "note": "知道劍譜藏在北邊竹管"
+    },
+    "heart_shi_an": {
+      "type": "bool"
+    },
+    "heart_brother": {
+      "type": "bool"
+    },
+    "heart_xiaoman": {
+      "type": "bool"
+    },
+    "heart_shen_he": {
+      "type": "bool"
+    },
+    "e1_boots": {
+      "type": "bool"
+    },
+    "e2_ash": {
+      "type": "bool"
+    },
+    "e3_sheath": {
+      "type": "bool"
+    },
+    "revealed": {
+      "type": "bool"
+    },
+    "suspect_known": {
+      "type": "bool"
+    },
+    "monologue": {
+      "type": "enum",
+      "values": [
+        "shaken",
+        "rules",
+        "silent"
+      ]
+    },
+    "got_manual": {
+      "type": "bool"
+    },
+    "manual_secured": {
+      "type": "bool",
+      "note": "N5 對質前選擇先從藏處取回劍譜；知道藏處不等於已取回"
+    }
+  },
+  "derived": {
+    "fight_count": "n1_result ~ n5_result 中，值為 fight 或 tried_then_fight 的數量（未設定的不算）",
+    "route": {
+      "talk": "n1_result ~ n5_result 全部為 talk",
+      "fight": "n1_result ~ n5_result 全部為 fight（不含 tried_then_fight）",
+      "mixed": "其他"
+    }
+  },
+  "evidence": {
+    "_comment": "N3、N5 出示用。requires 成立才出現在選單。",
+    "ev_receipt_halves": {
+      "label": "兩半收訖單",
+      "requires": {
+        "residence_resolved": true
+      }
+    },
+    "ev_seal_sketch": {
+      "label": "阿棠畫的竹印",
+      "requires": {
+        "ev_seal_sketch": true
+      }
+    },
+    "ev_pass": {
+      "label": "沾血的半張路引（阿棠所述）",
+      "requires": {}
+    },
+    "ev_empty_bed": {
+      "label": "小滿的空床",
+      "requires": {
+        "explore_dormitory_bed": {
+          "$exists": true
+        }
+      }
+    },
+    "ev_medicine": {
+      "label": "白芷窗下的藥包",
+      "requires": {
+        "bai_method": {
+          "$exists": true
+        }
+      }
+    },
+    "ev_boots": {
+      "label": "釘底靴與真劍",
+      "requires": {
+        "e1_boots": true
+      }
+    },
+    "ev_ash": {
+      "label": "燈座裡的紙灰",
+      "requires": {
+        "e2_ash": true
+      }
+    },
+    "ev_sheath": {
+      "label": "周伯收走的書套",
+      "requires": {
+        "e3_sheath": true
+      }
+    }
+  },
+  "events": [
+    {
+      "_comment": "序章與西院沿用 Codex 現有流程，不重列。以下為新增或需要觸發條件的事件。"
+    },
+    {
+      "id": "dorm_chen_bai_first",
+      "map": "dormitory",
+      "npc": "chen_bai",
+      "dialogue": "dorm_chen_bai_first",
+      "requires": {
+        "met_chen_bai": {
+          "$exists": false
+        }
+      },
+      "note": "序章後隨時可觸發"
+    },
+    {
+      "id": "dorm_chen_bai_repeat",
+      "map": "dormitory",
+      "npc": "chen_bai",
+      "dialogue": "dorm_chen_bai_repeat",
+      "requires": {
+        "met_chen_bai": true,
+        "n3_result": {
+          "$exists": false
+        }
+      }
+    },
+    {
+      "id": "n1",
+      "map": "dormitory",
+      "npc": "shi_an",
+      "node": "n1",
+      "requires": {
+        "residence_resolved": true,
+        "n1_result": {
+          "$exists": false
+        }
+      }
+    },
+    {
+      "id": "n2",
+      "map": "town",
+      "npc": "brother",
+      "node": "n2",
+      "requires": {
+        "explore_town_notice": {
+          "$exists": true
+        },
+        "n1_result": {
+          "$exists": true
+        },
+        "n2_result": {
+          "$exists": false
+        }
+      }
+    },
+    {
+      "id": "n3",
+      "map": "bamboo_station",
+      "trigger": "third_lamp_at_night",
+      "node": "n3",
+      "requires": {
+        "residence_resolved": true,
+        "n1_result": {
+          "$exists": true
+        },
+        "n2_result": {
+          "$exists": true
+        },
+        "n3_result": {
+          "$exists": false
+        }
+      }
+    },
+    {
+      "id": "act3_chen_bai_nails",
+      "map": "dormitory",
+      "npc": "chen_bai",
+      "dialogue": "act3_chen_bai_nails",
+      "requires": {
+        "n3_result": {
+          "$exists": true
+        },
+        "chen_bai_nails": {
+          "$exists": false
+        }
+      },
+      "note": "N3 結束後，下次進宿舍自動觸發"
+    },
+    {
+      "id": "n4",
+      "map": "wind_cliff",
+      "trigger": "enter_at_night",
+      "node": "n4",
+      "requires": {
+        "chen_bai_nails": true,
+        "n4_result": {
+          "$exists": false
+        }
+      }
+    },
+    {
+      "id": "cliff_night_empty",
+      "map": "wind_cliff",
+      "trigger": "enter_at_night",
+      "dialogue": "cliff_night_empty",
+      "requires": {
+        "n4_result": {
+          "$in": [
+            "fight",
+            "tried_then_fight"
+          ]
+        }
+      }
+    },
+    {
+      "id": "cliff_search",
+      "map": "wind_cliff",
+      "trigger": "interact_tubes",
+      "puzzle": "cliff_search",
+      "requires": {
+        "chen_bai_nails": true,
+        "explore_wind_cliff_record": {
+          "$exists": true
+        },
+        "hide_spot": {
+          "$exists": false
+        }
+      }
+    },
+    {
+      "id": "hall_revisit",
+      "map": "hall",
+      "trigger": "enter",
+      "sequence": [
+        "hall_revisit_intro",
+        "hall_revisit_roster",
+        "hall_revisit_lamp",
+        "hall_revisit_allocation",
+        "hall_revisit_gu_heng",
+        "hall_revisit_uncle_zhou",
+        "hall_revisit_monologue"
+      ],
+      "optional": [
+        "hall_revisit_bai_zhi"
+      ],
+      "requires": {
+        "n4_result": {
+          "$exists": true
+        },
+        "revealed": {
+          "$exists": false
+        }
+      },
+      "note": "roster / lamp / allocation 可做成三個調查點，全部看完才接顧衡、周伯、獨白"
+    },
+    {
+      "id": "n5",
+      "map": "wind_cliff",
+      "trigger": "enter",
+      "node": "n5",
+      "requires": {
+        "suspect_known": true,
+        "monologue": {
+          "$exists": true
+        },
+        "n5_result": {
+          "$exists": false
+        }
+      }
+    },
+    {
+      "id": "finale",
+      "map": "hall",
+      "trigger": "enter",
+      "sequence": [
+        "finale_report"
+      ],
+      "then": {
+        "map": "courtyard",
+        "sequence": [
+          "finale_courtyard",
+          "finale_monologue",
+          "@ending"
+        ]
+      },
+      "requires": {
+        "n5_result": {
+          "$exists": true
+        }
+      }
+    }
+  ],
+  "map_interactables": {
+    "_comment": "初訪就可互動的元件。dialogue 來自 exploration.json。",
+    "hall": [
+      "explore_hall_record",
+      "explore_hall_lamp",
+      "explore_hall_ledger",
+      "npc_elder_yan"
+    ],
+    "town": [
+      "explore_town_notice",
+      "explore_town_parcel",
+      "npc_town_vendor",
+      "npc_town_tea"
+    ],
+    "dormitory": [
+      {
+        "id": "explore_dormitory_bed",
+        "enabled_by": "n1 結束（對話或戰鬥）"
+      },
+      {
+        "id": "explore_dormitory_pouch",
+        "enabled_by": "n1 結束（對話或戰鬥）"
+      }
+    ],
+    "bamboo_station": [
+      "explore_bamboo_station_record",
+      "explore_bamboo_station_signal",
+      "explore_station_backdoor",
+      {
+        "id": "npc_station_keeper",
+        "requires": {
+          "n3_result": {
+            "$nin": [
+              "fight",
+              "tried_then_fight"
+            ]
+          }
+        }
+      },
+      {
+        "id": "npc_station_keeper_closed",
+        "requires": {
+          "n3_result": {
+            "$in": [
+              "fight",
+              "tried_then_fight"
+            ]
+          }
+        }
+      }
+    ],
+    "wind_cliff": [
+      "explore_wind_cliff_record",
+      "explore_wind_cliff_signal",
+      "npc_herb_elder",
+      "explore_cliff_rock"
+    ]
+  },
+  "node_rules": {
+    "choice_types": {
+      "correct": "直接成功",
+      "valid": "有效項，不扣次數；累積到 success_rule 成立即成功",
+      "neutral": "不扣次數",
+      "wrong": "錯誤次數 +1",
+      "fight": "直接進入戰鬥，結果記 fight"
+    },
+    "miss_limit": 2,
+    "on_third_miss": {
+      "line": "對方不想再談了。",
+      "options": [
+        {
+          "label": "出手",
+          "result": "tried_then_fight",
+          "action": "start_battle"
+        },
+        {
+          "label": "先離開",
+          "action": "leave_node",
+          "show": "leave_hint",
+          "note": "離開後錯誤次數重置；下次進入節點重新開始"
+        }
+      ]
+    },
+    "miss_counter": "錯誤次數只在節點內暫存，不寫入 effects"
+  },
+  "nodes": {
+    "n1": {
+      "map": "dormitory",
+      "intro": "n1_intro",
+      "prompt": {
+        "speaker": "少俠",
+        "text": "（要怎麼說？）"
+      },
+      "choices": [
+        {
+          "id": "fight",
+          "type": "fight",
+          "label": "我在查劍譜的事，讓開。"
+        },
+        {
+          "id": "accuse",
+          "type": "wrong",
+          "label": "小滿是不是拿了劍譜？",
+          "reply": [
+            {
+              "speaker": "石安・西院弟子",
+              "text": "你們那邊的人都這麼說。說完了？"
+            }
+          ]
+        },
+        {
+          "id": "fear",
+          "type": "wrong",
+          "label": "你怕我拿走東西？",
+          "reply": [
+            {
+              "speaker": "石安・西院弟子",
+              "text": "你們要拿，我攔得住嗎？"
+            }
+          ]
+        },
+        {
+          "id": "bundle",
+          "type": "correct",
+          "label": "他的包袱周伯收著，我知道。我只看床，你站旁邊看。"
+        }
+      ],
+      "leave_hint": "也許該先弄清楚小滿的東西現在在誰手上。",
+      "on_success": {
+        "dialogue": "n1_success",
+        "effects": {
+          "n1_result": "talk"
+        }
+      },
+      "battle": "battle_n1",
+      "after_battle": {
+        "dialogue": "n1_after_battle"
+      }
+    },
+    "n2": {
+      "map": "town",
+      "intro": "n2_intro",
+      "prompt": {
+        "speaker": "少俠",
+        "text": "（要怎麼說？）"
+      },
+      "choices": [
+        {
+          "id": "fight",
+          "type": "fight",
+          "label": "放手。"
+        },
+        {
+          "id": "small_name",
+          "type": "neutral",
+          "label": "尋人紙上的名字怎麼寫那麼小？",
+          "reply": [
+            {
+              "speaker": "小滿的哥哥",
+              "text": "寫大了，你們山上的人會比我先找到他。"
+            }
+          ]
+        },
+        {
+          "id": "dunno",
+          "type": "wrong",
+          "label": "我不知道他在哪。你先放手。",
+          "reply": [
+            {
+              "speaker": "小滿的哥哥",
+              "text": "每個人都這麼說。"
+            }
+          ]
+        },
+        {
+          "id": "bed",
+          "type": "correct",
+          "requires": {
+            "explore_dormitory_bed": {
+              "$exists": true
+            }
+          },
+          "label": "你弟弟是小滿吧？他的床我看過，東西都還在，管事的周伯替他收著。我是來找他的。"
+        }
+      ],
+      "leave_hint": "也許該先去看看小滿住的地方。",
+      "on_success": {
+        "dialogue": "n2_success",
+        "effects": {
+          "n2_result": "talk"
+        }
+      },
+      "battle": "battle_n2",
+      "after_battle": {
+        "dialogue": "n2_after_battle"
+      }
+    },
+    "n3": {
+      "map": "bamboo_station",
+      "intro": "n3_intro",
+      "prompt": {
+        "speaker": "少俠",
+        "text": "（要怎麼說？可以出示東西，也可以直接說。）"
+      },
+      "choices": [
+        {
+          "id": "fight",
+          "type": "fight",
+          "label": "小滿在裡面吧。叫他出來。"
+        },
+        {
+          "id": "receipt",
+          "type": "valid",
+          "label": "出示：兩半收訖單",
+          "evidence": "ev_receipt_halves",
+          "reply": [
+            {
+              "speaker": "石安・西院弟子",
+              "text": "這是寄東西的單子，跟劍譜沒關係。"
+            }
+          ]
+        },
+        {
+          "id": "seal",
+          "type": "wrong",
+          "label": "出示：阿棠畫的竹印",
+          "evidence": "ev_seal_sketch",
+          "reply": [
+            {
+              "speaker": "石安・西院弟子",
+              "text": "你拿這個來，是要抓他？"
+            }
+          ]
+        },
+        {
+          "id": "brother",
+          "type": "valid",
+          "label": "他哥哥在鎮上貼尋人紙，貼了好幾天。",
+          "requires": {
+            "heart_brother": true
+          },
+          "reply": [
+            {
+              "speaker": "旁白",
+              "text": "石安的手鬆了一下。"
+            }
+          ]
+        },
+        {
+          "id": "intent",
+          "type": "valid",
+          "label": "我不是來抓他的，我要確認他沒事。",
+          "reply": [
+            {
+              "speaker": "石安・西院弟子",
+              "text": "……光用說的，誰都會說。"
+            }
+          ]
+        }
+      ],
+      "success_rule": {
+        "if": {
+          "n1_result": "talk"
+        },
+        "then": {
+          "all_of": [
+            "intent"
+          ],
+          "any_of": [
+            "receipt",
+            "brother"
+          ]
+        },
+        "else": {
+          "all_of": [
+            "intent",
+            "receipt",
+            "brother"
+          ]
+        }
+      },
+      "leave_hint": "也許該弄清楚他們在這裡等的是什麼。",
+      "leave_hint_when_impossible": {
+        "when": {
+          "n1_result": {
+            "$in": [
+              "fight",
+              "tried_then_fight"
+            ]
+          },
+          "heart_brother": {
+            "$exists": false
+          }
+        },
+        "text": "石安不打算再聽你說了。"
+      },
+      "on_success": {
+        "dialogue": "n3_success",
+        "effects": {
+          "n3_result": "talk"
+        }
+      },
+      "battle": "battle_n3",
+      "after_battle": {
+        "dialogue": "n3_after_battle"
+      }
+    },
+    "n4": {
+      "map": "wind_cliff",
+      "intro": "n4_intro",
+      "prompt": {
+        "speaker": "少俠",
+        "text": "（要怎麼說？）"
+      },
+      "choices": [
+        {
+          "id": "fight",
+          "type": "fight",
+          "label": "你們半夜在這裡做什麼？跟我去見掌門。"
+        },
+        {
+          "id": "manual",
+          "type": "wrong",
+          "label": "劍譜是不是在你們這裡？",
+          "reply": [
+            {
+              "speaker": "沈禾・修橋學徒",
+              "text": "我們要是拿得到劍譜，還用得著拿木頭在這裡吹風？"
+            }
+          ]
+        },
+        {
+          "id": "steal",
+          "type": "wrong",
+          "label": "你們在偷學？",
+          "reply": [
+            {
+              "speaker": "沈禾・修橋學徒",
+              "text": "你要這樣說也行。"
+            }
+          ]
+        },
+        {
+          "id": "signals",
+          "type": "correct",
+          "label": "竹管是傳聲用的。那天橋下的兩聲，是小滿在叫人會合；天亮那三聲，是在叫人去救陳白。",
+          "requires": {
+            "shen_lead": {
+              "$exists": true
+            },
+            "explore_wind_cliff_record": {
+              "$exists": true
+            }
+          }
+        }
+      ],
+      "leave_hint": "橋下的兩聲和天亮的三聲，也許不是同一個意思。",
+      "on_success": {
+        "dialogue": "n4_success",
+        "effects": {
+          "n4_result": "talk"
+        }
+      },
+      "battle": "battle_n4",
+      "after_battle": {
+        "dialogue": "n4_after_battle"
+      }
+    },
+    "n5": {
+      "map": "wind_cliff",
+      "search_prompt": {
+        "speaker": "少俠",
+        "text": "（避風石後面那幾根竹管，還沒查過。要先搜一遍嗎？上了崖就沒有回頭的機會。）"
+      },
+      "search_choices": [
+        {
+          "id": "search",
+          "label": "先搜查竹管，再與嚴承對質。"
+        },
+        {
+          "id": "skip",
+          "label": "不搜了，直接上前對質。"
+        }
+      ],
+      "retrieval_prompt": {
+        "speaker": "少俠",
+        "text": "已知道劍譜藏在北邊竹管。要先取回，再與嚴承對質嗎？"
+      },
+      "retrieval_choices": [
+        {
+          "id": "retrieve",
+          "label": "先取回劍譜，再與嚴承對質。"
+        },
+        {
+          "id": "defer",
+          "label": "先與嚴承對質，暫不取走劍譜。"
+        }
+      ],
+      "intro": "n5_intro",
+      "prompt": {
+        "speaker": "少俠",
+        "text": "（要動手，還是跟他談？）"
+      },
+      "entry_choices": [
+        {
+          "id": "fight",
+          "type": "fight",
+          "label": "動手。"
+        },
+        {
+          "id": "talk",
+          "type": "start_talk",
+          "label": "跟他談。"
+        }
+      ],
+      "battle": "battle_n5",
+      "after_battle": {
+        "if": {
+          "manual_secured": true
+        },
+        "then": {
+          "dialogue": "n5_after_battle_kept",
+          "effects": {
+            "got_manual": true
+          }
+        },
+        "else": {
+          "dialogue": "n5_after_battle_lost",
+          "effects": {
+            "got_manual": false
+          }
+        }
+      },
+      "talk": {
+        "patience": 3,
+        "patience_note": "答錯一次 -1；理、情兩段共用，不重置；歸零即失敗",
+        "reason_stage": [
+          {
+            "id": "q1",
+            "line": {
+              "speaker": "嚴承・師兄",
+              "text": "披蓑衣的是雜役，關我什麼事？"
+            },
+            "correct_evidence": "ev_boots",
+            "correct_reply": [
+              {
+                "speaker": "少俠",
+                "text": "陳白被釘底靴踩過，秦川看見那人背著真劍。這兩樣，西院的人都沒有。"
+              }
+            ]
+          },
+          {
+            "id": "q2",
+            "line": {
+              "speaker": "嚴承・師兄",
+              "text": "名簿少一頁，說不定是有人要刪掉那個半路進來的。"
+            },
+            "correct_evidence": "ev_ash",
+            "correct_reply": [
+              {
+                "speaker": "少俠",
+                "text": "燈座裡的紙灰，還看得出「滿」跟「勝」。被燒掉的是比武那一頁。"
+              }
+            ]
+          },
+          {
+            "id": "q3",
+            "line": {
+              "speaker": "嚴承・師兄",
+              "text": "那小子床上不是擺著劍譜的書套嗎？還要我說什麼？"
+            },
+            "correct_evidence": "ev_sheath",
+            "correct_reply": [
+              {
+                "speaker": "少俠",
+                "text": "書套是周伯收走的，他誰都沒講。知道它在那張床上的，只有周伯，和放它的人。"
+              }
+            ],
+            "after_correct": "n5_reason_q3_correct"
+          }
+        ],
+        "reason_evidence_menu": [
+          "ev_boots",
+          "ev_ash",
+          "ev_sheath",
+          "ev_pass",
+          "ev_empty_bed",
+          "ev_medicine"
+        ],
+        "wrong_evidence_reply": [
+          {
+            "speaker": "嚴承・師兄",
+            "text": "這又能說明什麼？"
+          }
+        ],
+        "heart_intro": "n5_heart_intro",
+        "heart_stage": {
+          "note": "選項依鍵出現；沒有任何 heart_* 時只剩錯誤選項，對話必定失敗（刻意設計）",
+          "choices": [
+            {
+              "id": "xiaoman",
+              "type": "correct",
+              "requires": {
+                "heart_xiaoman": true
+              },
+              "label": "他說那一招是在這裡看我們練、看了兩年學的。站在風裡看兩年。我們在場上有人教，還嫌累。"
+            },
+            {
+              "id": "shen_he",
+              "type": "correct",
+              "requires": {
+                "heart_shen_he": true
+              },
+              "label": "你鞋底的釘子卡壞的那塊橋石，是沈禾去換的。他換了好幾次。"
+            },
+            {
+              "id": "brother",
+              "type": "correct",
+              "requires": {
+                "heart_brother": true
+              },
+              "label": "他哥在鎮上找了好幾天，尋人紙上的名字寫得小小的，怕被我們先找到。他娘還在等那包藥。"
+            },
+            {
+              "id": "shi_an",
+              "type": "correct",
+              "requires": {
+                "heart_shi_an": true
+              },
+              "label": "他的床靠窗，屋頂漏了一整個冬天。西院屋頂漏水，你知道嗎？我之前也不知道。"
+            },
+            {
+              "id": "shame",
+              "type": "wrong",
+              "label": "輸給半路進來的，確實丟人。",
+              "reply": [
+                {
+                  "speaker": "嚴承・師兄",
+                  "text": "你也這樣想，那還來問我做什麼。"
+                }
+              ]
+            },
+            {
+              "id": "seat",
+              "type": "wrong",
+              "label": "交出來，掌門的位子我不會讓。",
+              "reply": [
+                {
+                  "speaker": "嚴承・師兄",
+                  "text": "你果然只在乎這個。"
+                }
+              ]
+            },
+            {
+              "id": "bribe",
+              "type": "wrong",
+              "label": "你交出來，我不跟掌門說是你。",
+              "reply_dialogue": "n5_bribe_reaction"
+            }
+          ]
+        },
+        "on_success": {
+          "dialogue": "n5_talk_success",
+          "effects": {
+            "n5_result": "talk",
+            "got_manual": true
+          }
+        },
+        "on_fail": {
+          "dialogue": "n5_talk_fail",
+          "if": {
+            "manual_secured": true
+          },
+          "then": {
+            "choices": [
+              {
+                "label": "出手攔下",
+                "action": "start_battle",
+                "battle": "battle_n5",
+                "effects": {
+                  "n5_result": "tried_then_fight",
+                  "got_manual": true
+                },
+                "after_battle_dialogue": "n5_after_battle_kept"
+              },
+              {
+                "label": "讓他走",
+                "dialogue": "n5_talk_fail_let_go",
+                "effects": {
+                  "n5_result": "talk",
+                  "got_manual": true
+                }
+              }
+            ]
+          },
+          "else": {
+            "dialogue": "n5_talk_fail_lost",
+            "effects": {
+              "n5_result": "talk",
+              "got_manual": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "puzzles": {
+    "cliff_search": {
+      "intro": "cliff_search_intro",
+      "options": [
+        {
+          "id": "tube_south",
+          "label": "南邊那根",
+          "correct": false
+        },
+        {
+          "id": "tube_middle",
+          "label": "中間那根",
+          "correct": false
+        },
+        {
+          "id": "tube_east",
+          "label": "靠東那根",
+          "correct": false
+        },
+        {
+          "id": "tube_north",
+          "label": "最北邊那根（裂開的）",
+          "correct": true
+        }
+      ],
+      "wrong": "cliff_search_wrong",
+      "right": "cliff_search_right",
+      "penalty": "none"
+    }
+  },
+  "battles": {
+    "_comment": "戰鬥必勝。turn_lines 的 trigger：turn（第幾回合開始）、hp_below（敵方血量比例低於）、on_defeat（敵方倒下）。",
+    "battle_n1": {
+      "result_key": "n1_result",
+      "enemies": [
+        {
+          "id": "shi_an",
+          "name": "石安"
+        }
+      ],
+      "intro": [
+        {
+          "speaker": "旁白",
+          "text": "石安把針線放下，擋在床前。袖口翻起來，內側有一小截墨竹。"
+        },
+        {
+          "speaker": "石安・西院弟子",
+          "text": "要翻，先過我。"
+        }
+      ],
+      "turn_lines": [
+        {
+          "trigger": {
+            "turn": 2
+          },
+          "line": {
+            "speaker": "石安・西院弟子",
+            "text": "陳白還在睡……你小聲點。"
+          }
+        },
+        {
+          "trigger": {
+            "hp_below": 0.5,
+            "enemy": "shi_an"
+          },
+          "line": {
+            "speaker": "石安・西院弟子",
+            "text": "……夠了。"
+          }
+        }
+      ]
+    },
+    "battle_n2": {
+      "result_key": "n2_result",
+      "enemies": [
+        {
+          "id": "brother",
+          "name": "小滿的哥哥",
+          "note": "不會武功，一擊即倒"
+        }
+      ],
+      "intro": [
+        {
+          "speaker": "旁白",
+          "text": "他沒有放手。"
+        }
+      ],
+      "turn_lines": [
+        {
+          "trigger": {
+            "turn": 1
+          },
+          "line": {
+            "speaker": "小滿的哥哥",
+            "text": "我只是要找我弟！"
+          }
+        }
+      ]
+    },
+    "battle_n3": {
+      "result_key": "n3_result",
+      "enemies": [
+        {
+          "id": "shi_an",
+          "name": "石安"
+        },
+        {
+          "id": "disciple_a",
+          "name": "西院弟子"
+        },
+        {
+          "id": "disciple_b",
+          "name": "西院弟子"
+        }
+      ],
+      "intro": [
+        {
+          "speaker": "石安・西院弟子",
+          "text": "……我還以為你不一樣。",
+          "variants": [
+            {
+              "when": {
+                "n1_result": {
+                  "$in": [
+                    "fight",
+                    "tried_then_fight"
+                  ]
+                }
+              },
+              "text": "上次讓你翻了。這次不行。"
+            }
+          ]
+        }
+      ],
+      "turn_lines": [
+        {
+          "trigger": {
+            "turn": 1
+          },
+          "line": {
+            "speaker": "西院弟子甲",
+            "text": "他只有一個人！"
+          }
+        },
+        {
+          "trigger": {
+            "turn": 3
+          },
+          "line": {
+            "speaker": "西院弟子乙",
+            "text": "……打不過。他練的是正經劍法。"
+          }
+        },
+        {
+          "trigger": {
+            "on_defeat": "shi_an"
+          },
+          "line": {
+            "speaker": "石安・西院弟子",
+            "text": "別……別開門……"
+          }
+        }
+      ]
+    },
+    "battle_n4": {
+      "result_key": "n4_result",
+      "enemies": [
+        {
+          "id": "shen_he",
+          "name": "沈禾",
+          "weapon": "木劍"
+        },
+        {
+          "id": "disciple_c",
+          "name": "西院弟子",
+          "weapon": "木劍"
+        },
+        {
+          "id": "disciple_d",
+          "name": "西院弟子",
+          "weapon": "木劍"
+        },
+        {
+          "id": "disciple_e",
+          "name": "西院弟子",
+          "weapon": "木劍"
+        }
+      ],
+      "intro": [
+        {
+          "speaker": "沈禾・修橋學徒",
+          "text": "你們先走。"
+        },
+        {
+          "speaker": "旁白",
+          "text": "沒有人走。沈禾撿起地上的木劍。"
+        }
+      ],
+      "turn_lines": [
+        {
+          "trigger": {
+            "turn": 2
+          },
+          "line": {
+            "speaker": "旁白",
+            "text": "沈禾這一劍，你看著很眼熟。"
+          }
+        },
+        {
+          "trigger": {
+            "hp_below": 0.5,
+            "enemy": "shen_he"
+          },
+          "line": {
+            "speaker": "沈禾・修橋學徒",
+            "text": "……我只是想學。"
+          }
+        }
+      ]
+    },
+    "battle_n5": {
+      "result_key": "n5_result",
+      "enemies": [
+        {
+          "id": "yan_cheng",
+          "name": "嚴承",
+          "weapon": "真劍",
+          "note": "本作最強的對手"
+        }
+      ],
+      "intro_dialogue": "n5_battle_intro",
+      "turn_lines": [
+        {
+          "trigger": {
+            "turn": 2
+          },
+          "line": {
+            "speaker": "嚴承・師兄",
+            "text": "你以為掌門挑你，是因為你比我強？"
+          }
+        },
+        {
+          "trigger": {
+            "turn": 3
+          },
+          "line": {
+            "speaker": "嚴承・師兄",
+            "text": "是因為你爹娘！跟我一樣！"
+          }
+        },
+        {
+          "trigger": {
+            "hp_below": 0.3,
+            "enemy": "yan_cheng"
+          },
+          "line": {
+            "speaker": "嚴承・師兄",
+            "text": "……連你我都打不過。"
+          }
+        }
+      ]
+    }
+  },
+  "violence_echo": {
+    "_comment": "依 fight_count 覆蓋閒聊台詞，不計分。取符合條件中門檻最高的一條。",
+    "entries": [
+      {
+        "min_fight_count": 1,
+        "target": "courtyard_water_disciple",
+        "line": {
+          "speaker": "旁白",
+          "text": "提水桶的弟子一看到你，就退到牆邊。水灑了一地，他也不敢擦。"
+        }
+      },
+      {
+        "min_fight_count": 2,
+        "target": "uncle_zhou_idle",
+        "line": {
+          "speaker": "周伯・住處管事",
+          "text": "你最近……手重了點。"
+        }
+      },
+      {
+        "min_fight_count": 2,
+        "target": "qin_chuan_idle",
+        "line": {
+          "speaker": "旁白",
+          "text": "秦川行禮時，沒有抬頭。"
+        }
+      },
+      {
+        "min_fight_count": 3,
+        "target": "residence_enter",
+        "line": {
+          "speaker": "旁白",
+          "text": "沈禾和白芷原本在說話，看到你就停了。白芷把藥房的窗子關上。"
+        }
+      },
+      {
+        "min_fight_count": 4,
+        "target": "npc_town_tea",
+        "note": "已寫在 exploration.json 的 variants"
+      }
+    ]
+  },
+  "endings": {
+    "sequence": [
+      "finale_report",
+      "finale_courtyard",
+      "finale_monologue",
+      "@ending"
+    ],
+    "table": [
+      {
+        "route": "talk",
+        "got_manual": true,
+        "id": "ending_junzi",
+        "title": "完美結局／君子劍"
+      },
+      {
+        "route": "talk",
+        "got_manual": false,
+        "id": "ending_treasure",
+        "title": "一般結局／重要的寶物"
+      },
+      {
+        "route": "fight",
+        "got_manual": true,
+        "id": "ending_tyrant",
+        "title": "暴政結局"
+      },
+      {
+        "route": "fight",
+        "got_manual": false,
+        "id": "ending_exiled",
+        "title": "被逐結局／草叢無名"
+      },
+      {
+        "route": "mixed",
+        "got_manual": true,
+        "id": "ending_ordinary_master",
+        "title": "一般掌門結局"
+      },
+      {
+        "route": "mixed",
+        "got_manual": false,
+        "id": "ending_own_world",
+        "title": "自己的世界結局"
+      }
+    ]
+  }
+}

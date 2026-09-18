@@ -6,7 +6,7 @@ var pending_arrival := false
 var switching := false
 
 func travel(world: Node, scene_path: String, spawn: Vector2) -> void:
-	if switching or world.dialogue.active:
+	if switching or world.dialogue.active or (world.notebook != null and world.notebook.opened) or (world.director != null and world.director.busy):
 		return
 	switching = true
 	story_stage = world.story_stage

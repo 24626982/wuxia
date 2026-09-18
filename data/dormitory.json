@@ -1,0 +1,163 @@
+{
+  "dialogues": {
+    "dorm_chen_bai_first": [
+      {
+        "speaker": "旁白",
+        "text": "陳白躺在床上，石安坐在旁邊換藥。"
+      },
+      {
+        "speaker": "石安・西院弟子",
+        "text": "……你是來問話的？陳白剛睡著。"
+      },
+      {
+        "speaker": "陳白・信使",
+        "text": "沒事……讓他問。"
+      },
+      {
+        "speaker": "陳白・信使",
+        "text": "天太黑，我沒看清楚那人的臉。"
+      },
+      {
+        "speaker": "陳白・信使",
+        "text": "我只記得……很痛。"
+      },
+      {
+        "speaker": "陳白・信使",
+        "text": "你是第一個來看我的。其他人都是來問劍譜的。",
+        "when": {
+          "approach": "compassion"
+        }
+      },
+      {
+        "speaker": "石安・西院弟子",
+        "text": "他要靜養，別一直來。",
+        "action": {
+          "type": "set",
+          "effects": {
+            "met_chen_bai": true
+          }
+        }
+      }
+    ],
+    "dorm_chen_bai_repeat": [
+      {
+        "speaker": "石安・西院弟子",
+        "text": "他還在睡。有什麼事，等他好一點再說。"
+      }
+    ],
+    "n1_intro": [
+      {
+        "speaker": "旁白",
+        "text": "陳白在裡面那張床睡著。石安坐在小滿床邊補衣服，看到你進門就站起來。"
+      },
+      {
+        "speaker": "石安・西院弟子",
+        "text": "又要問什麼？"
+      },
+      {
+        "speaker": "石安・西院弟子",
+        "text": "……小滿不在。他的東西你別碰。"
+      }
+    ],
+    "n1_success": [
+      {
+        "speaker": "石安・西院弟子",
+        "text": "……看吧。枕頭底下別翻，那是他家裡寄來的信。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "石安低頭穿針時，袖口翻了一下，內側繡著一小截墨竹，跟阿棠說的陳白袖口一樣。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "（可調查：床鋪、藥袋）",
+        "action": {
+          "type": "enable_interactables",
+          "ids": [
+            "explore_dormitory_bed",
+            "explore_dormitory_pouch"
+          ]
+        }
+      },
+      {
+        "speaker": "石安・西院弟子",
+        "text": "他走那天晚上說出去一下，很快回來。"
+      },
+      {
+        "speaker": "石安・西院弟子",
+        "text": "被子不是他疊的。他從來不疊那麼整齊。"
+      },
+      {
+        "speaker": "石安・西院弟子",
+        "text": "那張床靠窗，屋頂漏了一整個冬天。他說沒關係，練完累了照樣睡得著。",
+        "action": {
+          "type": "set",
+          "effects": {
+            "heart_shi_an": true
+          }
+        }
+      }
+    ],
+    "n1_after_battle": [
+      {
+        "speaker": "旁白",
+        "text": "石安坐倒在床邊，喘著氣。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "你翻了床。枕頭被掀開，底下的信掉了一地。"
+      },
+      {
+        "speaker": "石安・西院弟子",
+        "text": "翻吧。反正你們想翻誰就翻誰。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "陳白醒了，沒說話，把臉轉向牆。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "你離開的時候，石安正蹲在地上，一封一封把信撿回去。",
+        "action": {
+          "type": "enable_interactables",
+          "ids": [
+            "explore_dormitory_bed",
+            "explore_dormitory_pouch"
+          ]
+        }
+      }
+    ],
+    "act3_chen_bai_nails": [
+      {
+        "speaker": "旁白",
+        "text": "小滿平安的消息傳回西院。陳白撐著坐起來。"
+      },
+      {
+        "speaker": "陳白・信使",
+        "text": "打我的那個人，背著一把真劍。"
+      },
+      {
+        "speaker": "陳白・信使",
+        "text": "他從我手上踩過去。鞋底有釘子，我記得很清楚。"
+      },
+      {
+        "speaker": "陳白・信使",
+        "text": "你那天第一個來看我，我一直記得。所以這件事，我先跟你說。",
+        "when": {
+          "met_chen_bai": true,
+          "approach": "compassion"
+        }
+      },
+      {
+        "speaker": "旁白",
+        "text": "你想起秦川說的，喀、喀的腳步聲。",
+        "action": {
+          "type": "set",
+          "effects": {
+            "chen_bai_nails": true
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "dialogues": {
+    "hall_revisit_intro": [
+      {
+        "speaker": "旁白",
+        "text": "掌門同意你開封存卷宗。周伯拿著鑰匙來開門。"
+      },
+      {
+        "speaker": "周伯・住處管事",
+        "text": "照規矩，卷宗不給弟子看。"
+      },
+      {
+        "speaker": "周伯・住處管事",
+        "text": "掌門說可以，那就可以。我在門口等。"
+      }
+    ],
+    "hall_revisit_roster": [
+      {
+        "speaker": "少俠",
+        "text": "拆開封繩。缺頁的位置正好是年度比武。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "前後幾頁，勝者的名字旁邊都畫了一個圈，和桌邊紙屑上的半個墨圈一樣。"
+      }
+    ],
+    "hall_revisit_lamp": [
+      {
+        "speaker": "少俠",
+        "text": "燈座擦得乾淨，縫裡卻卡著紙灰。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "還看得出兩個字：「滿」、「勝」。",
+        "action": {
+          "type": "set",
+          "effects": {
+            "e2_ash": true
+          }
+        }
+      }
+    ],
+    "hall_revisit_allocation": [
+      {
+        "speaker": "少俠",
+        "text": "配給帳。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "釘底靴：嫡系入門即發。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "兵器：嫡系配真劍。中途入門弟子，木劍。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "夜間出入：中途入門弟子須持路引。嫡系不在此列。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "藥：嫡系按需領取。中途入門弟子，按月限量。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "飯食：嫡系與中途入門弟子分灶。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "劍譜閱覽：限嫡系。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "修橋、送信、守夜的排班名單上，幾乎都是西院的名字。昨晚那一格寫著：秦川。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "陳白說，打他的人鞋底有釘子。",
+        "when": {
+          "chen_bai_nails": true
+        },
+        "action": {
+          "type": "set",
+          "effects": {
+            "e1_boots": true
+          }
+        }
+      },
+      {
+        "speaker": "少俠",
+        "text": "（這本帳，你以前從來沒看過。）",
+        "action": {
+          "type": "set",
+          "effects": {
+            "revealed": true
+          }
+        }
+      }
+    ],
+    "hall_revisit_gu_heng": [
+      {
+        "speaker": "顧衡・練劍弟子",
+        "text": "我跟你說過，那天晚上我只看到一個人。"
+      },
+      {
+        "speaker": "顧衡・練劍弟子",
+        "text": "……我剛才也看了配給帳。"
+      },
+      {
+        "speaker": "顧衡・練劍弟子",
+        "text": "這雙靴子，我一直以為是練進內門才發的。原來入門那天就有了。"
+      },
+      {
+        "speaker": "顧衡・練劍弟子",
+        "text": "還有，說小滿最近常往外跑的，是嚴承師兄。我那時沒多想，就跟著講了。"
+      },
+      {
+        "speaker": "顧衡・練劍弟子",
+        "text": "那天晚上沒排巡夜、又不在房裡的，我只知道他一個。",
+        "action": {
+          "type": "set",
+          "effects": {
+            "suspect_known": true
+          }
+        }
+      }
+    ],
+    "hall_revisit_uncle_zhou": [
+      {
+        "speaker": "周伯・住處管事",
+        "text": "有件事，我一直沒說。"
+      },
+      {
+        "speaker": "周伯・住處管事",
+        "text": "小滿的被子是我疊的。那天早上我進去，被子掀著，上面擱著一個長布套。我認得，那是議事廳裝劍譜用的。"
+      },
+      {
+        "speaker": "周伯・住處管事",
+        "text": "照規矩，我該交上來。"
+      },
+      {
+        "speaker": "周伯・住處管事",
+        "text": "可是交上來，那孩子就說不清了。我收進自己屋裡，到現在沒跟任何人講。"
+      },
+      {
+        "speaker": "周伯・住處管事",
+        "text": "知道那個布套在那張床上的，除了我，就只有放它的人。",
+        "action": {
+          "type": "set",
+          "effects": {
+            "e3_sheath": true
+          }
+        }
+      }
+    ],
+    "hall_revisit_bai_zhi": [
+      {
+        "speaker": "白芷・藥房學徒",
+        "text": "藥房帳上寫著西院已經領過藥了。可是那幾包在我這裡，沒動過。"
+      },
+      {
+        "speaker": "白芷・藥房學徒",
+        "text": "帳是誰改的，我不知道。我只知道西院那幾天沒拿到藥。"
+      }
+    ],
+    "hall_revisit_monologue": [
+      {
+        "speaker": "旁白",
+        "text": "你闔上帳冊。",
+        "choices": [
+          {
+            "label": "我以前從來沒看過這本帳。",
+            "effects": {
+              "monologue": "shaken"
+            },
+            "reply": []
+          },
+          {
+            "label": "規矩就是規矩。",
+            "effects": {
+              "monologue": "rules"
+            },
+            "reply": []
+          },
+          {
+            "label": "（不說話）",
+            "effects": {
+              "monologue": "silent"
+            },
+            "reply": []
+          }
+        ]
+      }
+    ]
+  }
+}

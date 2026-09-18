@@ -33,10 +33,14 @@ func _run() -> void:
 		assert(current_scene.story_stage == 2)
 		assert(current_scene.story_flags.get("residence_seen_shen_he"))
 		var map = current_scene
+		# The new chapter gates the bed and pouch until N1 is resolved.
+		if map.map_id == "dormitory":
+			map.story_flags.n1_result = "talk"
+			map.refresh_story_spots()
 		var spawn: Vector2 = map.player.position
 		assert(map.player.spawn_position.distance_to(Vector2(480, 130) if route[4] == "town" else Vector2(480, 440)) < 1)
 		for actor in map.get_node("Actors").get_children():
-			if not actor.is_in_group("clue_spots"):
+			if not actor.is_in_group("clue_spots") or not String(actor.npc_id) in ["explore_hall_record", "explore_hall_lamp", "explore_town_notice", "explore_town_parcel", "explore_dormitory_bed", "explore_dormitory_pouch"]:
 				continue
 			map.player.position = actor.position + Vector2(0, 32)
 			map.interact_with_nearest()

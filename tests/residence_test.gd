@@ -25,6 +25,7 @@ func _run() -> void:
 		var world = load("res://scenes/residence.tscn").instantiate()
 		root.add_child(world)
 		await process_frame
+		world.story_stage = 4
 		var dialogue = world.dialogue
 		var source := JSON.stringify(world.story)
 		_check(world.get_node("Actors").get_child_count() == 5, "Exactly four new NPCs")
@@ -52,14 +53,14 @@ func _run() -> void:
 		dialogue.cancel()
 		_check(not world.story_flags.has("shen_lead"), "Cancelled selection rolls back")
 		# Alternate interview order; both follow-up options remain completable.
-		var order: Array = Chapter.WITNESSES.duplicate()
+		var order: Array = Chapter.TESTIMONY_IDS.duplicate()
 		if branch % 2 == 1:
 			order.reverse()
 		for witness in order:
 			world._open_dialogue(Chapter.dialogue_for(StringName(witness), world.story_flags))
 			var index: int = Chapter.WITNESSES.find(witness)
 			_finish(dialogue, (branch >> mini(index, 2)) & 1)
-		_check(Chapter.testimony_count(world.story_flags) == 4 and world.story_stage == 0, "All interviews count without skipping courtyard quest")
+		_check(Chapter.testimony_count(world.story_flags) == 3 and world.story_stage == 4, "Only the three witnesses count; Zhou verifies their testimony")
 		for witness in ["shen_he", "bai_zhi", "gu_heng"]:
 			_check(String(Chapter.dialogue_for(StringName(witness), world.story_flags)).ends_with("_repeat"), "Completed witness offers a reminder, not a repeated choice")
 		_check(Chapter.dialogue_for(&"uncle_zhou", world.story_flags) == &"residence_uncle_zhou_resolution", "Four completed testimonies unlock comparison")

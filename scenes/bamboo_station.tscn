@@ -1,0 +1,195 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/courtyard.gd" id="1_main"]
+[ext_resource type="Texture2D" path="res://assets/environment/bamboo_station.png" id="2_background"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scenes/dialogue.tscn" id="5_dialogue"]
+[ext_resource type="Script" path="res://scripts/map_exit.gd" id="6_exit"]
+[ext_resource type="Script" path="res://scripts/clue_spot.gd" id="7_clue"]
+
+[sub_resource type="RectangleShape2D" id="Rect_exit"]
+size = Vector2(48, 24)
+
+[sub_resource type="SystemFont" id="Font_ui"]
+font_names = PackedStringArray("Microsoft JhengHei", "Noto Sans CJK TC", "sans-serif")
+
+[node name="bamboo_station" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_main")
+map_id = "bamboo_station"
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_background")
+centered = false
+
+[node name="Obstacles" type="StaticBody2D" parent="."]
+
+[node name="WestTerrain" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(0, 0, 448, 0, 448, 198, 355, 198, 355, 225, 170, 225, 135, 290, 210, 370, 355, 420, 425, 420, 425, 540, 0, 540)
+
+[node name="EastTerrain" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(535, 0, 960, 0, 960, 540, 565, 540, 565, 420, 660, 395, 805, 350, 875, 292, 852, 228, 785, 202, 680, 218, 640, 215, 610, 198, 535, 198)
+
+[node name="NorthRim" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(350, -40, 610, -40, 610, 0, 350, 0)
+
+[node name="SouthRim" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(100, 532, 860, 532, 860, 580, 100, 580)
+
+[node name="Actors" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="Actors" instance=ExtResource("3_player")]
+position = Vector2(480, 440)
+
+[node name="notice" type="Marker2D" parent="Actors" groups=["clue_spots"]]
+position = Vector2(390, 325)
+script = ExtResource("7_clue")
+npc_id = &"explore_bamboo_station_record"
+display_name = "驛站舊印"
+
+[node name="Label" type="Label" parent="Actors/notice"]
+offset_left = -80.0
+offset_right = 80.0
+offset_top = -25.0
+offset_bottom = -2.0
+horizontal_alignment = 1
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 4
+text = "驛站舊印"
+
+[node name="parcel" type="Marker2D" parent="Actors" groups=["clue_spots"]]
+position = Vector2(580, 360)
+script = ExtResource("7_clue")
+npc_id = &"explore_bamboo_station_signal"
+display_name = "第三盞燈"
+
+[node name="Label" type="Label" parent="Actors/parcel"]
+offset_left = -80.0
+offset_right = 80.0
+offset_top = -25.0
+offset_bottom = -2.0
+horizontal_alignment = 1
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 4
+text = "第三盞燈"
+
+[node name="GateForeground" type="Node2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Backdrop" type="ColorRect" parent="HUD"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 330.0
+offset_bottom = 88.0
+mouse_filter = 2
+color = Color(0.055, 0.08, 0.075, 0.88)
+
+[node name="Title" type="Label" parent="HUD"]
+offset_left = 30.0
+offset_top = 22.0
+offset_right = 320.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0.94, 0.81, 0.53, 1)
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 19
+text = "東竹亭 · 第三盞燈"
+
+[node name="Controls" type="Label" parent="HUD"]
+offset_left = 30.0
+offset_top = 55.0
+offset_right = 320.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0.88, 0.9, 0.82, 1)
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+text = "WASD / 方向鍵 移動   E 對話   R 回起點"
+
+[node name="ObjectiveBackdrop" type="ColorRect" parent="HUD"]
+offset_left = 510.0
+offset_top = 16.0
+offset_right = 944.0
+offset_bottom = 62.0
+mouse_filter = 2
+color = Color(0.055, 0.08, 0.075, 0.88)
+
+[node name="Objective" type="Label" parent="HUD"]
+offset_left = 524.0
+offset_top = 23.0
+offset_right = 932.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(0.94, 0.88, 0.68, 1)
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 2
+
+[node name="InteractionHint" type="Label" parent="HUD"]
+offset_left = 180.0
+offset_top = 508.0
+offset_right = 780.0
+offset_bottom = 535.0
+theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+
+[node name="JournalBackdrop" type="ColorRect" parent="HUD"]
+offset_left = 510.0
+offset_top = 62.0
+offset_right = 944.0
+offset_bottom = 99.0
+mouse_filter = 2
+color = Color(0.055, 0.08, 0.075, 0.88)
+
+[node name="Journal" type="Label" parent="HUD"]
+offset_left = 524.0
+offset_top = 65.0
+offset_right = 932.0
+offset_bottom = 96.0
+theme_override_colors/font_color = Color(0.73, 0.87, 0.78, 1)
+theme_override_fonts/font = SubResource("Font_ui")
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 2
+
+
+[node name="Dialogue" parent="." instance=ExtResource("5_dialogue")]
+
+
+[node name="ReturnExit" type="Area2D" parent="."]
+position = Vector2(480, 510)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("6_exit")
+destination = "res://scenes/town.tscn"
+arrival = Vector2(865, 475)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnExit"]
+shape = SubResource("Rect_exit")
+
+[node name="CliffExit" type="Area2D" parent="."]
+position = Vector2(490, 30)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("6_exit")
+destination = "res://scenes/wind_cliff.tscn"
+arrival = Vector2(480, 440)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CliffExit"]
+shape = SubResource("Rect_exit")
+
+[node name="RouteSign" type="Label" parent="."]
+position = Vector2(410, 155)
+theme_override_fonts/font = SubResource("Font_ui")
+text = "↑ 聽風崖"
+
+[node name="TownSign" type="Label" parent="."]
+position = Vector2(430, 475)
+theme_override_fonts/font = SubResource("Font_ui")
+text = "↓ 城鎮"

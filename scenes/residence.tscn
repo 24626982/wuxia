@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://scripts/courtyard.gd" id="1_main"]
-[ext_resource type="Texture2D" path="res://assets/environment/residence.png" id="2_background"]
+[ext_resource type="Texture2D" path="res://assets/environment/residence-fenced.png" id="2_background"]
 [ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_player"]
 [ext_resource type="PackedScene" path="res://scenes/npc.tscn" id="4_npc"]
 [ext_resource type="PackedScene" path="res://scenes/dialogue.tscn" id="5_dialogue"]
@@ -66,6 +66,9 @@ polygon = PackedVector2Array(860, 205, 960, 205, 960, 291, 860, 291)
 
 [node name="Bottom" type="CollisionPolygon2D" parent="Obstacles"]
 polygon = PackedVector2Array(0, 540, 960, 540, 960, 580, 0, 580)
+
+[node name="SouthWall" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(330, 480, 610, 480, 610, 540, 330, 540)
 
 [node name="ReturnBridgeExit" type="Area2D" parent="."]
 position = Vector2(930, 315)

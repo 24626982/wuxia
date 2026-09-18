@@ -132,20 +132,8 @@ func _test_story(world: Node, player: CharacterBody2D) -> void:
 			dialogue.choose(0)
 		else:
 			dialogue.advance()
-	_check(world.story_stage == 3, "Guard dialogue unlocks departure objective")
-	player.position = Vector2(480, 480)
-	await _hold(["move_down"], 20)
-	_check(dialogue.active and dialogue.dialogue_id == "departure", "Walking through gate triggers chapter ending")
-	dialogue.cancel()
-	await physics_frame
-	_check(not dialogue.active and world.story_stage == 3, "Cancelled exit dialogue does not immediately reopen or complete")
-	player.position = Vector2(480, 480)
-	await physics_frame
-	await physics_frame
-	await _hold(["move_down"], 20)
-	while dialogue.active:
-		dialogue.advance()
-	_check(world.story_stage == 4 and player.get("movement_enabled"), "Chapter completes and free movement is restored")
+	_check(world.story_stage == 4 and player.get("movement_enabled"), "Guard conversation completes prologue without walking downhill")
+	_check(world.guide_task.map == "residence" and "左側石橋" in world.journal.text, "Guard completion directs player across west bridge")
 	player.reset_position()
 	await physics_frame
 	_check(world.story_stage == 4, "Reset position preserves quest progress")

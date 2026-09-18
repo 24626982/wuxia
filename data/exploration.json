@@ -1,220 +1,711 @@
 {
   "dialogues": {
-    "explore_hall_record": [
-      {
-        "speaker": "少俠",
-        "text": "桌案上一卷簿冊以細繩封住。繩結完整，封泥邊卻留著一道細細的指痕。"
-      },
-      {
-        "speaker": "少俠",
-        "text": "接下來……",
-        "choices": [
-          {
-            "label": "只看封泥，不擅自拆卷。",
-            "effects": {
-              "explore_hall_record": "observe"
-            },
-            "reply": [
-              {
-                "speaker": "少俠",
-                "text": "紙屑只有半個墨圈，還不足以辨認是誰的印。"
-              }
-            ]
-          },
-          {
-            "label": "查看桌邊留下的紙屑。",
-            "effects": {
-              "explore_hall_record": "verify"
-            },
-            "reply": [
-              {
-                "speaker": "少俠",
-                "text": "先記下所見，等核對證詞後再作判斷。"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "explore_hall_lamp": [
-      {
-        "speaker": "少俠",
-        "text": "兩側議席的燈都熄了，右邊那盞燈芯卻還很新。有人換過它，還是昨夜根本沒點？"
-      },
-      {
-        "speaker": "少俠",
-        "text": "接下來……",
-        "choices": [
-          {
-            "label": "記下燈芯的異樣。",
-            "effects": {
-              "explore_hall_lamp": "observe"
-            },
-            "reply": [
-              {
-                "speaker": "少俠",
-                "text": "沒有旁人的證詞，熄燈的時間仍不能確定。"
-              }
-            ]
-          },
-          {
-            "label": "先不推斷昨夜的議事。",
-            "effects": {
-              "explore_hall_lamp": "verify"
-            },
-            "reply": [
-              {
-                "speaker": "少俠",
-                "text": "先記下所見，等核對證詞後再作判斷。"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "explore_town_notice": [
-      {
-        "speaker": "少俠",
-        "text": "告示板新貼了一張尋人紙。雨水沖淡了姓名，只剩『第二遍更鼓後』幾個字。"
-      },
-      {
-        "speaker": "少俠",
-        "text": "接下來……",
-        "choices": [
-          {
-            "label": "核對與西院更鼓的時間。",
-            "effects": {
-              "explore_town_notice": "observe"
-            },
-            "reply": [
-              {
-                "speaker": "少俠",
-                "text": "時辰相近只是線索，並不能證明是同一件事。"
-              }
-            ]
-          },
-          {
-            "label": "不把兩宗失蹤直接混為一談。",
-            "effects": {
-              "explore_town_notice": "verify"
-            },
-            "reply": [
-              {
-                "speaker": "少俠",
-                "text": "先記下所見，等核對證詞後再作判斷。"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "explore_town_parcel": [
-      {
-        "speaker": "少俠",
-        "text": "攤邊有一包繫著細繩的貨物。油紙摺法似曾相識，包裹上卻沒有署名。"
-      },
-      {
-        "speaker": "少俠",
-        "text": "接下來……",
-        "choices": [
-          {
-            "label": "看看繩結，不打開包裹。",
-            "effects": {
-              "explore_town_parcel": "observe"
-            },
-            "reply": [
-              {
-                "speaker": "少俠",
-                "text": "繩結並不罕見。少俠記下位置，沒有挪動貨物。"
-              }
-            ]
-          },
-          {
-            "label": "等貨主回來再問。",
-            "effects": {
-              "explore_town_parcel": "verify"
-            },
-            "reply": [
-              {
-                "speaker": "少俠",
-                "text": "先記下所見，等核對證詞後再作判斷。"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "explore_dormitory_bed": [
-      {
-        "speaker": "少俠",
-        "text": "靠牆的被褥摺得方正，枕邊沒有包袱。這是臨時外出，還是有人替他整理過？"
-      },
-      {
-        "speaker": "少俠",
-        "text": "接下來……",
-        "choices": [
-          {
-            "label": "留意床沿的細塵。",
-            "effects": {
-              "explore_dormitory_bed": "observe"
-            },
-            "reply": [
-              {
-                "speaker": "少俠",
-                "text": "細塵上有一道空白，像曾放過一件窄長的物品，但不能看出取走的人。"
-              }
-            ]
-          },
-          {
-            "label": "先問周伯床位屬於誰。",
-            "effects": {
-              "explore_dormitory_bed": "verify"
-            },
-            "reply": [
-              {
-                "speaker": "少俠",
-                "text": "先記下所見，等核對證詞後再作判斷。"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "explore_dormitory_pouch": [
-      {
-        "speaker": "少俠",
-        "text": "床邊擱著一只空藥袋，結繩鬆開，袋底仍有少量藥屑。它與白芷說的未拆藥包未必相同。"
-      },
-      {
-        "speaker": "少俠",
-        "text": "接下來……",
-        "choices": [
-          {
-            "label": "記錄藥袋，不自行認定主人。",
-            "effects": {
-              "explore_dormitory_pouch": "observe"
-            },
-            "reply": [
-              {
-                "speaker": "少俠",
-                "text": "少俠沒有取走藥袋。物件相像，仍須由見過它的人核對。"
-              }
-            ]
-          },
-          {
-            "label": "回西院詢問白芷。",
-            "effects": {
-              "explore_dormitory_pouch": "verify"
-            },
-            "reply": [
-              {
-                "speaker": "少俠",
-                "text": "先記下所見，等核對證詞後再作判斷。"
-              }
-            ]
-          }
-        ]
-      }
-    ]
+	"explore_hall_record": [
+	  {
+		"speaker": "少俠",
+		"text": "桌上一卷簿冊用細繩封著。繩結完整，封泥邊卻有一道細細的指痕。"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "接下來……",
+		"choices": [
+		  {
+			"label": "只看封泥，不拆卷。",
+			"effects": {
+			  "explore_hall_record": "observe"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "封泥是乾的。指痕壓在上面，像是封好之後才碰到的。"
+			  }
+			]
+		  },
+		  {
+			"label": "看看桌邊的紙屑。",
+			"effects": {
+			  "explore_hall_record": "verify"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "桌腳邊有一小片紙屑，上面只有半個墨圈，看不出是什麼字。"
+			  }
+			]
+		  }
+		]
+	  }
+	],
+	"explore_hall_lamp": [
+	  {
+		"speaker": "少俠",
+		"text": "兩邊議席的燈都熄了。右邊那盞的燈芯是新的，其他幾盞都燒黑了半截。"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "接下來……",
+		"choices": [
+		  {
+			"label": "看看燈座。",
+			"effects": {
+			  "explore_hall_lamp": "observe"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "燈座擦得很乾淨，比別盞都乾淨。"
+			  }
+			]
+		  },
+		  {
+			"label": "先記下，不急著推斷。",
+			"effects": {
+			  "explore_hall_lamp": "verify"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "昨晚議事廳沒排議事。誰會來點這盞燈？"
+			  }
+			]
+		  }
+		]
+	  }
+	],
+	"explore_town_notice": [
+	  {
+		"speaker": "少俠",
+		"text": "告示板上新貼了一張尋人紙。姓名那一行被雨沖淡了，只剩「第二遍更鼓後」幾個字。"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "接下來……",
+		"choices": [
+		  {
+			"label": "跟西院的更鼓時間對一對。",
+			"effects": {
+			  "explore_town_notice": "observe"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "時辰跟西院的事差不多。可是寫紙的人，怎麼知道是第二遍更鼓後？"
+			  }
+			]
+		  },
+		  {
+			"label": "先不把兩件事混在一起。",
+			"effects": {
+			  "explore_town_notice": "verify"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "名字看不清，現在只知道有人在找人。"
+			  }
+			]
+		  }
+		]
+	  }
+	],
+	"explore_town_parcel": [
+	  {
+		"speaker": "少俠",
+		"text": "攤邊有一包繫著細繩的貨，油紙的摺法有點眼熟，包裹上沒有署名。"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "接下來……",
+		"choices": [
+		  {
+			"label": "看看繩結，不打開。",
+			"effects": {
+			  "explore_town_parcel": "observe"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "繩結打得很緊，看得出是常包東西的人。",
+				"variants": [
+				  {
+					"when": {
+					  "bai_method": {
+						"$exists": true
+					  }
+					},
+					"text": "繩結的打法，跟白芷窗下那包藥很像。"
+				  }
+				]
+			  }
+			]
+		  },
+		  {
+			"label": "等貨主回來再問。",
+			"effects": {
+			  "explore_town_parcel": "verify"
+			},
+			"reply": [],
+			"action": {
+			  "type": "open_dialogue",
+			  "id": "npc_town_vendor"
+			}
+		  }
+		]
+	  }
+	],
+	"explore_dormitory_bed": [
+	  {
+		"speaker": "少俠",
+		"text": "靠牆的被褥摺得方方正正，枕邊沒有包袱。"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "接下來……",
+		"choices": [
+		  {
+			"label": "看看床沿的細塵。",
+			"effects": {
+			  "explore_dormitory_bed": "observe"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "細塵上有一道窄長的空白，像放過一件長條的東西，已經被拿走了。"
+			  }
+			]
+		  },
+		  {
+			"label": "摸摸被子。",
+			"effects": {
+			  "explore_dormitory_bed": "verify"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "被子是冷的，摺角壓得很死，像是很會整理東西的人摺的。"
+			  }
+			]
+		  }
+		]
+	  }
+	],
+	"explore_dormitory_pouch": [
+	  {
+		"speaker": "少俠",
+		"text": "床邊擱著一只空藥袋，繩結鬆開，袋底還有一點藥屑。"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "接下來……",
+		"choices": [
+		  {
+			"label": "聞聞藥屑。",
+			"effects": {
+			  "explore_dormitory_pouch": "observe"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "是治外傷的藥。應該是給陳白用的。"
+			  }
+			]
+		  },
+		  {
+			"label": "跟白芷說的藥包比一比。",
+			"effects": {
+			  "explore_dormitory_pouch": "verify"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "繩結的打法不一樣。這只是藥房的，白芷那包不是。"
+			  }
+			]
+		  }
+		]
+	  }
+	],
+	"explore_bamboo_station_record": [
+	  {
+		"speaker": "少俠",
+		"text": "舊印模上刻著三片竹葉，缺了一角。印可以一直沿用，光憑印記認不出送信的人。"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "如何查證？",
+		"choices": [
+		  {
+			"label": "拓下缺角的位置。",
+			"effects": {
+			  "explore_bamboo_station_record": "observe"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "缺角的形狀記下了，之後可以拿去對。",
+				"variants": [
+				  {
+					"when": {
+					  "clue": "seal"
+					},
+					"text": "缺角的形狀，跟阿棠畫的一樣。"
+				  }
+				]
+			  }
+			]
+		  },
+		  {
+			"label": "看看印模上的灰。",
+			"effects": {
+			  "explore_bamboo_station_record": "verify"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "印模上沒有積灰。這東西最近還有人在用。"
+			  }
+			]
+		  }
+		]
+	  }
+	],
+	"explore_bamboo_station_signal": [
+	  {
+		"speaker": "少俠",
+		"text": "第三盞燈下有一條夾紙的細縫，裡面沒有信。"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "如何查證？",
+		"choices": [
+		  {
+			"label": "摸摸細縫。",
+			"effects": {
+			  "explore_bamboo_station_signal": "observe"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "縫邊磨得很亮。常有人在這裡塞紙條。"
+			  }
+			]
+		  },
+		  {
+			"label": "先找能證明小滿平安的人。",
+			"effects": {
+			  "explore_bamboo_station_signal": "verify"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "光看燈，說明不了人在哪裡。"
+			  }
+			]
+		  }
+		]
+	  }
+	],
+	"explore_wind_cliff_record": [
+	  {
+		"speaker": "少俠",
+		"text": "避風石後面插著幾根竹管，其中一根有擦痕。這裡的聲音傳得到山徑，那三聲短笛未必是追人的暗號。"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "如何查證？",
+		"choices": [
+		  {
+			"label": "對照阿棠說的節奏。",
+			"effects": {
+			  "explore_wind_cliff_record": "observe"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "阿棠說過三聲短笛。從這裡吹，山上聽得到。",
+				"variants": [
+				  {
+					"when": {
+					  "clue": "whistle"
+					},
+					"text": "一短、一短、最後更急。從這裡吹，山上聽得到。"
+				  }
+				]
+			  }
+			]
+		  },
+		  {
+			"label": "看看是哪一根有擦痕。",
+			"effects": {
+			  "explore_wind_cliff_record": "verify"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "最北邊那根。竹子都裂了，看起來早就不能用，擦痕卻是新的。"
+			  }
+			]
+		  }
+		]
+	  }
+	],
+	"explore_wind_cliff_signal": [
+	  {
+		"speaker": "少俠",
+		"text": "崖邊小徑上有兩組交錯的足跡。可能是同行，也可能是先後經過。"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "如何查證？",
+		"choices": [
+		  {
+			"label": "記下足跡方向。",
+			"effects": {
+			  "explore_wind_cliff_signal": "observe"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "一組往北邊竹管去，又折回來。另一組停在大石後面很久。"
+			  }
+			]
+		  },
+		  {
+			"label": "跟橋上的鞋印比一比。",
+			"effects": {
+			  "explore_wind_cliff_signal": "verify"
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "其中一組比較深，底下有一排小坑。",
+				"variants": [
+				  {
+					"when": {
+					  "shen_lead": "marks"
+					},
+					"text": "其中一組比較深，底下有一排小坑，跟沈禾說的深鞋印很像。"
+				  }
+				]
+			  }
+			]
+		  }
+		]
+	  }
+	],
+	"explore_hall_ledger": [
+	  {
+		"speaker": "少俠",
+		"text": "《獨孤十劍》的借閱簿。上面都是熟悉的名字，顧衡、嚴承……你自己的名字也在裡面，是去年春天。",
+		"variants": [
+		  {
+			"when": {
+			  "revealed": true
+			},
+			"text": "你又翻了一遍借閱簿。從第一頁到最後一頁，沒有一個住西院的人。"
+		  }
+		],
+		"action": {
+		  "type": "set",
+		  "effects": {
+			"explore_hall_ledger": "seen"
+		  }
+		}
+	  }
+	],
+	"npc_elder_yan": [
+	  {
+		"speaker": "嚴長老",
+		"text": "掌門把這件事交給你了？"
+	  },
+	  {
+		"speaker": "嚴長老",
+		"text": "查就查，別把山上弄得人心惶惶。",
+		"choices": [
+		  {
+			"label": "長老那天晚上在哪？",
+			"reply": [
+			  {
+				"speaker": "嚴長老",
+				"text": "在自己房裡睡覺。怎麼，查到我頭上來了？"
+			  }
+			]
+		  },
+		  {
+			"label": "長老覺得會是誰？",
+			"reply": [
+			  {
+				"speaker": "嚴長老",
+				"text": "這幾年山上人多了，什麼人都有。以前沒出過這種事。"
+			  }
+			]
+		  },
+		  {
+			"label": "弟子告退。",
+			"reply": []
+		  }
+		]
+	  }
+	],
+	"npc_town_vendor": [
+	  {
+		"speaker": "貨攤老闆娘",
+		"text": "看東西還是買東西？"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "攤邊那包貨，是誰的？"
+	  },
+	  {
+		"speaker": "貨攤老闆娘",
+		"text": "那包是山上一個孩子寄放的，要轉去東竹亭，再寄回他老家。這回他一直沒來。"
+	  },
+	  {
+		"speaker": "貨攤老闆娘",
+		"text": "那孩子的錢都是一文一文數給我的，一文都沒少過。"
+	  }
+	],
+	"npc_town_tea": [
+	  {
+		"speaker": "茶客甲",
+		"text": "聽說山上丟了寶貝。",
+		"variants": [
+		  {
+			"when": {
+			  "n2_result": {
+				"$in": [
+				  "fight",
+                  "tried_then_fight"
+				]
+			  }
+			},
+			"text": "那個天天貼紙的年輕人，被山上的人打了，你聽說沒？"
+		  },
+		  {
+			"when": {
+			  "fight_count": {
+				"$gte": 4
+			  }
+			},
+			"text": "山上有個穿靴子的，見人就打。"
+		  }
+		]
+	  },
+	  {
+		"speaker": "茶客乙",
+		"text": "我表哥說，是個半路進門的小子偷的，連夜跑了。",
+		"when": {
+		  "n2_result": {
+			"$nin": [
+			  "fight",
+              "tried_then_fight"
+			]
+		  },
+		  "fight_count": {
+			"$lt": 4
+		  }
+		}
+	  },
+	  {
+		"speaker": "茶客甲",
+		"text": "你表哥又沒上過山。",
+		"when": {
+		  "n2_result": {
+			"$nin": [
+			  "fight",
+              "tried_then_fight"
+			]
+		  },
+		  "fight_count": {
+			"$lt": 4
+		  }
+		},
+		"choices": [
+		  {
+			"label": "你表哥怎麼知道的？",
+			"reply": [
+			  {
+				"speaker": "茶客乙",
+				"text": "……大家都這麼說嘛。"
+			  }
+			]
+		  },
+		  {
+			"label": "那小子叫什麼？",
+			"reply": [
+			  {
+				"speaker": "茶客乙",
+				"text": "那我哪知道。"
+			  }
+			]
+		  }
+		]
+	  },
+	  {
+		"speaker": "茶客甲",
+		"text": "對了，這兩天有個年輕人天天來貼紙，名字寫得小小的，一下雨就糊了。怪得很。",
+		"when": {
+		  "n2_result": {
+			"$exists": false
+		  }
+		}
+	  }
+	],
+	"npc_station_keeper": [
+	  {
+		"speaker": "旁白",
+		"text": "老夥計抬頭，先看了一眼你的袖口，才開口。"
+	  },
+	  {
+		"speaker": "老夥計・東竹亭",
+		"text": "住店？這裡早就不做生意了。",
+		"choices": [
+		  {
+			"label": "問舊印模",
+			"reply": [
+			  {
+				"speaker": "老夥計・東竹亭",
+				"text": "以前驛站的東西。替人代收貨，就在單子上蓋一個。來拿的人帶單子來對，對得上才給。"
+			  }
+			]
+		  },
+		  {
+			"label": "問第三盞燈",
+			"reply": [
+			  {
+				"speaker": "老夥計・東竹亭",
+				"text": "燈就是燈，天黑才點。你問這個做什麼？"
+			  }
+			]
+		  },
+		  {
+			"label": "問有沒有山上的人來過",
+			"reply": [
+			  {
+				"speaker": "老夥計・東竹亭",
+				"text": "來來去去的人多了，我哪記得。"
+			  },
+			  {
+				"speaker": "旁白",
+				"text": "他往後屋看了一眼。"
+			  }
+			]
+		  },
+		  {
+			"label": "秦川說您是他師叔？",
+			"requires": {
+			  "trust_guard": false
+			},
+			"reply": [
+			  {
+				"speaker": "老夥計・東竹亭",
+				"text": "那孩子嘴不牢。……我早就不是山上的人了。"
+			  }
+			]
+		  },
+		  {
+			"label": "您剛才看我袖口做什麼？",
+			"reply": [
+			  {
+				"speaker": "老夥計・東竹亭",
+				"text": "看你衣服料子好。沒別的。"
+			  }
+			]
+		  }
+		]
+	  },
+	  {
+		"speaker": "老夥計・東竹亭",
+		"text": "沒別的事，你就請吧。"
+	  }
+	],
+	"npc_station_keeper_closed": [
+	  {
+		"speaker": "老夥計・東竹亭",
+		"text": "門關了。"
+	  }
+	],
+	"explore_station_backdoor": [
+	  {
+		"speaker": "少俠",
+		"text": "門從裡面閂著。你靠近的時候，裡面有一點聲響，像有人翻身，接著又安靜了。",
+		"variants": [
+		  {
+			"when": {
+			  "explore_station_backdoor": "seen"
+			},
+			"text": "還是沒人應門。"
+		  }
+		],
+		"action": {
+		  "type": "set",
+		  "effects": {
+			"explore_station_backdoor": "seen"
+		  }
+		}
+	  }
+	],
+	"npc_herb_elder": [
+	  {
+		"speaker": "採藥老人",
+		"text": "這上面風大，站穩一點。",
+		"choices": [
+		  {
+			"label": "老伯夜裡來過嗎？",
+			"reply": [
+			  {
+				"speaker": "採藥老人",
+				"text": "天黑前我就下去了。不過在山腰上，有時聽得到笛聲從這上面傳下來。"
+			  }
+			]
+		  },
+		  {
+			"label": "這些竹管是做什麼的？",
+			"reply": [
+			  {
+				"speaker": "採藥老人",
+				"text": "不知道。以前沒有，這一兩年才插上的。"
+			  }
+			]
+		  },
+		  {
+			"label": "老伯常在這裡？",
+			"reply": [
+			  {
+				"speaker": "採藥老人",
+				"text": "常來。山上有幾個孩子會跟我換草藥，幫我背一趟簍子，換一把。"
+			  },
+			  {
+				"speaker": "少俠",
+				"text": "是哪幾個孩子？"
+			  },
+			  {
+				"speaker": "採藥老人",
+				"text": "名字我記不住。都瘦瘦的，背簍子背得很穩。"
+			  }
+			]
+		  }
+		]
+	  }
+	],
+	"explore_cliff_rock": [
+	  {
+		"speaker": "少俠",
+		"text": "從這裡往下看，整個練武場一覽無遺。石頭上有一塊被磨得很平，像是常有人坐在這裡。",
+		"action": {
+		  "type": "set",
+		  "effects": {
+			"explore_cliff_rock": "seen"
+		  }
+		}
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "你想起小滿說的那兩年。",
+		"when": {
+		  "heart_xiaoman": true
+		}
+	  }
+	]
   }
 }

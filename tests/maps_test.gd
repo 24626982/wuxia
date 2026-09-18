@@ -44,11 +44,20 @@ func _run() -> void:
 	world.player.position = Vector2(800, 230)
 	await _hold("move_up", 24)
 	_check(world.player.position.y >= 211, "Residence buildings block walking through walls")
+	for fence_x in [360, 460, 570]:
+		world.player.position = Vector2(fence_x, 430)
+		await _hold("move_down", 40)
+		_check(world.player.position.y < 480, "South stone wall blocks the path at x=" + str(fence_x))
 	for collider in world.get_node("Obstacles").get_children():
 		_check(collider is CollisionPolygon2D and not collider.disabled, "Residence has its own active collision: " + collider.name)
 	_check(world.get_node("Actors").get_child_count() == 5, "Residence contains player and four new NPCs")
 	_check(not world.has_node("Actors/Master") and not world.has_node("Actors/Disciple") and not world.has_node("Actors/Guard"), "Initial NPC instances are absent from residence")
 	world.player.position = Vector2(255, 325)
+	world.interact_with_nearest()
+	_check(world.dialogue.dialogue_id == "prologue_hint", "Early west courtyard visit directs player back to the prologue")
+	world.dialogue.cancel()
+	_check(not world.story_flags.has("shen_lead"), "Early visit grants no testimony")
+	world.story_stage = 4
 	world.interact_with_nearest()
 	_check(world.dialogue.dialogue_id == "residence_shen_he", "New character offers residence-specific testimony")
 	for step in range(64):
@@ -63,7 +72,7 @@ func _run() -> void:
 	await _hold("move_right", 45)
 	_check(current_scene.map_id == "courtyard", "Right bridge returns to courtyard")
 	world = current_scene
-	_check(world.story_stage == 2 and world.story_flags.get("shen_lead") == "marks", "Return preserves both maps' choices")
+	_check(world.story_stage == 4 and world.story_flags.get("shen_lead") == "marks", "Return preserves both maps' choices")
 	_check(world.player.position.x > 240, "Return does not immediately retrigger exit")
 	if "--capture" in OS.get_cmdline_user_args():
 		world.player.position = Vector2(270, 272)

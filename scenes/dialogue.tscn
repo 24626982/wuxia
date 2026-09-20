@@ -52,6 +52,7 @@ offset_left = 40.0
 offset_top = 362.0
 offset_right = 920.0
 offset_bottom = 524.0
+clip_contents = true
 mouse_filter = 2
 color = Color(0.035, 0.065, 0.065, 0.97)
 
@@ -65,13 +66,15 @@ theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 21
 
 [node name="Body" type="Label" parent="Panel"]
+custom_maximum_size = Vector2(826, -1)
 offset_left = 24.0
 offset_top = 48.0
 offset_right = 850.0
 offset_bottom = 117.0
 theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 19
-autowrap_mode = 2
+autowrap_mode = 3
+clip_text = true
 
 [node name="Hint" type="Label" parent="Panel"]
 offset_left = 24.0

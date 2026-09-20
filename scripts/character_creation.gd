@@ -56,7 +56,7 @@ func _ready() -> void:
 	title.add_theme_color_override("font_color", Color(0.92, 0.84, 0.61))
 	form.add_child(title)
 	var subtitle := Label.new()
-	subtitle.text = "留下你的名號，踏上青霜劍譜之旅。"
+	subtitle.text = "踏上尋回《獨孤十劍》劍譜之旅。"
 	form.add_child(subtitle)
 	var name_label := Label.new()
 	name_label.text = "主角姓名"

@@ -1,9 +1,8 @@
 [gd_scene load_steps=7 format=3]
+[ext_resource type="FontFile" path="res://assets/fonts/NotoSansTC-VF.ttf" id="WebFont"]
 
 [ext_resource type="Script" path="res://scripts/dialogue.gd" id="1_dialogue"]
 
-[sub_resource type="SystemFont" id="Font_dialogue"]
-font_names = PackedStringArray("Microsoft JhengHei", "Noto Sans CJK TC", "sans-serif")
 
 [sub_resource type="StyleBoxFlat" id="Choice_normal"]
 content_margin_left = 16.0
@@ -34,7 +33,7 @@ border_width_bottom = 2
 border_color = Color(0.96, 0.82, 0.49, 1)
 
 [sub_resource type="Theme" id="Theme_choices"]
-default_font = SubResource("Font_dialogue")
+default_font = ExtResource("WebFont")
 default_font_size = 17
 Button/colors/font_color = Color(0.92, 0.92, 0.81, 1)
 Button/colors/font_hover_color = Color(1, 0.9, 0.62, 1)
@@ -62,7 +61,7 @@ offset_top = 12.0
 offset_right = 850.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.98, 0.82, 0.49, 1)
-theme_override_fonts/font = SubResource("Font_dialogue")
+theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 21
 
 [node name="Body" type="Label" parent="Panel"]
@@ -70,7 +69,7 @@ offset_left = 24.0
 offset_top = 48.0
 offset_right = 850.0
 offset_bottom = 117.0
-theme_override_fonts/font = SubResource("Font_dialogue")
+theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 19
 autowrap_mode = 2
 
@@ -80,7 +79,7 @@ offset_top = 129.0
 offset_right = 850.0
 offset_bottom = 153.0
 theme_override_colors/font_color = Color(0.7, 0.79, 0.75, 1)
-theme_override_fonts/font = SubResource("Font_dialogue")
+theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 13
 horizontal_alignment = 2
 

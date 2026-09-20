@@ -1,4 +1,5 @@
 [gd_scene load_steps=9 format=3]
+[ext_resource type="FontFile" path="res://assets/fonts/NotoSansTC-VF.ttf" id="WebFont"]
 
 [ext_resource type="Script" path="res://scripts/courtyard.gd" id="1_main"]
 [ext_resource type="Texture2D" path="res://assets/environment/dormitory.png" id="2_background"]
@@ -10,8 +11,6 @@
 [sub_resource type="RectangleShape2D" id="Rect_exit"]
 size = Vector2(48, 24)
 
-[sub_resource type="SystemFont" id="Font_ui"]
-font_names = PackedStringArray("Microsoft JhengHei", "Noto Sans CJK TC", "sans-serif")
 
 [node name="dormitory" type="Node2D"]
 texture_filter = 1
@@ -66,7 +65,7 @@ offset_right = 80.0
 offset_top = -25.0
 offset_bottom = -2.0
 horizontal_alignment = 1
-theme_override_fonts/font = SubResource("Font_ui")
+theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 14
 theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
 theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
@@ -85,7 +84,7 @@ offset_right = 80.0
 offset_top = -25.0
 offset_bottom = -2.0
 horizontal_alignment = 1
-theme_override_fonts/font = SubResource("Font_ui")
+theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 14
 theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
 theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
@@ -110,7 +109,7 @@ offset_top = 22.0
 offset_right = 320.0
 offset_bottom = 49.0
 theme_override_colors/font_color = Color(0.94, 0.81, 0.53, 1)
-theme_override_fonts/font = SubResource("Font_ui")
+theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 19
 text = "弟子宿舍 · 空床疑影"
 
@@ -120,7 +119,7 @@ offset_top = 55.0
 offset_right = 320.0
 offset_bottom = 81.0
 theme_override_colors/font_color = Color(0.88, 0.9, 0.82, 1)
-theme_override_fonts/font = SubResource("Font_ui")
+theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 14
 text = "WASD / 方向鍵 移動   E 對話   R 回起點"
 
@@ -138,7 +137,7 @@ offset_top = 23.0
 offset_right = 932.0
 offset_bottom = 59.0
 theme_override_colors/font_color = Color(0.94, 0.88, 0.68, 1)
-theme_override_fonts/font = SubResource("Font_ui")
+theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 14
 autowrap_mode = 2
 
@@ -150,7 +149,7 @@ offset_bottom = 535.0
 theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
 theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
 theme_override_constants/outline_size = 5
-theme_override_fonts/font = SubResource("Font_ui")
+theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 15
 horizontal_alignment = 1
 
@@ -168,7 +167,7 @@ offset_top = 65.0
 offset_right = 932.0
 offset_bottom = 96.0
 theme_override_colors/font_color = Color(0.73, 0.87, 0.78, 1)
-theme_override_fonts/font = SubResource("Font_ui")
+theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 12
 autowrap_mode = 2
 
@@ -192,7 +191,7 @@ offset_right = 570.0
 offset_top = 470.0
 offset_bottom = 495.0
 horizontal_alignment = 1
-theme_override_fonts/font = SubResource("Font_ui")
+theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 16
 theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
 theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)

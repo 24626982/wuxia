@@ -54,7 +54,11 @@ jobs:
         run: |
           mkdir -p builds/web
           "$HOME/godot/Godot_v4.7.2-stable_linux.x86_64" --headless --path . --export-release Web builds/web/index.html
+          cp assets/fonts/OFL.txt builds/web/OFL.txt
           touch builds/web/.nojekyll
+      - name: Verify packaged Chinese font
+        run: |
+          "$HOME/godot/Godot_v4.7.2-stable_linux.x86_64" --headless --main-pack builds/web/index.pck --script "$GITHUB_WORKSPACE/tests/web_font_test.gd"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

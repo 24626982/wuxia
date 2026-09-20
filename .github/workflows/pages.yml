@@ -48,7 +48,8 @@ jobs:
                       destination.write(chunk)
           PY
       - name: Import project assets
-        run: "$HOME/godot/Godot_v4.7.2-stable_linux.x86_64" --headless --path . --editor --import --quit
+        run: |
+          "$HOME/godot/Godot_v4.7.2-stable_linux.x86_64" --headless --path . --editor --import --quit
       - name: Export Web game
         run: |
           mkdir -p builds/web

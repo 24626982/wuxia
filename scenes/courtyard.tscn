@@ -311,7 +311,7 @@ theme_override_font_sizes/font_size = 14
 theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
 theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
 theme_override_constants/outline_size = 4
-text = "← 西院・掌門與弟子住處"
+text = "← 西院・弟子住處"
 
 [node name="HallExit" type="Area2D" parent="."]
 position = Vector2(480, 118)

@@ -33,5 +33,17 @@ func _run() -> void:
 	for label: Label in courtyard_labels:
 		var ui_font := label.get_theme_font("font")
 		assert(ui_font != null and ui_font.has_char("武".unicode_at(0)), "Missing Chinese font on " + label.name)
-	print("WEB_FONT_TEST: PASS (packaged font, character creation and courtyard UI)")
+	courtyard.queue_free()
+	await process_frame
+	var dialogue: Node = load("res://scenes/dialogue.tscn").instantiate()
+	root.add_child(dialogue)
+	await process_frame
+	for label_name in ["Speaker", "Body", "Hint"]:
+		var dialogue_label: Label = dialogue.get_node("Panel/" + label_name)
+		assert(dialogue_label.get_theme_font("font").resource_path == font.resource_path,
+			"Dialogue uses a different font on " + label_name)
+	var choice_button: Button = dialogue.get_node("Panel/ChoiceScroll/Choices/Option1")
+	assert(choice_button.get_theme_font("font").resource_path == font.resource_path,
+		"Dialogue choices use a different font")
+	print("WEB_FONT_TEST: PASS (packaged Noto Sans TC in character creation, courtyard and dialogue)")
 	quit()

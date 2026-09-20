@@ -6,6 +6,27 @@ const SUPPORT := ["npc_town_vendor", "npc_town_tea", "npc_station_keeper", "npc_
 const SPEAKERS := {"少俠": "hero", "柳青霄": "master", "阿棠": "disciple", "秦川": "guard", "沈禾": "shen_he", "白芷": "bai_zhi", "顧衡": "gu_heng", "周伯": "uncle_zhou", "陳白": "chen_bai", "石安": "shi_an", "小滿": "xiaoman", "小滿的哥哥": "brother", "嚴承": "yan_cheng", "嚴長老": "npc_elder_yan", "攤販": "npc_town_vendor", "貨主": "npc_town_vendor", "茶客": "npc_town_tea", "驛站掌櫃": "npc_station_keeper", "掌櫃": "npc_station_keeper", "採藥老人": "npc_herb_elder", "西院弟子": "practice_disciple", "西院弟子甲": "shi_an", "西院弟子乙": "practice_disciple"}
 static var cache: Dictionary = {}
 static var frame_cache: Dictionary = {}
+static var standing_cache: Dictionary = {}
+
+static func standing_portrait(gender: String) -> Texture2D:
+	if standing_cache.has(gender): return standing_cache[gender]
+	var source: Texture2D = load("res://assets/characters/hero-female-portrait.png") if gender == "female" else texture("hero")
+	var image := source.get_image()
+	var minimum := image.get_size()
+	var maximum := Vector2i.ZERO
+	# Measure visible pixels only; faint alpha fringe must not change preview scale.
+	for y in range(image.get_height()):
+		for x in range(image.get_width()):
+			if image.get_pixel(x, y).a >= 0.5:
+				minimum.x = mini(minimum.x, x)
+				minimum.y = mini(minimum.y, y)
+				maximum.x = maxi(maximum.x, x + 1)
+				maximum.y = maxi(maximum.y, y + 1)
+	var result := AtlasTexture.new()
+	result.atlas = source
+	result.region = Rect2(Vector2(minimum), Vector2(maximum - minimum))
+	standing_cache[gender] = result
+	return result
 const DIRECTION_FILES := {"chen_bai": "chen_bai", "shi_an": "shi_an", "xiaoman": "xiaoman", "brother": "brother", "yan_cheng": "yan_cheng", "npc_elder_yan": "elder_yan", "npc_town_vendor": "town_vendor", "npc_town_tea": "tea_a", "npc_station_keeper": "station_keeper", "npc_herb_elder": "herb_elder", "npc_town_tea_b": "tea_b", "practice_disciple": "practice_disciple"}
 
 static func directions(id: String) -> Array[Texture2D]:

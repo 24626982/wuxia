@@ -86,6 +86,7 @@ func choose(index: int) -> void:
 	if not active or not waiting_for_choice or index < 0 or index >= current_choices.size():
 		return
 	var option: Dictionary = current_choices[index]
+	GameAudio.play_choice_click()
 	var effects: Dictionary = option.get("effects", {})
 	pending_effects.merge(effects, true)
 	context.merge(effects, true)
@@ -143,7 +144,10 @@ func _show_line() -> void:
 		advance()
 		return
 	speaker.text = str(line.get("speaker", "旁白")).replace(" · ", "・")
-	portrait.texture = Art.portrait(speaker.text)
+	var is_hero := speaker.text == "少俠"
+	portrait.texture = WorldState.hero_portrait() if is_hero else Art.portrait(speaker.text)
+	if is_hero:
+		speaker.text = WorldState.hero_name
 	portrait.visible = portrait.texture != null
 	speaker.offset_left = 166 if portrait.visible else 24
 	body.offset_left = speaker.offset_left
@@ -186,8 +190,16 @@ func _show_line() -> void:
 func _resolve_text(line: Dictionary) -> String:
 	for variant in line.get("variants", []):
 		if Rules.matches(context, variant.get("when", {})):
-			return str(variant["text"])
-	return str(line["text"])
+			return _hero_narration(str(variant["text"]))
+	return _hero_narration(str(line["text"]))
+
+func _hero_narration(text: String) -> String:
+	# These finale passages refer to the protagonist; plural 他們 remains intact.
+	if WorldState.hero_gender == "female" and (str(dialogue_id).begins_with("ending_") or dialogue_id == "finale_monologue"):
+		var pronoun := RegEx.new()
+		pronoun.compile("他(?!們)")
+		return pronoun.sub(text, "她", true)
+	return text
 
 
 func _focus_choice(index: int) -> void:

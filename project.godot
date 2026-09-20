@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Wuxia"
-run/main_scene="res://scenes/courtyard.tscn"
+run/main_scene="res://scenes/character_creation.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 WorldState="*res://scripts/world_state.gd"
+GameAudio="*res://scripts/game_audio.gd"
 
 [display]
 

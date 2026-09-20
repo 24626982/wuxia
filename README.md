@@ -61,3 +61,7 @@ Godot 4.7.2 原生武俠懸疑遊戲。已整合 v1.0 JSON 劇本：序章、西
 - `guidance_test`、`directional_cast_test`、`map_access_test`：周伯計數、逐步指引、全角色立繪、12 位 NPC 四方向切換與腳底對齊、地圖互動點可達性。
 
 `tests/preview_campaign.gd` 需以有繪圖的 Godot 執行，輸出地圖與長選單截圖。使用 `tools/build_windows.ps1 -GodotPath '本機 Godot 執行檔路徑'` 重新匯出。`tests/pack_test.gd` 可搭配 `--main-pack builds/windows/Wuxia.exe --script D:/wuxia/tests/pack_test.gd` 檢查內嵌資料包。
+
+## GitHub 網頁版
+
+網頁版的啟用與自動更新方式請見 [GitHub Pages 說明](docs/github-pages.md)。

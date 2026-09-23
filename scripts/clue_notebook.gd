@@ -2,6 +2,8 @@ extends CanvasLayer
 var world: Node
 var opened := false
 var button: Button
+var log_button: Button
+var save_dialog: FileDialog
 var shade: ColorRect
 var entries: VBoxContainer
 var scroll: ScrollContainer
@@ -16,6 +18,23 @@ func _ready() -> void:
 	button.add_theme_font_override("font", world.objective.get_theme_font("font"))
 	button.pressed.connect(open_book)
 	add_child(button)
+	log_button = Button.new()
+	log_button.text = "記錄"
+	log_button.position = Vector2(760, 490)
+	log_button.size = Vector2(85, 36)
+	log_button.add_theme_font_override("font", world.objective.get_theme_font("font"))
+	log_button.pressed.connect(download_log)
+	add_child(log_button)
+	if not OS.has_feature("web"):
+		save_dialog = FileDialog.new()
+		save_dialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
+		save_dialog.access = FileDialog.ACCESS_FILESYSTEM
+		save_dialog.use_native_dialog = true
+		save_dialog.mode_overrides_title = false
+		save_dialog.title = "儲存遊戲記錄"
+		save_dialog.filters = PackedStringArray(["*.txt;文字檔;text/plain"])
+		save_dialog.file_selected.connect(_save_log_to)
+		add_child(save_dialog)
 	shade = ColorRect.new()
 	shade.color = Color(0.02, 0.04, 0.035, 0.86)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -56,6 +75,31 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	button.visible = not opened and not world.dialogue.active and not world.director.busy
+	log_button.visible = button.visible
+
+
+func download_log() -> void:
+	if OS.has_feature("web"):
+		_show_save_result(ActivityLog.download_web())
+		return
+	var downloads := OS.get_system_dir(OS.SYSTEM_DIR_DOWNLOADS)
+	if not downloads.is_empty():
+		save_dialog.current_dir = downloads
+	save_dialog.current_file = ActivityLog.suggested_filename()
+	save_dialog.popup_centered(Vector2i(720, 480))
+	log_button.release_focus()
+
+
+func _save_log_to(path: String) -> void:
+	_show_save_result(ActivityLog.save_to(path))
+
+
+func _show_save_result(saved_to: String) -> void:
+	log_button.text = "已下載" if not saved_to.is_empty() else "失敗"
+	log_button.release_focus()
+	await get_tree().create_timer(1.5).timeout
+	if is_instance_valid(log_button):
+		log_button.text = "記錄"
 
 func open_book() -> void:
 	if world.dialogue.active or world.director.busy: return

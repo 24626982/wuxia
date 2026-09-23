@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 WorldState="*res://scripts/world_state.gd"
 GameAudio="*res://scripts/game_audio.gd"
+ActivityLog="*res://scripts/activity_log.gd"
 
 [display]
 

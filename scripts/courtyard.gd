@@ -141,6 +141,7 @@ func interact_with_nearest() -> void:
 	if nearest_npc == null:
 		return
 	var id: StringName = nearest_npc.get("npc_id")
+	ActivityLog.record_interaction(nearest_npc.display_name)
 	nearest_npc.face_towards(player.global_position)
 	player._set_facing(nearest_npc.global_position - player.global_position)
 	if story_stage < 4 and ((map_id == "residence" and String(id) in ResidenceStory.WITNESSES) or String(id) in ["chen_bai", "shi_an", "brother", "third_lamp_at_night", "enter_at_night", "interact_tubes", "yan_cheng", "xiaoman"]):

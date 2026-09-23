@@ -12,6 +12,7 @@ func create_hero(new_name: String, gender: String) -> void:
 	arrival = Vector2.ZERO
 	pending_arrival = false
 	switching = false
+	ActivityLog.start_session()
 
 func hero_portrait() -> Texture2D:
 	if hero_gender == "female":

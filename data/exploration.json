@@ -17,7 +17,15 @@
 			"reply": [
 			  {
 				"speaker": "少俠",
-				"text": "封泥是乾的。指痕壓在上面，像是封好之後才碰到的。"
+				"text": "封泥是乾的。指痕壓在上面，像是封好之後才碰到的。",
+				"variants": [
+				  {
+					"when": {
+					  "approach": "justice"
+					},
+					"text": "封泥是乾的，而且封過兩次。第二次的人急著走，沒等泥乾。"
+				  }
+				]
 			  }
 			]
 		  },
@@ -29,7 +37,15 @@
 			"reply": [
 			  {
 				"speaker": "少俠",
-				"text": "桌腳邊有一小片紙屑，上面只有半個墨圈，看不出是什麼字。"
+				"text": "桌腳邊有一小片紙屑，上面只有半個墨圈，看不出是什麼字。",
+				"variants": [
+				  {
+					"when": {
+					  "approach": "justice"
+					},
+					"text": "桌腳邊有一小片紙屑，上面半個墨圈。撕痕在左邊——這一頁是從簿子中間扯下來的。"
+				  }
+				]
 			  }
 			]
 		  }
@@ -366,7 +382,15 @@
 			"reply": [
 			  {
 				"speaker": "少俠",
-				"text": "一組往北邊竹管去，又折回來。另一組停在大石後面很久。"
+				"text": "一組往北邊竹管去，又折回來。另一組停在大石後面很久。",
+				"variants": [
+				  {
+					"when": {
+					  "approach": "justice"
+					},
+					"text": "一組往北邊竹管去，又折回來。另一組停在大石後面很久，而且踩在前一組上面——它是後來的。"
+				  }
+				]
 			  }
 			]
 		  },
@@ -396,7 +420,7 @@
 	"explore_hall_ledger": [
 	  {
 		"speaker": "少俠",
-		"text": "《獨孤十劍》的借閱簿。上面都是熟悉的名字，顧衡、嚴承……你自己的名字也在裡面，是去年春天。",
+		"text": "《獨孤十劍》的借閱簿。上面都是熟悉的名字，顧衡、嚴承……你自己的名字也在裡面，是去年春天。最後一筆是三天前，顧衡。",
 		"variants": [
 		  {
 			"when": {
@@ -493,7 +517,7 @@
 	  },
 	  {
 		"speaker": "茶客乙",
-		"text": "我表哥說，是個半路進門的小子偷的，連夜跑了。",
+		"text": "我表哥說，是個外地來的小子偷的，連夜跑了。",
 		"when": {
 		  "n2_result": {
 			"$nin": [
@@ -704,6 +728,116 @@
 		"text": "你想起小滿說的那兩年。",
 		"when": {
 		  "heart_xiaoman": true
+		}
+	  }
+	],
+	"explore_residence_rice": [
+	  {
+		"speaker": "少俠",
+		"text": "牆邊擱著一個飯桶，蓋子開著。比庭院那個小一號。掛在桶邊的勺子也小。"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "接下來……",
+		"choices": [
+		  {
+			"label": "數數碗。",
+			"effects": {
+			  "explore_residence_rice": "observe",
+			  "saw_rice": true
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "碗有十幾個，也比庭院的小。",
+				"variants": [
+				  {
+					"when": {
+					  "approach": "justice"
+					},
+					"text": "十七個碗，一桶飯。你算了一下，一個人分不到庭院的一半。"
+				  }
+				]
+			  },
+			  {
+				"speaker": "少俠",
+				"text": "庭院那個桶我天天看，從來沒數過裡面有幾碗。"
+			  }
+			]
+		  },
+		  {
+			"label": "蓋回去。",
+			"effects": {
+			  "explore_residence_rice": "verify",
+			  "saw_rice": true
+			},
+			"reply": [
+			  {
+				"speaker": "少俠",
+				"text": "你把蓋子蓋上。飯還是溫的。"
+			  },
+			  {
+				"speaker": "少俠",
+				"text": "庭院那個桶我天天看，從來沒數過裡面有幾碗。"
+			  }
+			]
+		  }
+		]
+	  }
+	],
+	"scene_pharmacy_window": [
+	  {
+		"speaker": "旁白",
+		"text": "一個弟子走到藥房窗口，把一張紙遞進去。"
+	  },
+	  {
+		"speaker": "白芷・藥房學徒",
+		"text": "這個月的份領完了。下個月初一再來。"
+	  },
+	  {
+		"speaker": "西院弟子",
+		"text": "……那還有幾天？"
+	  },
+	  {
+		"speaker": "白芷・藥房學徒",
+		"text": "九天。"
+	  },
+	  {
+		"speaker": "旁白",
+		"text": "那人站了一下，走了。紙還留在窗台上。"
+	  },
+	  {
+		"speaker": "少俠",
+		"text": "領完了？"
+	  },
+	  {
+		"speaker": "白芷・藥房學徒",
+		"text": "嗯。"
+	  },
+	  {
+		"speaker": "白芷・藥房學徒",
+		"text": "……你要是有辦法，替他想想。我這裡沒有辦法。",
+		"when": {
+		  "approach": "compassion"
+		},
+		"action": {
+		  "type": "set",
+		  "effects": {
+			"saw_medicine_refused": true
+		  }
+		}
+	  },
+	  {
+		"speaker": "旁白",
+		"text": "她沒有再說下去。",
+		"when": {
+		  "approach": "justice"
+		},
+		"action": {
+		  "type": "set",
+		  "effects": {
+			"saw_medicine_refused": true
+		  }
 		}
 	  }
 	]

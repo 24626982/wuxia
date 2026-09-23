@@ -1,6 +1,7 @@
 extends RefCounted
 ## Positions follow painted objects; approach points remain on walkable floor.
 const POSITIONS := {
+	"residence": {"explore_residence_rice": Vector2(615, 335)},
 	"hall": {"explore_hall_ledger": Vector2(350, 380), "npc_elder_yan": Vector2(575, 310)},
 	"dormitory": {"chen_bai": Vector2(340, 235), "shi_an": Vector2(590, 300), "explore_dormitory_bed": Vector2(210, 280), "explore_dormitory_pouch": Vector2(820, 290)},
 	"town": {"brother": Vector2(405, 340), "npc_town_vendor": Vector2(690, 425), "npc_town_tea": Vector2(545, 330), "npc_town_tea_b": Vector2(605, 395)},
@@ -18,7 +19,8 @@ static func configure(world: Node) -> void:
 		for child in actor.get_children():
 			if child is Label:
 				child.text = actor.display_name
-				child.position = Vector2(-85, -72 if actor.get_meta("person", false) else -28)
+				var raised_label: bool = actor.get_meta("person", false) or actor.get_meta("large_prop", false)
+				child.position = Vector2(-85, -72 if raised_label else -28)
 				child.size = Vector2(170, 22)
 				child.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				child.add_theme_font_size_override("font_size", 13)

@@ -29,47 +29,25 @@
     "finale_courtyard": [
       {
         "speaker": "旁白",
-        "text": "庭院裡站滿了人。陳白、石安、沈禾、小滿、秦川、阿棠、白芷、顧衡、周伯都在。嚴承站在最後面。",
-        "variants": [
-          {
-            "when": {
-              "route": "mixed"
-            },
-            "text": "庭院裡來了幾個人，遠遠站著。"
-          },
-          {
-            "when": {
-              "route": "fight",
-              "got_manual": true
-            },
-            "text": "你走進庭院，所有人低下頭，讓出一條路。"
-          },
-          {
-            "when": {
-              "route": "fight",
-              "got_manual": false
-            },
-            "text": "庭院裡一個人也沒有。"
-          }
-        ]
+        "text": "你走進庭院。"
       }
     ],
     "finale_monologue": [
       {
         "speaker": "旁白",
-        "text": "他記得那天翻帳冊時，手有點抖。",
+        "text": "{hero_pronoun}記得那天翻帳冊時，手有點抖。",
         "variants": [
           {
             "when": {
               "monologue": "rules"
             },
-            "text": "他記得那天闔上帳冊時，沒有多想。"
+            "text": "{hero_pronoun}記得那天闔上帳冊時，沒有多想。"
           },
           {
             "when": {
               "monologue": "silent"
             },
-            "text": "那本帳冊，他後來再也沒提過。"
+            "text": "那本帳冊，{hero_pronoun}後來再也沒提過。"
           }
         ]
       }
@@ -77,35 +55,67 @@
     "ending_junzi": [
       {
         "speaker": "旁白",
-        "text": "他接任那天，庭院裡站滿了人。"
+        "text": "{hero_pronoun}接任那天，庭院裡站滿了人。"
       },
       {
         "speaker": "旁白",
-        "text": "站在最前面的是草鞋，後面才是靴子。沒有人安排，是他們自己走過來的。嚴承也在，站在最後面。"
+        "text": "站在最前面的是草鞋，後面才是靴子。沒有人安排，是他們自己走過來的。"
       },
       {
         "speaker": "旁白",
-        "text": "他接任後做的第一件事，是把配給帳攤在議事廳，誰都可以進去看。"
+        "text": "{hero_pronoun}接任後做的第一件事，是把配給帳攤在議事廳，誰都可以進去看。"
       },
       {
         "speaker": "旁白",
-        "text": "靴子和真劍從此入門就發，不問爹娘是誰。夜裡下山的路引，誰要都一樣開。"
+        "text": "後面幾年改了很多東西，吵過很多次。真正留在{hero_pronoun}記憶裡的只有四個晚上。"
       },
       {
         "speaker": "旁白",
-        "text": "藥房按傷病分藥，帳本每月初一貼出來。"
+        "text": "一個是石安站在旁邊，看著人把他那一行的「客籍」兩個字劃掉。"
       },
       {
         "speaker": "旁白",
-        "text": "修橋、送信、守夜，排班表上的名字不再只有西院那幾個。他自己也排了一格。"
+        "text": "一個是路引取消那天。秦川還在南門，他把手上那一疊空白路引收進櫃子，鎖起來，鑰匙沒有再拿出來過。"
       },
       {
         "speaker": "旁白",
-        "text": "比武名簿只寫名字和勝負。"
+        "text": "一個是小滿第一次坐在議事廳裡翻開劍譜。翻得很慢。"
       },
       {
         "speaker": "旁白",
-        "text": "劍譜照資歷和比武成績開放，不問出身。小滿第一次坐在議事廳裡翻開它，翻得很慢。"
+        "text": "一個是{hero_pronoun}自己，把名簿上「來處」那一欄劃掉的時候。劃完才發現，那一欄裡從來沒有寫過{hero_pronoun}的名字要填什麼。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "後來上山的人多了。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "一開始只是不走了。以前熬不過三年的，開始留下來；留下來的，把家裡的人也帶上來。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "再後來是遠一點的地方。有人翻了半個月的山，只因為聽說這一家不問你從哪裡來。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "他們帶上來的東西，跟山上原本有的不一樣。沈禾家裡做木工，他把橋改成了另一種接法，二十年沒再壞過。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "白芷照她爹在路上學的方子配藥，藥房的帳從此多了一欄。小滿那一路的劍法，起手比本門低半寸，後來成了門內必學的一式。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "山上本來只有一種練法。二十年後有七八種，誰都說不清哪一種是原本的。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "江湖上有人說，這一家什麼人都收，遲早要亂。說這話的那幾家，後來一家一家淡了。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "{hero_pronoun}這一代，門派比以前任何時候都強。不是因為收了多少人，是因為收進來的人不必先把自己削成本山的樣子。"
       },
       {
         "speaker": "旁白",
@@ -113,29 +123,69 @@
       },
       {
         "speaker": "旁白",
-        "text": "有些門檻拆得掉，有些要等下一代。"
+        "text": "有些門檻拆得掉，有些要等下一代。山上還是有人會說「那幾個外地來的」。{hero_pronoun}聽到就去講，講了很多年。"
       },
       {
         "speaker": "旁白",
-        "text": "江湖上的人說起他，叫他「君子劍」。"
+        "text": "沈禾那幾個人被罰過一個月。後來規矩改了，夜裡練劍不用再躲，可是那一個月沒有人提起。沈禾照常跟{hero_pronoun}說話，照常幫{hero_pronoun}修東西。有些事就是這樣過去的，不是被原諒，只是沒有人再講。",
+        "when": {
+          "told_master_cliff": "told"
+        }
+      },
+      {
+        "speaker": "旁白",
+        "text": "{hero_pronoun}那天說「沒問是誰」。崖上加派了巡夜，那幾個人半年沒再上去。{hero_pronoun}後來想，要是那天把話說死，或是乾脆不說，是不是都比這樣好。{hero_pronoun}沒有答案。",
+        "when": {
+          "told_master_cliff": "partial"
+        }
+      },
+      {
+        "speaker": "旁白",
+        "text": "柳青霄交出掌門印的那天，只多說了一句：「崖上那件事，你當時沒跟我說實話。」然後就走了。{hero_pronoun}一直不確定那句話是責備還是別的什麼。",
+        "when": {
+          "told_master_cliff": "kept"
+        }
+      },
+      {
+        "speaker": "旁白",
+        "text": "沈禾的木劍{hero_pronoun}後來賠了一把新的。沈禾收下了，沒有用。那把斷掉的還在背簍裡。",
+        "when": {
+          "told_master_cliff": "nothing"
+        }
+      },
+      {
+        "speaker": "旁白",
+        "text": "嚴承後來沒有離開，也沒有再站上比武場。每年名簿貼出來，他都會去看一遍，看完就走。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "江湖上的人說起{hero_pronoun}，叫{hero_pronoun}「君子劍」。"
       }
     ],
     "ending_treasure": [
       {
         "speaker": "旁白",
-        "text": "劍譜沒有回來，掌門的位子也沒有落到他身上。"
+        "text": "劍譜沒有回來，掌門的位子也沒有落到{hero_pronoun}身上。",
+        "variants": [
+          {
+            "when": {
+              "handed_back": "yan_cheng"
+            },
+            "text": "劍譜是嚴承自己送回議事廳的。掌門的位子沒有落到{hero_pronoun}身上。"
+          }
+        ]
       },
       {
         "speaker": "旁白",
-        "text": "那年入冬前，他跟沈禾、石安、小滿一起爬上西院屋頂，把漏水的地方補好。沒人叫他去，他自己去的。"
+        "text": "那年入冬前，{hero_pronoun}跟沈禾、石安、小滿一起爬上西院屋頂，把漏水的地方補好。沒人叫{hero_pronoun}去，{hero_pronoun}自己去的。"
       },
       {
         "speaker": "旁白",
-        "text": "小滿的哥哥上不了山，託人帶了一籃柿子到山門，指名給他。"
+        "text": "小滿的哥哥上不了山，託人帶了一籃柿子到山門，指名給{hero_pronoun}。"
       },
       {
         "speaker": "旁白",
-        "text": "也許哪一天，他還會去爭那個位子。"
+        "text": "也許哪一天，{hero_pronoun}還會去爭那個位子。"
       },
       {
         "speaker": "旁白",
@@ -143,57 +193,101 @@
       },
       {
         "speaker": "旁白",
-        "text": "他找到的東西，比劍譜重。"
+        "text": "{hero_pronoun}找到的東西，比劍譜重。"
       }
     ],
     "ending_tyrant": [
       {
         "speaker": "旁白",
-        "text": "他接任那天，庭院裡很安靜。沒有人抬頭。"
+        "text": "{hero_pronoun}接任那天，庭院裡很安靜。沒有人抬頭。"
       },
       {
         "speaker": "旁白",
-        "text": "他覺得這樣很好。有人不聽，打到聽為止。"
+        "text": "{hero_pronoun}覺得這樣很好。有人不聽，打到聽為止。"
       },
       {
         "speaker": "旁白",
-        "text": "幾年之後，門派的名聲變了，來投靠的人也變了。"
+        "text": "頭兩年，山上確實沒人再敢為難西院的人。連嚴長老那一派都安靜了。{hero_pronoun}以為這就是解決。"
       },
       {
         "speaker": "旁白",
-        "text": "最後一次有人叫他的名號，是在門派被滅的那天。"
+        "text": "只是後來{hero_pronoun}發現，安靜和服氣是兩回事，而{hero_pronoun}分不出來。"
       },
       {
         "speaker": "旁白",
-        "text": "江湖上提起這一代掌門，只說了兩個字：鼠輩。"
+        "text": "上山的人還是有，但留下來的越來越少。走的人不說為什麼，只是有一天床就空了。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "{hero_pronoun}找不到人補那些空缺，就從外面調，調來的又走。到最後，西院那排屋子只剩兩間有人住。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "名簿越抄越薄。{hero_pronoun}每年都在上面畫圈，圈來圈去都是同幾個名字。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "後來{hero_pronoun}不再往外收人了。收進來留不住，不如不收。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "議事廳的議席空了一半，{hero_pronoun}沒有補。長老們陸續老了，走了，{hero_pronoun}也沒有補。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "外面的事{hero_pronoun}管不動，山下的人也不再上來問路。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "{hero_pronoun}接任第二十年那天，站在庭院裡。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "沒有人抬頭。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "跟{hero_pronoun}接任第一天一樣。"
       }
     ],
     "ending_exiled": [
       {
         "speaker": "旁白",
-        "text": "掌門沒有再看他一眼，只叫人送他下山。"
+        "text": "掌門沒有再看{hero_pronoun}一眼，只叫人送{hero_pronoun}下山。"
       },
       {
         "speaker": "旁白",
-        "text": "山門外等著他的，是那些他打過的人。"
+        "text": "山門外等著{hero_pronoun}的，是那些{hero_pronoun}打過的人。"
       },
       {
         "speaker": "旁白",
-        "text": "他們沒說什麼，他也沒有。"
+        "text": "少了一個。小滿的哥哥沒有來，他弟弟不讓他來。"
       },
       {
         "speaker": "旁白",
-        "text": "後來有人在山腳的草叢裡看到一個人，躺了很久，沒有人去問他是誰。"
+        "text": "他們沒說什麼，{hero_pronoun}也沒有。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "後來有人在山腳的草叢裡看到一個人，躺了很久，沒有人去問{hero_pronoun}是誰。"
       }
     ],
     "ending_ordinary_master": [
       {
         "speaker": "旁白",
-        "text": "你成為了掌門，你以為解決了很多事，但你只解決了一件事……"
+        "text": "你成為了掌門。"
       },
       {
         "speaker": "旁白",
-        "text": "劍譜回到了議事廳。"
+        "text": "劍譜回到了議事廳，鎖回原來那個匣子裡。名簿補了新的一頁，缺的那一頁沒有人再提。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "嚴承的名字從內門名冊上劃掉了，長老們當天就把這件事講完。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "配給帳還在原來的位置。你翻過一次，知道裡面寫了什麼。"
       },
       {
         "speaker": "旁白",
@@ -207,8 +301,289 @@
       },
       {
         "speaker": "旁白",
-        "text": "你留了下來，照舊穿著釘底靴，照舊領著按需的藥。"
+        "text": "你留了下來，照舊穿著釘底靴，照舊領著按需的藥，照舊不用帶路引。"
+      }
+    ],
+    "rollcall_shi_an": [
+      {
+        "speaker": "旁白",
+        "text": "石安站在前面。他朝你點了頭。",
+        "variants": [
+          {
+            "when": {
+              "heart_shi_an": {
+                "$exists": false
+              },
+              "n1_result": "talk"
+            },
+            "text": "石安來了，站在中間。"
+          },
+          {
+            "when": {
+              "n1_result": {
+                "$in": [
+                  "fight",
+                  "tried_then_fight"
+                ]
+              }
+            },
+            "text": "石安沒來。"
+          }
+        ]
+      }
+    ],
+    "rollcall_brother": [
+      {
+        "speaker": "旁白",
+        "text": "小滿的哥哥上山了。他站在山門邊，沒有進來，遠遠看著。",
+        "variants": [
+          {
+            "when": {
+              "heart_brother": true,
+              "got_manual": false
+            },
+            "text": "小滿的哥哥沒上山。他託人帶了東西到山門。"
+          },
+          {
+            "when": {
+              "n2_patrol": "detained"
+            },
+            "text": "小滿的哥哥沒來。那天他被帶走，關了三天才放出來。"
+          },
+          {
+            "when": {
+              "n2_result": {
+                "$in": [
+                  "fight",
+                  "tried_then_fight"
+                ]
+              }
+            },
+            "text": "小滿的哥哥沒來。他到現在還以為你是動手打他的人。"
+          }
+        ]
+      }
+    ],
+    "rollcall_xiaoman": [
+      {
+        "speaker": "旁白",
+        "text": "小滿站在前面。",
+        "variants": [
+          {
+            "when": {
+              "heart_xiaoman": {
+                "$exists": false
+              },
+              "n3_result": "talk"
+            },
+            "text": "小滿來了，站在後面。"
+          },
+          {
+            "when": {
+              "n3_result": {
+                "$in": [
+                  "fight",
+                  "tried_then_fight"
+                ]
+              }
+            },
+            "text": "小滿來了，但不看你。"
+          }
+        ]
+      }
+    ],
+    "rollcall_shen_he": [
+      {
+        "speaker": "旁白",
+        "text": "沈禾站在前面。",
+        "variants": [
+          {
+            "when": {
+              "heart_shen_he": true,
+              "told_master_cliff": "told"
+            },
+            "text": "沈禾來了。他沒有不理你，只是沒有站到前面。"
+          },
+          {
+            "when": {
+              "heart_shen_he": {
+                "$exists": false
+              },
+              "n4_result": "talk"
+            },
+            "text": "沈禾來了，站在最後面。"
+          },
+          {
+            "when": {
+              "n4_result": {
+                "$in": [
+                  "fight",
+                  "tried_then_fight"
+                ]
+              }
+            },
+            "text": "沈禾沒來。"
+          }
+        ]
+      }
+    ],
+    "rollcall_chen_bai": [
+      {
+        "speaker": "旁白",
+        "text": "陳白來了。他還走不快，是石安扶他來的。",
+        "variants": [
+          {
+            "when": {
+              "met_chen_bai": {
+                "$exists": false
+              }
+            },
+            "text": "陳白來了。他站在人群裡，你認不太出來。"
+          },
+          {
+            "when": {
+              "n1_result": {
+                "$in": [
+                  "fight",
+                  "tried_then_fight"
+                ]
+              }
+            },
+            "text": "陳白來了。他一個人走，走得很慢。"
+          }
+        ]
+      }
+    ],
+    "rollcall_qin_chuan": [
+      {
+        "speaker": "旁白",
+        "text": "秦川來了。他行禮，這次抬了頭。",
+        "variants": [
+          {
+            "when": {
+              "trust_guard": false
+            },
+            "text": "秦川來了。他站在南門那一側，沒有走過來。"
+          },
+          {
+            "when": {
+              "trust_guard": {
+                "$exists": false
+              }
+            },
+            "text": "秦川來了。他站在南門那一側，沒有走過來。"
+          }
+        ]
+      }
+    ],
+    "rollcall_benshan": [
+      {
+        "speaker": "旁白",
+        "text": "阿棠、白芷、顧衡、周伯都在。"
+      }
+    ],
+    "rollcall_yan_cheng": [
+      {
+        "speaker": "旁白",
+        "text": "嚴承也在，站在最後面。",
+        "when": {
+          "yan_cheng_yielded": true
+        },
+        "variants": [
+          {
+            "when": {
+              "handed_back": "yan_cheng"
+            },
+            "text": "嚴承也在，站在最後面。是他自己走上來的。"
+          }
+        ]
+      }
+    ],
+    "rollcall_close": [
+      {
+        "speaker": "旁白",
+        "text": "眾人讓出一條路。",
+        "variants": [
+          {
+            "when": {
+              "got_manual": false
+            },
+            "text": "沒有人動。"
+          }
+        ]
+      }
+    ],
+    "ending_ordinary_master_res_shi_an": [
+      {
+        "speaker": "旁白",
+        "text": "石安後來替你辦過一次事。你沒問他為什麼肯。"
+      }
+    ],
+    "ending_ordinary_master_res_xiaoman": [
+      {
+        "speaker": "旁白",
+        "text": "小滿留下了。他沒有再贏過比武，也沒有再輸過。你有時候會在崖邊看到他。"
+      }
+    ],
+    "ending_ordinary_master_res_shen_he": [
+      {
+        "speaker": "旁白",
+        "text": "橋還是沈禾在補。你走過去的時候，他會抬頭，說一句「慢點」。"
+      }
+    ],
+    "ending_ordinary_master_res_brother": [
+      {
+        "speaker": "旁白",
+        "text": "小滿的哥哥每個月都寫信來，信是寫給小滿的，末尾會多問一句你好不好。"
+      }
+    ],
+    "ending_ordinary_master_res_none": [
+      {
+        "speaker": "旁白",
+        "text": "那天之後，西院沒有人主動來找過你。你也沒有去。"
+      }
+    ],
+    "ending_ordinary_master_close": [
+      {
+        "speaker": "旁白",
+        "text": "你以為解決了很多事。"
       },
+      {
+        "speaker": "旁白",
+        "text": "你只解決了一件事。"
+      }
+    ],
+    "ending_own_world_res_shi_an": [
+      {
+        "speaker": "旁白",
+        "text": "你在院子裡遇過石安兩次。第一次他叫了你，第二次是你先開的口。之後就沒有第三次了。"
+      }
+    ],
+    "ending_own_world_res_xiaoman": [
+      {
+        "speaker": "旁白",
+        "text": "小滿還在山上。他沒有躲著你，你也沒有躲著他。你們只是沒有話講。"
+      }
+    ],
+    "ending_own_world_res_shen_he": [
+      {
+        "speaker": "旁白",
+        "text": "橋修好那天你正好經過。沈禾在收工具，你站了一會兒，什麼也沒說就走了。"
+      }
+    ],
+    "ending_own_world_res_brother": [
+      {
+        "speaker": "旁白",
+        "text": "山下的柿子那年還是送上來了，指名給小滿。你在門口看了一眼。"
+      }
+    ],
+    "ending_own_world_res_none": [
+      {
+        "speaker": "旁白",
+        "text": "那天之後，西院沒有人主動來找過你。你也沒有去。"
+      }
+    ],
+    "ending_own_world_close": [
       {
         "speaker": "旁白",
         "text": "你沒再去過西院。"
@@ -216,6 +591,50 @@
       {
         "speaker": "旁白",
         "text": "你繼續享受著一般弟子沒有的資源，繼續活在自己的世界裡，但誰說這不是好事呢？"
+      },
+      {
+        "speaker": "旁白",
+        "text": "那雙釘底靴你一直穿著。走在石板上，還是喀、喀的。"
+      }
+    ],
+    "finale_report_handed_back": [
+      {
+        "speaker": "旁白",
+        "text": "嚴承比你早一步到。劍譜擱在桌上，他跪在旁邊。"
+      },
+      {
+        "speaker": "柳青霄 · 掌門",
+        "text": "他說是他自己拿的，也是他自己送回來的。"
+      },
+      {
+        "speaker": "柳青霄 · 掌門",
+        "text": "劍譜在這裡了。"
+      },
+      {
+        "speaker": "柳青霄 · 掌門",
+        "text": "……可是我答應你的，是你找回劍譜。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "……",
+        "choices": [
+          {
+            "label": "我知道。",
+            "reply": []
+          },
+          {
+            "label": "（不說話）",
+            "reply": []
+          }
+        ]
+      },
+      {
+        "speaker": "旁白",
+        "text": "柳青霄看了他很久。"
+      },
+      {
+        "speaker": "柳青霄 · 掌門",
+        "text": "嗯。"
       }
     ]
   }

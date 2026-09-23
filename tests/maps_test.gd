@@ -50,7 +50,7 @@ func _run() -> void:
 		_check(world.player.position.y < 480, "South stone wall blocks the path at x=" + str(fence_x))
 	for collider in world.get_node("Obstacles").get_children():
 		_check(collider is CollisionPolygon2D and not collider.disabled, "Residence has its own active collision: " + collider.name)
-	_check(world.get_node("Actors").get_child_count() == 5, "Residence contains player and four new NPCs")
+	_check(world.get_node("Actors").get_child_count() == 6, "Residence contains player, four NPCs and the rice investigation spot")
 	_check(not world.has_node("Actors/Master") and not world.has_node("Actors/Disciple") and not world.has_node("Actors/Guard"), "Initial NPC instances are absent from residence")
 	world.player.position = Vector2(255, 325)
 	world.interact_with_nearest()

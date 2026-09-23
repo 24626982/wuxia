@@ -78,10 +78,10 @@ func _run() -> void:
 				_finish(dialogue, clue)
 				world._open_dialogue("guard_route")
 				for step in range(60):
-					if "你將秦川的話記在心裡" in dialogue.body.text: break
+					if "你走過山門" in dialogue.body.text: break
 					if dialogue.waiting_for_choice: dialogue.choose(trust)
 					else: dialogue.advance()
-				_check(dialogue.active and "你將秦川的話記在心裡" in dialogue.body.text, "Clue summary follows Qin Chuan without walking away")
+				_check(dialogue.active and "你走過山門" in dialogue.body.text, "Departure summary follows Qin Chuan without walking away")
 				dialogue.cancel()
 				_check(world.story_stage == 2 and not world.story_flags.has("trust_guard"), "Cancelling clue summary preserves unfinished guard conversation")
 				world._open_dialogue("guard_route")

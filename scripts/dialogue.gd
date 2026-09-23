@@ -194,12 +194,9 @@ func _resolve_text(line: Dictionary) -> String:
 	return _hero_narration(str(line["text"]))
 
 func _hero_narration(text: String) -> String:
-	# These finale passages refer to the protagonist; plural 他們 remains intact.
-	if WorldState.hero_gender == "female" and (str(dialogue_id).begins_with("ending_") or dialogue_id == "finale_monologue"):
-		var pronoun := RegEx.new()
-		pronoun.compile("他(?!們)")
-		return pronoun.sub(text, "她", true)
-	return text
+	# Only authored protagonist placeholders change; pronouns referring to other
+	# characters (such as 石安 or 嚴承) remain untouched.
+	return text.replace("{hero_pronoun}", "她" if WorldState.hero_gender == "female" else "他")
 
 
 func _focus_choice(index: int) -> void:

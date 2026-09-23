@@ -44,7 +44,12 @@ func _run() -> void:
 	var residence = load("res://scenes/residence.tscn").instantiate()
 	root.add_child(residence)
 	await process_frame
-	assert(residence.get_node("Actors").get_child_count() == 5)
+	assert(residence.get_node("Actors").get_child_count() == 6)
+	var has_rice_investigation := false
+	for actor in residence.get_node("Actors").get_children():
+		if "npc_id" in actor and String(actor.npc_id) == "explore_residence_rice":
+			has_rice_investigation = true
+	assert(has_rice_investigation)
 	assert(not residence.has_node("Actors/Master"))
 	assert(not residence.has_node("Actors/Disciple"))
 	assert(not residence.has_node("Actors/Guard"))

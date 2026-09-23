@@ -32,7 +32,7 @@ func _run() -> void:
 	_check(world.dialogue.speaker.text == "林青霜", "Dialogue uses chosen name")
 	_check(world.dialogue.portrait.texture.resource_path.ends_with("hero-female-portrait.png"), "Dialogue uses female portrait")
 	world.dialogue.cancel()
-	world.dialogue.begin("ending_exiled", [{"speaker": "旁白", "text": "他們沒說什麼，他也沒有。"}])
+	world.dialogue.begin("ending_exiled", [{"speaker": "旁白", "text": "他們沒說什麼，{hero_pronoun}也沒有。"}])
 	_check(world.dialogue.body.text == "他們沒說什麼，她也沒有。", "Female ending pronouns preserve other people")
 	world.dialogue.cancel()
 	world.queue_free()

@@ -38,6 +38,18 @@ func _run() -> void:
 	var dialogue: Node = load("res://scenes/dialogue.tscn").instantiate()
 	root.add_child(dialogue)
 	await process_frame
+	var panel: Control = dialogue.get_node("Panel")
+	assert(panel.anchor_right == 1.0 and panel.offset_left == 16.0 and panel.offset_right == -16.0,
+		"Dialogue panel stays inset and follows the viewport width")
+	assert(is_equal_approx(panel.size.x, root.get_visible_rect().size.x - 32.0),
+		"Dialogue panel resolves to the viewport width minus its two margins")
+	var body: Label = dialogue.get_node("Panel/Body")
+	assert(body.anchor_right == 1.0 and body.offset_right == -24.0,
+		"Dialogue body follows the panel width with a stable inner margin")
+	assert(is_equal_approx(body.size.x, panel.size.x - body.offset_left - 24.0),
+		"Dialogue body uses all available panel width")
+	assert(body.custom_maximum_size.x <= 0.0,
+		"Dialogue body does not retain a fixed-width cap")
 	for label_name in ["Speaker", "Body", "Hint"]:
 		var dialogue_label: Label = dialogue.get_node("Panel/" + label_name)
 		assert(dialogue_label.get_theme_font("font").resource_path == font.resource_path,

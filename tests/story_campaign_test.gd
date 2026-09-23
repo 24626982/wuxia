@@ -27,9 +27,10 @@ func drain() -> void:
 		var text: String = dialogue.body.text
 		for i in range(dialogue.current_choices.size()):
 			var label: String = dialogue.current_choices[i].label
-			if skip_search and label == "不搜了，直接上前對質。": index = i
+			if label == "直接上前。": index = i
 			if policy == "fight":
 				if label == "動手。": index = i
+				if label.begins_with("你們半夜在這裡"): index = i
 				if label.begins_with("最北邊"): index = i
 				continue
 			if label.begins_with("他的包袱") or label.begins_with("你弟弟是") or label.begins_with("竹管是傳聲") or label == "跟他談。": index = i
@@ -40,9 +41,22 @@ func drain() -> void:
 			if "名簿少一頁" in text and label == "燈座裡的紙灰": index = i
 			if "床上不是擺著" in text and label == "周伯收走的書套": index = i
 			if "要怎麼回應" in text and label.begins_with("他的床靠窗"): index = i
-			if policy in ["fail", "treasure"] and "耐心：" in text and label.begins_with("沾血的"): index = i
-			if policy == "treasure" and label.begins_with("先與嚴承對質"): index = i
+			if policy == "fail" and "耐心：" in text and label.begins_with("沾血的"): index = i
+			if policy == "treasure" and (label.begins_with("（放著") or label == "你拿著。你自己交。"): index = i
 			if label == "讓他走": index = i
+			if label == "結束調查": index = i
+		if policy != "fight":
+			var found_tier := false
+			for prefix in ["這些竹管是", "橋下那兩聲", "鞋底有釘子"]:
+				for i in range(dialogue.current_choices.size()):
+					if String(dialogue.current_choices[i].label).begins_with(prefix):
+						index = i
+						found_tier = true
+						break
+				if found_tier: break
+			if not found_tier:
+				for i in range(dialogue.current_choices.size()):
+					if dialogue.current_choices[i].label == "先到這裡。": index = i
 		if dialogue.current_choices[index].label == "出示：兩半收訖單": used_receipt = true
 		dialogue.choose(index)
 	check(false, "Story exceeded step limit")
@@ -66,7 +80,8 @@ func run() -> void:
 	check(Rules.matches({}, {"x": {"$exists": false, "$nin": ["fight"]}}), "Missing keys and $nin")
 	check(not Rules.matches({"x": 2}, {"x": {"$gt": 2}}), "Numeric strict comparison")
 	check(Rules.matches({"x": 2}, {"x": {"$gte": 2, "$lte": 2}}), "Numeric inclusive comparison")
-	for scenario in ["talk", "fight", "mixed", "fail", "fight_lost", "mixed_lost", "treasure"]:
+	check(Rules.value({"heart_shi_an": true, "heart_xiaoman": true}, "heart_count") == 2, "Heart count is derived")
+	for scenario in ["talk", "treasure", "fight", "mixed", "fail", "fight_lost", "mixed_lost"]:
 		for branch in range(4 if scenario == "talk" else 1):
 			world = load("res://scenes/courtyard.tscn").instantiate()
 			root.add_child(world)
@@ -102,14 +117,14 @@ func run() -> void:
 				check(world.story_flags.has(key), "Hall grants " + key)
 			if scenario in ["fail", "treasure"]: policy = scenario
 			event("n5")
-			var expected: String = {"talk": "ending_junzi", "fight": "ending_tyrant", "mixed": "ending_ordinary_master", "fail": "ending_junzi", "fight_lost": "ending_exiled", "mixed_lost": "ending_own_world", "treasure": "ending_treasure"}[scenario]
+			var expected: String = {"talk": "ending_junzi", "treasure": "ending_treasure", "fight": "ending_tyrant", "mixed": "ending_ordinary_master", "fail": "ending_junzi", "fight_lost": "ending_exiled", "mixed_lost": "ending_own_world"}[scenario]
 			check(world.director.ending_record().get("id") == expected, scenario + " ending: " + str(world.story_flags))
-			world.director.run_event({"id": "test_finale", "sequence": ["finale_report", "finale_courtyard", "finale_monologue", "@ending"]})
+			if scenario == "treasure":
+				check(world.story_flags.get("handed_back") == "yan_cheng" and world.story_flags.get("yan_cheng_yielded", false), "Treasure ending comes from Yan returning the manual")
+				check(world.director.report_dialogue() == "finale_report_handed_back", "Treasure ending uses Yan's report scene")
+			world.director.run_event({"id": "test_finale", "sequence": ["@report", "finale_courtyard", "@rollcall", "finale_monologue", "@ending"]})
 			drain()
 			check(world.story_flags.get("ending_seen", false), "Finale completes")
-			if scenario == "treasure":
-				check(world.story_flags.get("hide_spot", false) and not world.story_flags.get("manual_secured", false), "Known hiding spot does not force retrieval")
-				check(Rules.value(world.story_flags, "route") == "talk", "Treasure ending uses five natural talk outcomes")
 			world.queue_free()
 			await process_frame
 	print("STORY_CAMPAIGN_TEST: ", "PASS" if failures == 0 else "FAIL", " (", failures, " failures)")

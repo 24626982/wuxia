@@ -12,10 +12,10 @@ const ITEMS := [
 	["chen_bai_nails", "襲擊者的釘底靴", "陳白想起打傷他的人鞋底有釘子。", "宿舍・小滿平安後再訪陳白，聽取補充證詞"],
 	["heart_shen_he", "三聲短笛的意思", "沈禾說：兩短是招呼同伴，三短且最後一聲急，表示有人受傷。", "聽風崖・說服沈禾，交談取得"],
 	["hide_spot", "北邊竹管的藏處", "劍譜藏處指向聽風崖最北邊的竹管。", "聽風崖・調查竹管"],
-	["e1_boots", "釘底靴與真劍", "配給帳記載嫡系入門即領釘底靴與真劍，與陳白的證詞相互印證。", "議事廳・翻查配給帳，與陳白證詞比對"],
+	["e1_boots", "釘底靴與真劍", "配給帳記載本山弟子入門即領釘底靴與真劍，與陳白的證詞相互印證。", "議事廳・翻查配給帳，與陳白證詞比對"],
 	["e2_ash", "燈座裡的紙灰", "燈座縫隙的紙灰還能辨認出「滿」、「勝」兩字。", "議事廳・獲准開封卷宗後，親自檢查燈座"],
 	["e3_sheath", "周伯收走的書套", "周伯說他在小滿床上發現裝劍譜的長布套，並私下收走。", "議事廳・周伯親口告知，交談取得"],
-	["revealed", "配給帳上的差別", "兵器、藥物、夜間出入與劍譜閱覽，對嫡系及中途入門弟子有不同規定。", "議事廳・獲准查閱配給帳"],
+	["revealed", "配給帳上的差別", "兵器、藥物、夜間出入與劍譜閱覽，對本山及客籍弟子有不同規定。", "議事廳・獲准查閱配給帳"],
 	["suspect_known", "顧衡指向嚴承的證詞", "小滿常往外跑的傳言出自嚴承；顧衡所知，當晚未排巡夜又不在房中的只有他。", "議事廳・顧衡補充證詞；仍須向本人求證"]
 ]
 
@@ -49,7 +49,7 @@ static func collect(flags: Dictionary, stage: int, library: Dictionary, event_id
 		var source := "現場調查・" + choice_label
 		if id.begins_with("explore_dormitory_"):
 			source = "宿舍・" + method(flags.get("n1_result", "talk")) + "後調查；" + choice_label
-		var names := {"explore_hall_record":"名簿封繩", "explore_hall_lamp":"議事廳的燈油", "explore_hall_ledger":"劍譜借閱簿", "explore_town_notice":"尋人告示", "explore_town_parcel":"寄放的包裹", "explore_dormitory_bed":"小滿的空床", "explore_dormitory_pouch":"床邊藥袋", "explore_bamboo_station_record":"驛站舊印模", "explore_bamboo_station_signal":"第三盞燈的繩結", "explore_wind_cliff_record":"竹管上的擦痕", "explore_wind_cliff_signal":"崖邊鞋印", "explore_station_backdoor":"驛站後門", "explore_cliff_rock":"崖邊大石"}
+		var names := {"explore_hall_record":"名簿封繩", "explore_hall_lamp":"議事廳的燈油", "explore_hall_ledger":"劍譜借閱簿", "explore_residence_rice":"西院飯桶", "explore_town_notice":"尋人告示", "explore_town_parcel":"寄放的包裹", "explore_dormitory_bed":"小滿的空床", "explore_dormitory_pouch":"床邊藥袋", "explore_bamboo_station_record":"驛站舊印模", "explore_bamboo_station_signal":"第三盞燈的繩結", "explore_wind_cliff_record":"竹管上的擦痕", "explore_wind_cliff_signal":"崖邊鞋印", "explore_station_backdoor":"驛站後門", "explore_cliff_rock":"崖邊大石"}
 		add(records, id + "_" + str(flags[id]), names.get(id, "調查紀錄"), body.strip_edges(), source)
 	if not records.is_empty(): flags._clue_journal = records
 

@@ -28,7 +28,10 @@ func _run() -> void:
 		world.story_stage = 4
 		var dialogue = world.dialogue
 		var source := JSON.stringify(world.story)
-		_check(world.get_node("Actors").get_child_count() == 5, "Exactly four new NPCs")
+		_check(world.get_node("Actors").get_child_count() == 6, "Four NPCs and the rice investigation spot are present")
+		var rice_spot = world.get_node("Actors").get_children().filter(func(actor): return "npc_id" in actor and String(actor.npc_id) == "explore_residence_rice")[0]
+		_check(rice_spot.has_node("Prop"), "Rice investigation spot has a visible rice tub prop")
+		_check(rice_spot.get_node("Prop").texture.resource_path == "res://assets/environment/rice-tub.png", "Rice tub uses the generated west-courtyard asset")
 		var textures: Dictionary = {}
 		for npc in world.get_node("Actors").get_children():
 			if not npc.is_in_group("story_npcs"):

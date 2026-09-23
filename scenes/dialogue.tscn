@@ -1,18 +1,15 @@
-[gd_scene load_steps=7 format=3]
-[ext_resource type="FontFile" path="res://assets/fonts/NotoSansTC-VF.ttf" id="WebFont"]
+[gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/dialogue.gd" id="1_dialogue"]
+[ext_resource type="FontFile" path="res://assets/fonts/NotoSansTC-VF.ttf" id="WebFont"]
 
-
-[sub_resource type="StyleBoxFlat" id="Choice_normal"]
-content_margin_left = 16.0
-content_margin_right = 16.0
-bg_color = Color(0.08, 0.16, 0.14, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.28, 0.4, 0.33, 1)
+[sub_resource type="StyleBoxFlat" id="Choice_focus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.96, 0.82, 0.49, 1)
 
 [sub_resource type="StyleBoxFlat" id="Choice_hover"]
 content_margin_left = 16.0
@@ -24,95 +21,106 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.82, 0.69, 0.4, 1)
 
-[sub_resource type="StyleBoxFlat" id="Choice_focus"]
-bg_color = Color(0, 0, 0, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.96, 0.82, 0.49, 1)
+[sub_resource type="StyleBoxFlat" id="Choice_normal"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(0.08, 0.16, 0.14, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28, 0.4, 0.33, 1)
 
 [sub_resource type="Theme" id="Theme_choices"]
 default_font = ExtResource("WebFont")
 default_font_size = 17
 Button/colors/font_color = Color(0.92, 0.92, 0.81, 1)
 Button/colors/font_hover_color = Color(1, 0.9, 0.62, 1)
-Button/styles/normal = SubResource("Choice_normal")
-Button/styles/hover = SubResource("Choice_hover")
-Button/styles/pressed = SubResource("Choice_hover")
 Button/styles/focus = SubResource("Choice_focus")
+Button/styles/hover = SubResource("Choice_hover")
+Button/styles/normal = SubResource("Choice_normal")
+Button/styles/pressed = SubResource("Choice_hover")
 
-[node name="Dialogue" type="CanvasLayer"]
+[node name="Dialogue" type="CanvasLayer" unique_id=43618357]
 layer = 20
 script = ExtResource("1_dialogue")
 
-[node name="Panel" type="ColorRect" parent="."]
+[node name="Panel" type="ColorRect" parent="." unique_id=943100031]
 visible = false
-offset_left = 40.0
-offset_top = 362.0
-offset_right = 920.0
-offset_bottom = 524.0
 clip_contents = true
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 362.0
+offset_right = -16.0
+offset_bottom = 524.0
+grow_horizontal = 2
 mouse_filter = 2
 color = Color(0.035, 0.065, 0.065, 0.97)
 
-[node name="Speaker" type="Label" parent="Panel"]
+[node name="Speaker" type="Label" parent="Panel" unique_id=830422844]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 12.0
-offset_right = 850.0
+anchor_right = 1.0
+offset_right = -24.0
 offset_bottom = 40.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(0.98, 0.82, 0.49, 1)
 theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 21
 
-[node name="Body" type="Label" parent="Panel"]
-custom_maximum_size = Vector2(826, -1)
+[node name="Body" type="Label" parent="Panel" unique_id=1223253445]
+layout_mode = 0
+anchor_right = 1.0
 offset_left = 24.0
 offset_top = 48.0
-offset_right = 850.0
+offset_right = -24.0
 offset_bottom = 117.0
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 19
 autowrap_mode = 3
 clip_text = true
 
-[node name="Hint" type="Label" parent="Panel"]
+[node name="Hint" type="Label" parent="Panel" unique_id=124765871]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 129.0
-offset_right = 850.0
+anchor_right = 1.0
+offset_right = -24.0
 offset_bottom = 153.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(0.7, 0.79, 0.75, 1)
 theme_override_fonts/font = ExtResource("WebFont")
 theme_override_font_sizes/font_size = 13
 horizontal_alignment = 2
 
-[node name="ChoiceScroll" type="ScrollContainer" parent="Panel"]
+[node name="ChoiceScroll" type="ScrollContainer" parent="Panel" unique_id=945488041]
+layout_mode = 0
+anchor_right = 1.0
 offset_left = 24.0
 offset_top = 122.0
-offset_right = 856.0
+offset_right = -24.0
 offset_bottom = 450.0
-horizontal_scroll_mode = 0
+grow_horizontal = 2
 follow_focus = true
+horizontal_scroll_mode = 0
 
-[node name="Choices" type="VBoxContainer" parent="Panel/ChoiceScroll"]
+[node name="Choices" type="VBoxContainer" parent="Panel/ChoiceScroll" unique_id=546527405]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-visible = false
-offset_left = 24.0
-offset_top = 122.0
-offset_right = 856.0
-offset_bottom = 222.0
 theme = SubResource("Theme_choices")
 theme_override_constants/separation = 10
 
-[node name="Option1" type="Button" parent="Panel/ChoiceScroll/Choices"]
+[node name="Option1" type="Button" parent="Panel/ChoiceScroll/Choices" unique_id=2115687620]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 text = "1. 選項一"
 alignment = 0
 autowrap_mode = 3
 
-[node name="Option2" type="Button" parent="Panel/ChoiceScroll/Choices"]
+[node name="Option2" type="Button" parent="Panel/ChoiceScroll/Choices" unique_id=1737737960]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
 text = "2. 選項二"

@@ -16,6 +16,12 @@ static func value(flags: Dictionary, key: String):
 		if results.all(func(v): return v == "fight"):
 			return "fight"
 		return "mixed"
+	if key == "heart_count":
+		var count := 0
+		for heart in ["heart_shi_an", "heart_brother", "heart_xiaoman", "heart_shen_he"]:
+			if flags.get(heart, false):
+				count += 1
+		return count
 	return flags.get(key)
 
 static func matches(flags: Dictionary, conditions: Dictionary) -> bool:

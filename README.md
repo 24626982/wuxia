@@ -1,6 +1,6 @@
 # 劍譜疑雲
 
-Godot 4.7.2 原生武俠懸疑遊戲。已整合 v1.0 JSON 劇本：序章、西院查訪、宿舍、城鎮、東竹亭、聽風崖、議事廳重訪與終幕。
+Godot 4.7.2 原生武俠懸疑遊戲。已整合 v1.5 JSON 劇本：序章、西院查訪、宿舍、城鎮、東竹亭、聽風崖、議事廳重訪與終幕。
 
 以 Godot 開啟 `project.godot` 後按 F5，或直接執行 `builds/windows/Wuxia.exe`。台詞與素材均在本機，不需要網路。跨地圖保留本次遊戲進度；目前沒有磁碟存檔，重新啟動會重新開始。
 
@@ -33,14 +33,14 @@ Godot 4.7.2 原生武俠懸疑遊戲。已整合 v1.0 JSON 劇本：序章、西
 
 九份台詞檔位於 `data/*.json`，沿用專案原來的資料位置。`data/game_logic.json` 定義事件、證據、衝突、搜查、戰鬥與結局表。
 
-- `scripts/story_rules.gd`：共用條件運算與即時計算的 `fight_count`、`route`。
+- `scripts/story_rules.gd`：共用條件運算與即時計算的 `fight_count`、`route`、`heart_count`。
 - `scripts/dialogue.gd`：條件台詞、第一個符合的變體、條件選項、回應後動作、捲動選單。
-- `scripts/story_director.gd`：N1–N5、第三次錯誤、耐心、證據、戰鬥、暴力回響、終幕換圖。
+- `scripts/story_director.gd`：N1–N5、N2 巡山倒數、N4 分層追問、排班表推理、耐心、證據、戰鬥、暴力回響、終幕點名與結局殘留段落。
 - `scripts/courtyard.gd`：互動點、任務提示、原有序章與西院流程。
 
 `approach`、`clue`、`trust_guard` 不影響正式結局。結局只按五次衝突結果與 `got_manual` 判定。舊探索鍵及 `observe`／`verify` 值保留；宿舍床鋪與藥袋在 N1 完成後開放。「東竹亭尚未開放」提示已改為實際路線。
 
-六種結局皆可自然達成。`hide_spot` 只表示知道藏處；N5 對質前選擇先取回劍譜才會設定 `manual_secured = true`。先取回後，即使談判失敗也能保住劍譜；未先取回時，談判成功仍能由嚴承交回，失敗則失去劍譜。「重要的寶物」路線：N1–N4 全部說理，N5 選擇暫不取走劍譜、跟他談，耐心耗盡後失去劍譜；五次衝突皆維持說理結果。
+六種結局皆可自然達成。v1.5 中 `hide_spot` 只決定 N5 前是否出現竹管選擇；後續劍譜在誰手上改由 `took_manual_first` 判斷。說服嚴承後，玩家可以親手接回劍譜，或請嚴承親自送回議事廳；後者會進入《重要的寶物》。終幕只顯示結局名稱，不顯示路線或收集進度。
 
 ## 驗證與匯出
 
@@ -51,10 +51,10 @@ Godot 4.7.2 原生武俠懸疑遊戲。已整合 v1.0 JSON 劇本：序章、西
 以 `godot --headless --path . --script res://tests/<檔名>.gd` 執行：
 
 - `story_campaign_test`：序章至終幕、四種前期組合、說理／暴力／混合、搜尋與未搜尋、耐心耗盡。六種結局皆由完整劇情流程驗證。
-- `ending_fuzz_test`：200 場固定種子的隨機通關，驗證六種結局可達、對質前搜查與終幕完成。
+- `ending_fuzz_test`：200 場固定種子的隨機通關，驗證完整流程、對質前獨立搜查與終幕完成。
 - `ending_cancel_test`：120 場隨機取消與重試，驗證劇情回滾、終幕待播狀態與最終收尾。
-- `ending_regression_test`：對質前搜查、略過、條件限制與取消回滾，以及結局表缺項時的備援播放（預期輸出兩筆缺項錯誤紀錄）。
-- `story_progression_test`：序章進度限制、床鋪調查後才開放證詞、完成 N2 後的指引，以及取回劍譜選擇的取消回復。
+- `ending_regression_test`：已知／未知藏處的 N5 分支、條件限制與取消回滾，以及結局表缺項時的備援播放（預期輸出兩筆缺項錯誤紀錄）。
+- `story_progression_test`：序章進度限制、N2 證詞、完成 N2 後的指引，以及 N5 藏處分支的取消回復。
 - `story_events_test`：觸發、解鎖、錯誤上限、離開重試、取消回復、互動接近位置與障礙、終幕實際換圖。
 - `choices_test`、`residence_test`：原有序章分支與西院查訪。
 - `movement_test`、`maps_test`、`expansion_test`、`seven_maps_test`：移動、碰撞、七張地圖往返。

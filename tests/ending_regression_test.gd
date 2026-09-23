@@ -1,5 +1,5 @@
 extends "res://tests/story_campaign_test.gd"
-## Exercise N5 through map entry, including cancellation and incomplete ending data.
+## Exercise v1.5 N5 tube-choice semantics, cancellation and incomplete ending data.
 
 func enter_cliff(extra: Dictionary = {}) -> void:
 	world.story_flags = {"n1_result": "fight", "n2_result": "fight", "n3_result": "fight", "n4_result": "fight", "chen_bai_nails": true, "explore_wind_cliff_record": "observe", "suspect_known": true, "monologue": "rules"}
@@ -21,40 +21,25 @@ func run() -> void:
 	world.story_stage = 4
 	policy = "fight"
 	enter_cliff()
-	check(world.dialogue.waiting_for_choice and "還沒查過" in world.dialogue.body.text, "Cliff entry offers search before confrontation")
-	var before: Dictionary = world.story_flags.duplicate(true)
-	world.dialogue.cancel()
-	check(world.story_flags == before and not world.director.busy, "Cancelling search offer rolls back N5")
-	world.director.enter_map()
-	world.dialogue.choose(0)
-	to_choice()
-	world.dialogue.cancel()
-	check(world.story_flags == before and not world.director.busy, "Cancelling the puzzle rolls back N5")
-	world.director.enter_map()
-	world.dialogue.choose(0)
-	to_choice()
-	world.dialogue.choose(3)
-	to_choice()
-	check(world.story_flags.get("hide_spot", false) and "要先取回" in world.dialogue.body.text, "Successful search offers retrieval next")
-	world.dialogue.cancel()
-	check(world.story_flags == before and not world.director.busy, "Cancelling after search also rolls back the new clue")
-	world.director.enter_map()
-	drain()
-	check(world.director.ending_record().id == "ending_tyrant", "Searching at N5 makes tyrant reachable")
-	enter_cliff()
+	check(world.dialogue.waiting_for_choice, "Unknown hiding spot warns before N5")
 	world.dialogue.choose(1)
-	drain()
-	check(world.director.ending_record().id == "ending_exiled", "Skipping search preserves exiled ending")
-	enter_cliff({"hide_spot": true})
-	check("要先取回" in world.dialogue.body.text, "Known hiding spot goes straight to retrieval")
+	check("嚴承從崖邊" in world.dialogue.body.text, "Unknown hiding spot leaves the manual with Yan")
+	var before: Dictionary = world.story_flags.duplicate(true)
+	before.erase("took_manual_first")
 	world.dialogue.cancel()
+	check(world.story_flags == before and not world.director.busy, "Cancelling N5 rolls back its transaction")
+	world.director.enter_map()
+	drain()
+	check(world.director.ending_record().id == "ending_exiled", "Fighting without the hiding spot loses the manual")
+	enter_cliff({"hide_spot": true})
+	check("崖上還沒有人" in world.dialogue.body.text, "Known hiding spot offers the tube choice before confrontation")
+	drain()
+	check(world.story_flags.get("took_manual_first", false) and world.director.ending_record().id == "ending_tyrant", "Taking the manual before fighting reaches the tyrant ending")
 	for missing in ["chen_bai_nails", "explore_wind_cliff_record"]:
 		world.story_flags = before.duplicate(true)
 		world.story_flags.erase(missing)
 		world.director.entry_seen.clear()
-		world.director.enter_map()
-		check(not world.dialogue.waiting_for_choice, "Missing " + missing + " skips search offer")
-		world.dialogue.cancel()
+		check(not world.director.interact("interact_tubes"), "Missing " + missing + " blocks the separate cliff search")
 	# Mutate only the in-memory table, then play the real finale for both fallbacks.
 	var original: Array = world.director.logic.endings.table.duplicate(true)
 	world.story_flags = before.duplicate(true)

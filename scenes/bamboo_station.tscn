@@ -184,11 +184,27 @@ arrival = Vector2(480, 440)
 shape = SubResource("Rect_exit")
 
 [node name="RouteSign" type="Label" parent="."]
-position = Vector2(410, 155)
+offset_left = 390.0
+offset_top = 175.0
+offset_right = 570.0
+offset_bottom = 199.0
 theme_override_fonts/font = ExtResource("WebFont")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 4
 text = "↑ 聽風崖"
+horizontal_alignment = 1
 
 [node name="TownSign" type="Label" parent="."]
-position = Vector2(430, 475)
+offset_left = 390.0
+offset_top = 440.0
+offset_right = 570.0
+offset_bottom = 464.0
 theme_override_fonts/font = ExtResource("WebFont")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.93, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.04, 0.06, 0.05, 1)
+theme_override_constants/outline_size = 4
 text = "↓ 城鎮"
+horizontal_alignment = 1

@@ -11,10 +11,26 @@ func _walk(action: String, frames: int) -> void:
 	for i in 5:
 		await physics_frame
 
+func _assert_route_sign_style(world: Node) -> void:
+	for child in world.get_children():
+		if child is Label and child.name.ends_with("Sign"):
+			assert(child.get_theme_color("font_color") == Color(1, 0.93, 0.72, 1))
+			assert(child.get_theme_color("font_outline_color") == Color(0.04, 0.06, 0.05, 1))
+			assert(child.get_theme_constant("outline_size") == 4)
+	if world.map_id == "bamboo_station":
+		assert(world.get_node("RouteSign").position == Vector2(390, 175))
+		assert(world.get_node("RouteSign").size == Vector2(180, 24))
+		assert(world.get_node("TownSign").position == Vector2(390, 440))
+		assert(world.get_node("TownSign").size == Vector2(180, 24))
+	if world.map_id == "wind_cliff":
+		assert(world.get_node("RouteSign").position == Vector2(385, 435))
+		assert(world.get_node("RouteSign").size == Vector2(190, 24))
+
 func _run() -> void:
 	assert(change_scene_to_file("res://scenes/town.tscn") == OK)
 	for i in 5:
 		await physics_frame
+	_assert_route_sign_style(current_scene)
 	current_scene.story_flags = {"residence_resolved": true}
 	current_scene.player.position = Vector2(865, 475)
 	await _walk("move_right", 25)
@@ -22,6 +38,7 @@ func _run() -> void:
 	for mid in ["bamboo_station", "wind_cliff"]:
 		assert(current_scene.map_id == mid)
 		var world = current_scene
+		_assert_route_sign_style(world)
 		for actor in world.get_node("Actors").get_children():
 			if not actor.is_in_group("clue_spots") or not String(actor.npc_id) in ["explore_bamboo_station_record", "explore_bamboo_station_signal", "explore_wind_cliff_record", "explore_wind_cliff_signal"]:
 				continue

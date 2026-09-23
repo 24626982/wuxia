@@ -6,8 +6,17 @@ var facing := 0
 var frames: Array[Texture2D] = []
 var character: Sprite2D
 const Art = preload("res://scripts/character_art.gd")
+const PROP_TEXTURES := {
+	"explore_residence_rice": preload("res://assets/environment/rice-tub.png"),
+}
+const PROP_BOUNDS := {
+	"explore_residence_rice": Rect2(45, 20, 125, 145),
+}
 
 func setup_character(id: String) -> void:
+	if PROP_TEXTURES.has(id):
+		_setup_prop(id)
+		return
 	var portrait := Art.texture(id)
 	if portrait == null: return
 	set_meta("person", true)
@@ -18,6 +27,19 @@ func setup_character(id: String) -> void:
 	character.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	add_child(character)
 	_set_texture(frames[0] if frames.size() == 4 else portrait)
+
+func _setup_prop(id: String) -> void:
+	var texture: Texture2D = PROP_TEXTURES[id]
+	var bounds: Rect2 = PROP_BOUNDS[id]
+	character = Sprite2D.new()
+	character.name = "Prop"
+	character.centered = false
+	character.texture = texture
+	character.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	character.scale = Vector2.ONE * 56.0 / bounds.size.y
+	character.offset = -Vector2(bounds.get_center().x, bounds.end.y)
+	set_meta("large_prop", true)
+	add_child(character)
 
 func face_towards(target: Vector2) -> void:
 	if frames.size() != 4: return

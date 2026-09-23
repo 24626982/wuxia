@@ -43,8 +43,20 @@ static func next(stage: int, flags: Dictionary) -> Dictionary:
 	if not flags.has("n4_result"):
 		if not flags.has("explore_wind_cliff_record"): return step("wind_cliff", "explore_wind_cliff_record", "查看崖邊竹管的傳聲痕跡", "先調查左側竹管，再去練劍空地等候入夜。")
 		return step("wind_cliff", "enter_at_night", "到練劍空地等候入夜", "靠近空地的月亮標記按 E，聽聽沈禾怎麼說。")
-	if not flags.has("revealed"): return step("hall", "", "回議事廳核對名簿與燈座", "進入議事廳後展開調查；離崖前也可以搜查竹管。")
-	if not flags.has("n5_result"): return step("wind_cliff", "yan_cheng", "前往聽風崖，與嚴承對質", "證據已齊。若知道藏處，對質前可選擇是否先取回劍譜；之後可出示證據或動手。")
+	var all_fight := true
+	for node_id in ["n1", "n2", "n3", "n4"]:
+		if flags.get(node_id + "_result") not in ["fight", "tried_then_fight"]:
+			all_fight = false
+	if not flags.has("revealed"):
+		var hall_detail := "進入議事廳後展開調查；離崖前也可以搜查竹管。"
+		if all_fight and not flags.get("hide_spot", false):
+			hall_detail = "若想取回劍譜，現在必須先搜查崖邊竹管；進議事廳核對完線索後，嚴承會先一步趕到崖上。"
+		return step("hall", "", "回議事廳核對名簿與燈座", hall_detail)
+	if not flags.has("n5_result"):
+		var n5_detail := "證據已齊。若已查出藏處，上崖後可決定是否先取出劍譜；之後可出示證據或動手。"
+		if all_fight and not flags.get("hide_spot", false):
+			n5_detail = "你還沒搜查竹管。上崖會先讓你選擇退開搜查，或直接與嚴承對質；直接上前將無法先取出劍譜。"
+		return step("wind_cliff", "yan_cheng", "前往聽風崖，與嚴承對質", n5_detail)
 	return step("hall", "", "回議事廳，向掌門覆命", "走進議事廳，說明調查結果；終幕會接續回到庭院。")
 
 static func next_map(from: String, destination: String) -> String:

@@ -17,11 +17,7 @@
     "hall_revisit_roster": [
       {
         "speaker": "少俠",
-        "text": "拆開封繩。缺頁的位置正好是年度比武。"
-      },
-      {
-        "speaker": "少俠",
-        "text": "前後幾頁，勝者的名字旁邊都畫了一個圈，和桌邊紙屑上的半個墨圈一樣。"
+        "text": "那天晚上的排班。"
       }
     ],
     "hall_revisit_lamp": [
@@ -43,39 +39,15 @@
     "hall_revisit_allocation": [
       {
         "speaker": "少俠",
-        "text": "配給帳。"
+        "text": "配給帳。整本只分兩欄：本山、客籍。"
       },
       {
         "speaker": "少俠",
-        "text": "釘底靴：嫡系入門即發。"
+        "text": "靴子：本山入門就發。客籍不發。"
       },
       {
         "speaker": "少俠",
-        "text": "兵器：嫡系配真劍。中途入門弟子，木劍。"
-      },
-      {
-        "speaker": "少俠",
-        "text": "夜間出入：中途入門弟子須持路引。嫡系不在此列。"
-      },
-      {
-        "speaker": "少俠",
-        "text": "藥：嫡系按需領取。中途入門弟子，按月限量。"
-      },
-      {
-        "speaker": "少俠",
-        "text": "飯食：嫡系與中途入門弟子分灶。"
-      },
-      {
-        "speaker": "少俠",
-        "text": "劍譜閱覽：限嫡系。"
-      },
-      {
-        "speaker": "少俠",
-        "text": "修橋、送信、守夜的排班名單上，幾乎都是西院的名字。昨晚那一格寫著：秦川。"
-      },
-      {
-        "speaker": "少俠",
-        "text": "陳白說，打他的人鞋底有釘子。",
+        "text": "（陳白說，踩他的那雙鞋底有釘子。）",
         "when": {
           "chen_bai_nails": true
         },
@@ -88,7 +60,83 @@
       },
       {
         "speaker": "少俠",
-        "text": "（這本帳，你以前從來沒看過。）",
+        "text": "兵器：本山配真劍。客籍用木劍。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "（秦川說那人背著一把長劍。）"
+      },
+      {
+        "speaker": "少俠",
+        "text": "夜間出入：客籍須持路引，三個月換發一次，須有本山弟子作保。本山不在此列。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "（陳白手裡抓著半張路引。）"
+      },
+      {
+        "speaker": "少俠",
+        "text": "藥：本山按需領取。客籍按月限量。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "（那天藥房窗口，有人被擋回去。）",
+        "when": {
+          "saw_medicine_refused": true
+        }
+      },
+      {
+        "speaker": "少俠",
+        "text": "飯食：分灶。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "（西院那個飯桶，比庭院的小一號。）",
+        "when": {
+          "saw_rice": true
+        }
+      },
+      {
+        "speaker": "少俠",
+        "text": "劍譜閱覽：限本山。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "（借閱簿上那些名字，沒有一個住西院。）",
+        "when": {
+          "explore_hall_ledger": "seen"
+        }
+      },
+      {
+        "speaker": "少俠",
+        "text": "名簿登錄：客籍之子仍登客籍。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "（石安說他是在這裡出生的。）",
+        "when": {
+          "heart_shi_an": true
+        }
+      },
+      {
+        "speaker": "少俠",
+        "text": "你翻到石安那一行。來處那一欄寫的是他爹的老家，不是山上。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "最後一頁是名冊。西院那幾個人的來處：河那邊、海邊、山那頭、路上。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "（往前翻）……我自己那一行。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "來處那一欄是空的。不是沒寫，是那一欄對我來說不用填。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "沒有兩個人是一樣的。",
         "action": {
           "type": "set",
           "effects": {
@@ -100,7 +148,7 @@
     "hall_revisit_gu_heng": [
       {
         "speaker": "顧衡・練劍弟子",
-        "text": "我跟你說過，那天晚上我只看到一個人。"
+        "text": "查完了？"
       },
       {
         "speaker": "顧衡・練劍弟子",
@@ -112,17 +160,15 @@
       },
       {
         "speaker": "顧衡・練劍弟子",
-        "text": "還有，說小滿最近常往外跑的，是嚴承師兄。我那時沒多想，就跟著講了。"
+        "text": "我跟你說我家三代都在山上。我說那句話的時候，是當成功勞在說的。"
       },
       {
         "speaker": "顧衡・練劍弟子",
-        "text": "那天晚上沒排巡夜、又不在房裡的，我只知道他一個。",
-        "action": {
-          "type": "set",
-          "effects": {
-            "suspect_known": true
-          }
-        }
+        "text": "還有一件事。說小滿近來常往外跑的，是嚴承師兄。我那時沒多想，就跟著講了。"
+      },
+      {
+        "speaker": "顧衡・練劍弟子",
+        "text": "我沒有證據說他拿了劍譜。我只知道那句話是我幫他傳的。"
       }
     ],
     "hall_revisit_uncle_zhou": [
@@ -190,6 +236,309 @@
             "reply": []
           }
         ]
+      }
+    ],
+    "hall_revisit_qin_chuan": [
+      {
+        "speaker": "旁白",
+        "text": "南門還是秦川在守。他攔下一個背著簍子的弟子，翻開對方的路引，對著日期看了一會兒。"
+      },
+      {
+        "speaker": "秦川 · 守門弟子",
+        "text": "這張上個月就該換了。"
+      },
+      {
+        "speaker": "西院弟子",
+        "text": "……我知道。作保的師兄調去別處了，還沒找到新的。"
+      },
+      {
+        "speaker": "秦川 · 守門弟子",
+        "text": "快去找。下回不是我守門，就不一定過得去了。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "他把路引還回去，才看見你。"
+      },
+      {
+        "speaker": "秦川 · 守門弟子",
+        "text": "師兄。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "……",
+        "choices": [
+          {
+            "label": "你自己的路引呢？",
+            "reply": [
+              {
+                "speaker": "秦川 · 守門弟子",
+                "text": "……我也有一張。三個月換一次，跟他一樣。"
+              },
+              {
+                "speaker": "秦川 · 守門弟子",
+                "text": "查別人的是我，被查的也是我。我沒想過這件事奇不奇怪，反正一直都是這樣。"
+              }
+            ]
+          },
+          {
+            "label": "（不問，往前走）",
+            "reply": []
+          }
+        ]
+      },
+      {
+        "speaker": "秦川 · 守門弟子",
+        "text": "你手上那本帳，有寫我嗎？"
+      },
+      {
+        "speaker": "少俠",
+        "text": "有。"
+      },
+      {
+        "speaker": "秦川 · 守門弟子",
+        "text": "那就好。至少寫了。"
+      },
+      {
+        "speaker": "秦川 · 守門弟子",
+        "text": "哨子還在你身上吧？",
+        "when": {
+          "trust_guard": true
+        }
+      },
+      {
+        "speaker": "秦川 · 守門弟子",
+        "text": "……沒吹過最好。",
+        "when": {
+          "trust_guard": true
+        }
+      }
+    ],
+    "hall_revisit_cliff_question": [
+      {
+        "speaker": "柳青霄 · 掌門",
+        "text": "卷宗我讓周伯開給你。"
+      },
+      {
+        "speaker": "柳青霄 · 掌門",
+        "text": "不過我先問一件事。有人報上來，說夜裡聽風崖上有人。"
+      },
+      {
+        "speaker": "柳青霄 · 掌門",
+        "text": "你上去過。崖上有誰？"
+      },
+      {
+        "speaker": "少俠",
+        "text": "崖上沒有人。",
+        "when": {
+          "n4_result": {
+            "$in": [
+              "fight",
+              "tried_then_fight"
+            ]
+          }
+        },
+        "action": {
+          "type": "set",
+          "effects": {
+            "told_master_cliff": "nothing"
+          }
+        }
+      },
+      {
+        "speaker": "柳青霄 · 掌門",
+        "text": "……那就是傳話的人聽錯了。",
+        "when": {
+          "n4_result": {
+            "$in": [
+              "fight",
+              "tried_then_fight"
+            ]
+          }
+        }
+      },
+      {
+        "speaker": "少俠",
+        "text": "……",
+        "when": {
+          "n4_result": "talk"
+        },
+        "choices": [
+          {
+            "label": "西院幾個弟子在練劍。帶頭的是沈禾。",
+            "effects": {
+              "told_master_cliff": "told"
+            },
+            "reply": [
+              {
+                "speaker": "柳青霄 · 掌門",
+                "text": "夜裡不在房裡，是要罰的。規矩是規矩。"
+              }
+            ]
+          },
+          {
+            "label": "有人在練劍。沒問是誰。",
+            "effects": {
+              "told_master_cliff": "partial"
+            },
+            "reply": [
+              {
+                "speaker": "柳青霄 · 掌門",
+                "text": "沒問是誰？……那就加派人手，別再讓人上去。"
+              }
+            ]
+          },
+          {
+            "label": "我沒看到人。",
+            "effects": {
+              "told_master_cliff": "kept"
+            },
+            "reply": [
+              {
+                "speaker": "旁白",
+                "text": "柳青霄看了你一會兒。"
+              },
+              {
+                "speaker": "柳青霄 · 掌門",
+                "text": "好。卷宗在裡面。"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "roster_gu_heng": [
+      {
+        "speaker": "少俠",
+        "text": "顧衡：西廊巡夜，更鼓前到天亮。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "他說他在廊下。位置對得上，換班的弟子看得到他。",
+        "action": {
+          "type": "set",
+          "effects": {
+            "gu_cleared": true
+          }
+        }
+      }
+    ],
+    "roster_a_tang": [
+      {
+        "speaker": "少俠",
+        "text": "阿棠：東側。天亮前她在東邊發現陳白，時間對得上。"
+      }
+    ],
+    "roster_qin_chuan": [
+      {
+        "speaker": "少俠",
+        "text": "秦川：南門。整夜在門口。"
+      }
+    ],
+    "roster_west": [
+      {
+        "speaker": "少俠",
+        "text": "沈禾、白芷、周伯：修橋、藥房、住處。靴子和真劍，他們都沒有。"
+      }
+    ],
+    "roster_elder": [
+      {
+        "speaker": "少俠",
+        "text": "嚴長老：長老不排班。不過崖上那段路，他這個年紀走不上去。"
+      }
+    ],
+    "roster_yan_cheng": [
+      {
+        "speaker": "少俠",
+        "text": "嚴承：空白。沒排班。"
+      }
+    ],
+    "roster_self": [
+      {
+        "speaker": "少俠",
+        "text": "……我自己的名字也在上面。也是空白。"
+      }
+    ],
+    "roster_conclude": [
+      {
+        "speaker": "少俠",
+        "text": "那天晚上沒排巡夜、又不在房裡的本山弟子……"
+      },
+      {
+        "speaker": "少俠",
+        "text": "有兩個。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "一個是我。",
+        "action": {
+          "type": "set",
+          "effects": {
+            "roster_solved": true,
+            "suspect_known": true
+          }
+        }
+      }
+    ],
+    "hall_revisit_draft": [
+      {
+        "speaker": "少俠",
+        "text": "一張單獨的紙，夾在卷宗最底下。是掌門的字。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "「議：客籍入門滿年，得請入籍。夜行路引，免保。」"
+      },
+      {
+        "speaker": "少俠",
+        "text": "下面還有兩行，塗掉了。"
+      },
+      {
+        "speaker": "少俠",
+        "text": "沒有用印。也沒有日期。",
+        "choices": [
+          {
+            "label": "這是什麼時候寫的？",
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "紙的顏色比旁邊的卷宗舊。至少十年。"
+              }
+            ]
+          },
+          {
+            "label": "為什麼沒有送出去？",
+            "reply": [
+              {
+                "speaker": "少俠",
+                "text": "紙上看不出來。"
+              }
+            ]
+          },
+          {
+            "label": "（放回去）",
+            "reply": []
+          }
+        ],
+        "action": {
+          "type": "set",
+          "effects": {
+            "hall_revisit_draft": "seen"
+          }
+        }
+      }
+    ],
+    "hall_revisit_draft_ask_master": [
+      {
+        "speaker": "少俠",
+        "text": "卷宗底下那張紙。"
+      },
+      {
+        "speaker": "柳青霄 · 掌門",
+        "text": "……那是舊東西了。"
+      },
+      {
+        "speaker": "旁白",
+        "text": "他沒有再說下去。"
       }
     ]
   }

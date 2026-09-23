@@ -109,6 +109,8 @@ func _physics_process(_delta: float) -> void:
 	if map_id == "courtyard" and story_stage == 3 and player.position.y >= 502.0 and not dialogue.active and not exit_dialogue_shown:
 		exit_dialogue_shown = true
 		_open_dialogue("departure")
+	if map_id == "courtyard" and story_stage >= 4 and player.position.y >= 470.0 and not dialogue.active:
+		director.interact("pass_south_gate")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -237,6 +239,8 @@ func _dialogue_finished(id: StringName, effects: Dictionary) -> void:
 		story_stage += 1
 		if id == "guard_route": story_stage = 4
 		_update_objective()
+	if id == "residence_bai_zhi":
+		director.interact.call_deferred("after_bai_zhi")
 	_update_objective()
 
 
@@ -312,7 +316,7 @@ func refresh_story_spots() -> void:
 		if id == "yan_cheng": actor.visible = story_flags.get("suspect_known", false)
 
 func _create_story_spots() -> void:
-	var names := {"explore_hall_ledger": "用度帳冊", "npc_elder_yan": "嚴長老", "npc_town_vendor": "攤販", "npc_town_tea": "茶客", "explore_station_backdoor": "驛站後門", "npc_station_keeper": "驛站掌櫃", "npc_station_keeper_closed": "驛站掌櫃", "npc_herb_elder": "採藥老人", "explore_cliff_rock": "崖邊石塊", "chen_bai": "陳白", "shi_an": "石安", "brother": "小滿的哥哥", "third_lamp_at_night": "第三盞燈・等候入夜", "enter_at_night": "崖邊・等候入夜", "interact_tubes": "搜尋竹管"}
+	var names := {"explore_hall_ledger": "用度帳冊", "explore_residence_rice": "西院飯桶", "npc_elder_yan": "嚴長老", "npc_town_vendor": "攤販", "npc_town_tea": "茶客", "explore_station_backdoor": "驛站後門", "npc_station_keeper": "驛站掌櫃", "npc_station_keeper_closed": "驛站掌櫃", "npc_herb_elder": "採藥老人", "explore_cliff_rock": "崖邊石塊", "chen_bai": "陳白", "shi_an": "石安", "brother": "小滿的哥哥", "third_lamp_at_night": "第三盞燈・等候入夜", "enter_at_night": "崖邊・等候入夜", "interact_tubes": "搜尋竹管"}
 	var entries: Array = director.logic.map_interactables.get(map_id, []).duplicate(true)
 	names.merge({"xiaoman": "小滿", "yan_cheng": "嚴承", "npc_town_vendor": "貨攤老闆娘", "npc_town_tea": "茶客甲", "npc_town_tea_b": "茶客乙", "npc_station_keeper": "老夥計", "npc_station_keeper_closed": "老夥計"}, true)
 	var extra := {"dormitory": ["chen_bai", "shi_an"], "town": ["brother", "npc_town_tea_b"], "bamboo_station": ["third_lamp_at_night", "xiaoman"], "wind_cliff": ["enter_at_night", "interact_tubes", "yan_cheng"]}

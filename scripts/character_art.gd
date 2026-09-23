@@ -3,7 +3,7 @@ extends RefCounted
 const EXISTING := {"master": "master-directions", "disciple": "disciple-directions", "guard": "guard-directions", "shen_he": "shen_he-directions", "bai_zhi": "bai_zhi-directions", "gu_heng": "gu_heng-directions", "uncle_zhou": "uncle_zhou-directions", "hero": "swordsman"}
 const MAIN := ["chen_bai", "shi_an", "xiaoman", "brother", "yan_cheng", "npc_elder_yan"]
 const SUPPORT := ["npc_town_vendor", "npc_town_tea", "npc_station_keeper", "npc_herb_elder", "npc_town_tea_b", "practice_disciple"]
-const SPEAKERS := {"少俠": "hero", "柳青霄": "master", "阿棠": "disciple", "秦川": "guard", "沈禾": "shen_he", "白芷": "bai_zhi", "顧衡": "gu_heng", "周伯": "uncle_zhou", "陳白": "chen_bai", "石安": "shi_an", "小滿": "xiaoman", "小滿的哥哥": "brother", "嚴承": "yan_cheng", "嚴長老": "npc_elder_yan", "攤販": "npc_town_vendor", "貨主": "npc_town_vendor", "茶客": "npc_town_tea", "驛站掌櫃": "npc_station_keeper", "掌櫃": "npc_station_keeper", "採藥老人": "npc_herb_elder", "西院弟子": "practice_disciple", "西院弟子甲": "shi_an", "西院弟子乙": "practice_disciple"}
+const SPEAKERS := {"少俠": "hero", "柳青霄": "master", "阿棠": "disciple", "秦川": "guard", "沈禾": "shen_he", "白芷": "bai_zhi", "顧衡": "gu_heng", "周伯": "uncle_zhou", "陳白": "chen_bai", "石安": "shi_an", "小滿": "xiaoman", "小滿的哥哥": "brother", "嚴承": "yan_cheng", "嚴長老": "npc_elder_yan", "攤販": "npc_town_vendor", "貨主": "npc_town_vendor", "茶客": "npc_town_tea", "驛站掌櫃": "npc_station_keeper", "掌櫃": "npc_station_keeper", "採藥老人": "npc_herb_elder", "巡山弟子": "practice_disciple", "西院弟子": "practice_disciple", "西院弟子甲": "shi_an", "西院弟子乙": "practice_disciple"}
 static var cache: Dictionary = {}
 static var frame_cache: Dictionary = {}
 static var standing_cache: Dictionary = {}
